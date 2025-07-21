@@ -1,0 +1,23 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+the project taht i am working on Dhreeti-Healthcare , this is a nextjs 15 project.
+you only have to make changes in the Dhreeti-Healthcare folder only.
+the product uses shadcn latest with tailwind css 4.
+the project has a dashboard and frontend and uses redux for state management.
+
+app folder contains main code, api routes, dashboard etc.
+components contains shadcn components and common components used in app.
+lib contains redux folder for provider, store and slice.
+
+middleware.ts contains the middleware for dashboard and profile.
+
+always check the package.json and components/ui folder before installing any module or components.
+
+and if need to install use the powershell commands not bash or linux.
+
+
+and install in root folder

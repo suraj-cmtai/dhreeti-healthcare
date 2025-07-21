@@ -1,0 +1,106 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Core Brand Colors */
+  --color-primary: #1c6cb2; /* Deep Blue */
+  --color-primary-foreground: #fff;
+  --color-secondary: #3ba0b0; /* Aqua Teal */
+  --color-secondary-foreground: #fff;
+  --color-accent: #47afb5; /* Sky Cyan */
+  --color-accent-foreground: #fff;
+  --color-background: #f5f9fc; /* Very Light Gray */
+  --color-foreground: #2b2b2b; /* Charcoal Gray */
+  --color-muted: #e0e0e0;
+  --color-muted-foreground: #6c757d;
+  --color-border: #e0f7fa;
+  --color-card: #fff;
+  --color-card-foreground: #2b2b2b;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #fff;
+  --color-ring: #1c6cb2;
+  --color-input: #3ba0b0;
+  --color-popover: #fff;
+  --color-popover-foreground: #2b2b2b;
+  /* Tailwind Blue/Teal Scale (for utility) */
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-300: #93c5fd;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --blue-800: #1e40af;
+  --blue-900: #1e3a8a;
+  --teal-50: #f0fdfa;
+  --teal-100: #ccfbf1;
+  --teal-200: #99f6e4;
+  --teal-300: #5eead4;
+  --teal-400: #2dd4bf;
+  --teal-500: #14b8a6;
+  --teal-600: #0d9488;
+  --teal-700: #0f766e;
+  --teal-800: #115e59;
+  --teal-900: #134e4a;
+  /* Radius */
+  --radius-lg: 0.625rem;
+  --radius-md: 0.5rem;
+  --radius-sm: 0.375rem;
+  --radius-xl: 0.875rem;
+}
+
+.dark {
+  /* Dark mode overrides for new palette */
+  --color-background: #1c6cb2;
+  --color-foreground: #f5f9fc;
+  --color-card: #222b3a;
+  --color-card-foreground: #f5f9fc;
+  --color-primary: #3ba0b0;
+  --color-primary-foreground: #fff;
+  --color-secondary: #47afb5;
+  --color-secondary-foreground: #fff;
+  --color-accent: #1c6cb2;
+  --color-accent-foreground: #fff;
+  --color-muted: #2b2b2b;
+  --color-muted-foreground: #6c757d;
+  --color-border: #2563eb;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #fff;
+  --color-ring: #3ba0b0;
+  --color-input: #47afb5;
+  --color-popover: #222b3a;
+  --color-popover-foreground: #f5f9fc;
+  /* Tailwind Blue/Teal Scale (for utility) - same as light */
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-300: #93c5fd;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --blue-800: #1e40af;
+  --blue-900: #1e3a8a;
+  --teal-50: #f0fdfa;
+  --teal-100: #ccfbf1;
+  --teal-200: #99f6e4;
+  --teal-300: #5eead4;
+  --teal-400: #2dd4bf;
+  --teal-500: #14b8a6;
+  --teal-600: #0d9488;
+  --teal-700: #0f766e;
+  --teal-800: #115e59;
+  --teal-900: #134e4a;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
