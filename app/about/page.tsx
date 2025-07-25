@@ -1,5 +1,5 @@
-import AboutUsSection from "@/components/home/about";
-import TestimonialSection from "@/components/home/testimonial";
+import AboutUsSection from "@/components/home/about-section";
+import TestimonialSection from "@/components/home/testimonial-section";
 
 export default function AboutPage() {
   return (
