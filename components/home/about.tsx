@@ -223,41 +223,7 @@ export default function AboutUsSection() {
             </div>
 
             {/* Company Stats */}
-            <div className="grid grid-cols-2 gap-6">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-white p-6 rounded-xl shadow-lg border border-blue-100 relative overflow-hidden"
-              >
-                {/* Background Medical Icon */}
-                <div className="absolute top-2 right-2 opacity-10">
-                  <Calendar className="w-8 h-8 text-blue-600" />
-                </div>
-                <div className="flex items-center space-x-3 mb-2 relative z-10">
-                  <Calendar className="w-6 h-6 text-blue-600" />
-                  <span className="text-sm font-medium text-gray-600">Incorporated</span>
-                </div>
-                <p className="text-2xl font-bold text-gray-900">Feb 2022</p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="bg-white p-6 rounded-xl shadow-lg border border-teal-100 relative overflow-hidden"
-              >
-                {/* Background Medical Icon */}
-                <div className="absolute top-2 right-2 opacity-10">
-                  <TrendingUp className="w-8 h-8 text-teal-600" />
-                </div>
-                <div className="flex items-center space-x-3 mb-2 relative z-10">
-                  <TrendingUp className="w-6 h-6 text-teal-600" />
-                  <span className="text-sm font-medium text-gray-600">Capital</span>
-                </div>
-                <p className="text-2xl font-bold text-gray-900">₹1,00,000</p>
-              </motion.div>
-            </div>
+            
           </motion.div>
 
           {/* Right Content - Enhanced Visual Elements with Medical Vectors */}
@@ -296,9 +262,9 @@ export default function AboutUsSection() {
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center relative overflow-hidden"
                   >
                     {/* Background Icon */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                    {/* <div className="absolute inset-0 flex items-center justify-center opacity-20">
                       <Users className="w-12 h-12" />
-                    </div>
+                    </div> */}
                     <Users className="w-8 h-8 mx-auto mb-2 relative z-10" />
                     <p className="text-2xl font-bold">5000+</p>
                     <p className="text-sm opacity-90">Patients Served</p>
@@ -310,9 +276,9 @@ export default function AboutUsSection() {
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center relative overflow-hidden"
                   >
                     {/* Background Icon */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                    {/* <div className="absolute inset-0 flex items-center justify-center opacity-20">
                       <Award className="w-12 h-12" />
-                    </div>
+                    </div> */}
                     <Award className="w-8 h-8 mx-auto mb-2 relative z-10" />
                     <p className="text-2xl font-bold">2+</p>
                     <p className="text-sm opacity-90">Years Experience</p>
@@ -324,9 +290,9 @@ export default function AboutUsSection() {
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center relative overflow-hidden"
                   >
                     {/* Background Icon */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                    {/* <div className="absolute inset-0 flex items-center justify-center opacity-20">
                       <Shield className="w-12 h-12" />
-                    </div>
+                    </div> */}
                     <Shield className="w-8 h-8 mx-auto mb-2 relative z-10" />
                     <p className="text-2xl font-bold">100%</p>
                     <p className="text-sm opacity-90">Quality Assured</p>
@@ -338,9 +304,9 @@ export default function AboutUsSection() {
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center relative overflow-hidden"
                   >
                     {/* Background Icon */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                    {/* <div className="absolute inset-0 flex items-center justify-center opacity-20">
                       <Building2 className="w-12 h-12" />
-                    </div>
+                    </div> */}
                     <Building2 className="w-8 h-8 mx-auto mb-2 relative z-10" />
                     <p className="text-2xl font-bold">24/7</p>
                     <p className="text-sm opacity-90">Healthcare</p>

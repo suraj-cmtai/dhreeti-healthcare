@@ -3,13 +3,14 @@ import DiseaseInfoSection from "@/components/home/DiseaseInfoSection";
 import Hero from "@/components/home/hero";
 import Service from "@/components/home/service";
 import TestimonialSection from "@/components/home/testimonial";
+import WhyChooseSection from "@/components/home/why-choose-section";
 
 export default function Home() {
   // Example data for multiple diseases
   const diseasesData = [
     {
       diseaseName: "Diabetes",
-      bodyImage: "/images/anatomy.png",
+      bodyImage: "/images/diabetes.png",
       layout: "center" as "center",
       symptoms: [
         "Frequent Urination",
@@ -34,7 +35,7 @@ export default function Home() {
     },
     {
       diseaseName: "Hypertension",
-      bodyImage: "/images/anatomy.png",
+      bodyImage: "/images/hypertension.png",
       layout: "left" as "left",
       symptoms: [
         "Headaches",
@@ -57,34 +58,36 @@ export default function Home() {
         "Take prescribed medications as directed",
       ],
     },
+    // add tuberculosis data
     {
-      diseaseName: "Asthma",
-      bodyImage: "/images/anatomy.png",
-      layout: "right" as "right",
+      diseaseName: "Tuberculosis",
+      bodyImage: "/images/tuberculosis.png",
+      layout: "left" as "left",
       symptoms: [
-        "Shortness of Breath",
-        "Chest Tightness",
-        "Wheezing",
-        "Coughing (especially at night)",
-        "Difficulty Breathing",
+        "Persistent Cough (lasting more than 3 weeks)",
+        "Chest Pain",
+        "Coughing up Blood",
+        "Unexplained Weight Loss",
+        "Fever and Chills",
+        "Night Sweats",
         "Fatigue",
-        "Rapid Breathing",
-        "Frequent Respiratory Infections",
+        "Loss of Appetite",
       ],
       cures: [
-        "Avoid asthma triggers (dust, pollen, smoke)",
-        "Use inhalers as prescribed",
-        "Monitor breathing and symptoms",
-        "Maintain a healthy lifestyle",
-        "Get regular medical check-ups",
-        "Practice breathing exercises",
-        "Keep indoor air clean",
-        "Follow an asthma action plan",
+        "Complete the full course of prescribed antibiotics (usually 6-9 months)",
+        "Regular follow-up with healthcare provider",
+        "Maintain a nutritious diet to support recovery",
+        "Avoid smoking and alcohol consumption",
+        "Practice good hygiene to prevent spreading the infection",
+        "Stay isolated if advised by a doctor during the initial treatment phase",
+        "Monitor for any side effects of medication and report them to your doctor",
+        "Get vaccinated with BCG vaccine if recommended in high-risk areas",
       ],
     },
+
     {
       diseaseName: "Thyroid Disorders",
-      bodyImage: "/images/anatomy.png",
+      bodyImage: "/images/thyroid.png",
       layout: "center" as "center",
       symptoms: [
         "Fatigue",
@@ -111,8 +114,9 @@ export default function Home() {
 
   return (
     <>
-      <Hero />
+    <Hero />
       <AboutUsSection />
+      <WhyChooseSection />
       <DiseaseInfoSection {...diseasesData[0]} />
       <Service />
       <DiseaseInfoSection {...diseasesData[1]} />

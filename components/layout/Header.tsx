@@ -49,7 +49,7 @@ export default function Header() {
       style={{ willChange: "transform" }}
     >
       {/* Top Bar - Hide on scroll with header */}
-      <div className={`bg-gradient-to-r from-blue-600 to-blue-700 text-white transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"}`}
+      {/* <div className={`bg-gradient-to-r from-blue-600 to-blue-700 text-white transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"}`}
         style={{ willChange: "transform" }}>
         <div className="max-w-7xl w-full mx-auto px-4">
           <div className="flex items-center justify-between py-2 text-sm">
@@ -72,7 +72,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Header */}
       <div className="max-w-7xl w-full mx-auto px-4">
