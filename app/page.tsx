@@ -10,7 +10,7 @@ export default function Home() {
   const diseasesData = [
     {
       diseaseName: "Diabetes",
-      bodyImage: "/images/diabetes.png",
+      bodyImage: "/images/diabetes-bg.png",
       layout: "center" as "center",
       symptoms: [
         "Frequent Urination",
@@ -35,7 +35,7 @@ export default function Home() {
     },
     {
       diseaseName: "Hypertension",
-      bodyImage: "/images/hypertension.png",
+      bodyImage: "/images/hypertension-bg.png",
       layout: "left" as "left",
       symptoms: [
         "Headaches",
@@ -61,7 +61,7 @@ export default function Home() {
     // add tuberculosis data
     {
       diseaseName: "Tuberculosis",
-      bodyImage: "/images/tuberculosis.png",
+      bodyImage: "/images/tuberculosis-bg.png",
       layout: "left" as "left",
       symptoms: [
         "Persistent Cough (lasting more than 3 weeks)",
@@ -87,7 +87,7 @@ export default function Home() {
 
     {
       diseaseName: "Thyroid Disorders",
-      bodyImage: "/images/thyroid.png",
+      bodyImage: "/images/thyroid-bg.png",
       layout: "center" as "center",
       symptoms: [
         "Fatigue",
