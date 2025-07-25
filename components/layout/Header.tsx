@@ -29,7 +29,7 @@ export default function Header() {
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <Image src="/logo-horizontal.png" alt="Dhreeti Healthcare" width={200} height={60} className="h-12 w-auto" style={{border: 'none', boxShadow: 'none', background: 'none'}} />
+            <Image src="/logo-horizontal.png" alt="Dhreeti Healthcare" width={200} height={60} className="h-12 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -91,10 +91,9 @@ export default function Header() {
                     <Image
                       src="/logo.png"
                       alt="Dhreeti Healthcare"
-                      width={110}
-                      height={110}
-                      className="h-14 w-auto"
-                      style={{border: 'none', boxShadow: 'none', background: 'none'}} 
+                      width={200}
+                      height={70}
+                      className="h-16 w-auto"
                       priority
                     />
                   </div>
