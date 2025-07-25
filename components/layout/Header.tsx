@@ -10,30 +10,7 @@ import { Menu, Phone, MapPin, Clock } from "lucide-react"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
-  const [showHeader, setShowHeader] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
   const pathname = usePathname()
-
-  useEffect(() => {
-    let ticking = false
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY
-          if (currentScrollY > lastScrollY && currentScrollY > 60) {
-            setShowHeader(false)
-          } else {
-            setShowHeader(true)
-          }
-          setLastScrollY(currentScrollY)
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [lastScrollY])
 
   const navigation = [
     { name: "Home", href: "/" },
@@ -45,35 +22,8 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"}`}
-      style={{ willChange: "transform" }}
+      className="fixed top-0 z-50 w-full bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60"
     >
-      {/* Top Bar - Hide on scroll with header */}
-      {/* <div className={`bg-gradient-to-r from-blue-600 to-blue-700 text-white transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"}`}
-        style={{ willChange: "transform" }}>
-        <div className="max-w-7xl w-full mx-auto px-4">
-          <div className="flex items-center justify-between py-2 text-sm">
-            <div className="hidden md:flex items-center space-x-6">
-              <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4" />
-                <span>+91 98765 43210</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4" />
-                <span>123 Health Street, Medical District</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Clock className="h-4 w-4" />
-                <span>Mon-Sat: 9AM-8PM</span>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-xs">Emergency: +91 98765 43211</span>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
       {/* Main Header */}
       <div className="max-w-7xl w-full mx-auto px-4">
         <div className="flex items-center justify-between py-4">
