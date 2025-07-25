@@ -231,7 +231,7 @@ export default function ServicesSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="bg-gradient-to-r from-blue-600 to-teal-600 rounded-3xl p-12 text-white text-center relative overflow-hidden"
+          className="rounded-xl bg-primary/10 text-primary p-12 text-center relative overflow-hidden"
         >
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
@@ -258,7 +258,7 @@ export default function ServicesSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
                 size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-md transition-all"
               >
                 <Calendar className="w-5 h-5 mr-2" />
                 Book Appointment
@@ -266,7 +266,7 @@ export default function ServicesSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-white text-white hover:bg-white/10 px-8 py-4 text-lg font-semibold backdrop-blur-sm bg-transparent"
+                className="border-2 border-primary text-black hover:bg-white/10 px-8 py-4 text-lg font-semibold backdrop-blur-sm bg-transparent"
               >
                 <Phone className="w-5 h-5 mr-2" />
                 Call Now: +91 98765 43210

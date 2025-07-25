@@ -1,8 +1,8 @@
-import AboutUsSection from "@/components/home/about";
-import DiseaseInfoSection from "@/components/home/DiseaseInfoSection";
-import Hero from "@/components/home/hero";
-import Service from "@/components/home/service";
-import TestimonialSection from "@/components/home/testimonial";
+import AboutUsSection from "@/components/home/about-section";
+import DiseaseInfoSection from "@/components/home/diseases-section";
+import Hero from "@/components/home/hero-section";
+import Service from "@/components/home/service-section";
+import TestimonialSection from "@/components/home/testimonial-section";
 import WhyChooseSection from "@/components/home/why-choose-section";
 
 export default function Home() {
@@ -10,8 +10,8 @@ export default function Home() {
   const diseasesData = [
     {
       diseaseName: "Diabetes",
-      bodyImage: "/images/diabetes-bg.png",
-      layout: "center" as "center",
+      bodyImage: "/images/diabetes.png",
+      layout: "left" as "left",
       symptoms: [
         "Frequent Urination",
         "Excessive Thirst",
@@ -35,8 +35,8 @@ export default function Home() {
     },
     {
       diseaseName: "Hypertension",
-      bodyImage: "/images/hypertension-bg.png",
-      layout: "left" as "left",
+      bodyImage: "/images/hypertension.png",
+      layout: "right" as "right",
       symptoms: [
         "Headaches",
         "Shortness of Breath",
@@ -61,7 +61,7 @@ export default function Home() {
     // add tuberculosis data
     {
       diseaseName: "Tuberculosis",
-      bodyImage: "/images/tuberculosis-bg.png",
+      bodyImage: "/images/tuberculosis.png",
       layout: "left" as "left",
       symptoms: [
         "Persistent Cough (lasting more than 3 weeks)",
@@ -87,8 +87,8 @@ export default function Home() {
 
     {
       diseaseName: "Thyroid Disorders",
-      bodyImage: "/images/thyroid-bg.png",
-      layout: "center" as "center",
+      bodyImage: "/images/thyroid.png",
+      layout: "right" as "right",
       symptoms: [
         "Fatigue",
         "Weight Changes",
@@ -114,14 +114,13 @@ export default function Home() {
 
   return (
     <>
-    <Hero />
+      <Hero />
       <AboutUsSection />
       <WhyChooseSection />
-      <DiseaseInfoSection {...diseasesData[0]} />
       <Service />
-      <DiseaseInfoSection {...diseasesData[1]} />
-      <DiseaseInfoSection {...diseasesData[2]} />
-      <DiseaseInfoSection {...diseasesData[3]} />
+      {diseasesData.map((disease, index) => (
+        <DiseaseInfoSection key={disease.diseaseName} {...disease} />
+      ))}
       <TestimonialSection />
     </>
   );

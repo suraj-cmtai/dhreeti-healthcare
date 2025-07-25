@@ -3,7 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { PlayCircle, Plus, Heart, Stethoscope, Activity, Pill, Shield } from "lucide-react";
+import { Plus, Heart, Stethoscope, Activity, Pill, Shield, ArrowRight } from "lucide-react";
 import { useRef, useState } from "react"
 import { Play, Pause } from "lucide-react"
 
@@ -12,10 +12,30 @@ const fadeInUp: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 }
 
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3
+    }
+  }
+}
+
+const fadeInScale: Variants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+}
+
 export default function Hero() {
     return (
     <>
-      <section className="relative min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 via-white to-teal-50 overflow-hidden pt-24">
+      <section className="relative min-h-[90vh] flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 via-white to-teal-50 overflow-hidden">
         {/* Enhanced Blurred Gradient Circles */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-200/30 to-teal-200/30 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
@@ -92,55 +112,86 @@ export default function Hero() {
         {/* Content */}
         <div className="relative z-10 w-full max-w-7xl px-4 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Left side - Content */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
-            <div className="space-y-4">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6"
+          >
+            <motion.div variants={fadeInUp} className="space-y-4">
               <h1 className="text-3xl md:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
                 Welcome to{' '}
-                <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
+                <motion.span
+                  initial={{ backgroundPosition: "0% 50%" }}
+                  animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                  className="bg-gradient-to-r from-blue-600 via-teal-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent"
+                >
                   Dhreeti Healthcare
-                </span>
+                </motion.span>
               </h1>
-              <p className="text-xl md:text-2xl bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent font-semibold">
+              <motion.p variants={fadeInUp} className="text-xl md:text-2xl bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent font-semibold">
                 विश्वसनीय एवं किफायती स्वास्थ्य सेवा आपके लिए
-              </p>
-              <p className="text-lg md:text-xl text-gray-600 max-w-xl">
+              </motion.p>
+              <motion.p variants={fadeInUp} className="text-lg md:text-xl text-gray-600 max-w-xl">
                 Providing reliable and affordable healthcare services with modern facilities and experienced doctors since 2022.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
             
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+            <motion.div 
+              variants={fadeInScale}
+              whileHover={{ scale: 1.02 }}
+              className="flex flex-col sm:flex-row gap-4 mt-8"
+            >
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white text-lg font-semibold shadow-xl hover:shadow-2xl transition-all"
+                className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white text-lg font-semibold shadow-md transition-all transform"
               >
                 Book an appointment
+                <ArrowRight className="w-4 h-4" />
               </Button>
-            </div>
+            </motion.div>
 
             {/* Trust Badge */}
-            <div className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/80 backdrop-blur-sm border border-teal-100 shadow-lg">
+            <motion.div 
+              variants={fadeInScale}
+              className="mt-4 inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-teal-100 shadow-md transition-all"
+            >
               <div className="flex -space-x-2">
-                <div className="w-8 h-8 rounded-full bg-teal-400 flex items-center justify-center text-white">
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="w-8 h-8 rounded-full bg-teal-400 flex items-center justify-center text-white"
+                >
                   <Shield className="w-4 h-4" />
-                </div>
-                <div className="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center text-white">
+                </motion.div>
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                  className="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center text-white"
+                >
                   <Heart className="w-4 h-4" />
-                </div>
+                </motion.div>
               </div>
-              <span className="text-gray-700 font-medium">Trusted by thousands of patients</span>
-            </div>
-          </div>
+              <span className="text-gray-700 font-medium">Trusted by 1000+ patients</span>
+            </motion.div>
+          </motion.div>
 
           {/* Right side - Doctor Images with fade mask */}
-          <div className="relative h-[500px] lg:h-[600px] flex items-center justify-center [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, type: "spring", bounce: 0.2 }}
+            className="relative h-[500px] lg:h-[600px] flex items-center justify-center"
+          >
             <div className="relative w-full h-full">
               <Image
                 src="/images/doctor-male.png"
                 alt="Dr. Specialist"
                 width={400}
                 height={600}
-                className="absolute left-1/2 transform -translate-x-[60%] h-[90%] w-auto object-contain z-10"
+                className="absolute left-1/2 top-[5%] transform -translate-x-[60%] h-[85%] w-auto object-contain z-10 transition-transform hover:scale-102"
                 priority
               />
               <Image
@@ -148,35 +199,88 @@ export default function Hero() {
                 alt="Dr. Expert"
                 width={400}
                 height={600}
-                className="absolute left-1/2 transform -translate-x-[40%] h-[90%] w-auto object-contain z-20"
+                className="absolute left-1/2 top-[5%] transform -translate-x-[40%] h-[85%] w-auto object-contain z-20 transition-transform hover:scale-102"
                 priority
               />
               
-              {/* Background Circle */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-[400px] h-[400px] rounded-full bg-gradient-to-r from-teal-100/30 to-blue-100/30 filter blur-md"></div>
+              {/* Text for Doctors Team */}
+              <div className="absolute bottom-6 rounded-lg left-1/2 transform -translate-x-1/2 z-20 bg-white/90 backdrop-blur-sm px-8 py-6 text-center w-[600px]">
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent mb-2">
+                  Team of Expert Doctors
+                </h3>
+                <p className="text-gray-700 text-lg mb-3">
+                  Our dedicated team of specialists brings over 5 years of experience in providing comprehensive healthcare services
+                </p>
               </div>
-          
+              
+              {/* Background Circle */}
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1 }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <div className="w-[400px] h-[400px] rounded-full bg-gradient-to-r from-teal-100/30 to-blue-100/30 filter blur-md"></div>
+              </motion.div>
+
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Video Section */}
-      <section className="bg-gradient-to-br from-blue-50 via-white to-teal-50 py-16">
-        <motion.div
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ delay: 0.2 }}
-          className="max-w-4xl mx-auto z-10 px-4"
-        >
-          {/* 16:9 Aspect Ratio Container */}
-          <div className="relative w-full aspect-video rounded-xl shadow-card-light overflow-hidden glass-light border border-primary/10">
-            <VideoWithFallback />
+      {/* Compact Video Section */}
+      <section className="relative bg-gradient-to-br from-blue-50 via-white to-teal-50 py-16">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Decorative circles */}
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-teal-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-blue-200/20 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4">
+          <div className="max-w-[800px] mx-auto relative">
+            {/* Section Title */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-8"
+            >
+              <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">
+                Take a Virtual Tour
+              </h2>
+            </motion.div>
+
+            {/* Compact Video Container */}
+            <motion.div
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="relative"
+            >
+              {/* Corner Decorations */}
+              <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-teal-500/30 rounded-tl-lg"></div>
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-blue-500/30 rounded-br-lg"></div>
+              
+              {/* Glass Container */}
+              <div className="relative backdrop-blur-sm bg-white/30 p-4 rounded-xl shadow-lg border border-white/20">
+                <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-xl">
+                  <VideoWithFallback />
+                </div>
+
+                {/* Small Info Badge */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full shadow-md border border-teal-100/50 flex items-center gap-2"
+                >
+                  <Shield className="w-4 h-4 text-teal-500" />
+                  <span className="text-gray-700 text-sm font-medium">Watch Our Story</span>
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
       </section>
     </>
   );

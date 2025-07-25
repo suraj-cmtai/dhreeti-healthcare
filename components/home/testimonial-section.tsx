@@ -74,9 +74,9 @@ export default function TestimonialSection() {
         if (prev <= resetPoint) {
           return 0
         }
-        return prev - 1
+        return prev - 2
       })
-    }, 50) // Smooth continuous movement
+    }, 30) // Faster, smooth continuous movement
 
     return () => clearInterval(interval)
   }, [])
@@ -89,7 +89,7 @@ export default function TestimonialSection() {
         <div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-tr from-teal-100/50 to-blue-100/50 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="mx-auto px-4 relative z-10">
         <motion.div
           initial="hidden"
           variants={fadeInUp}

@@ -8,16 +8,12 @@ import {
   Eye,
   Award,
   Users,
-  Calendar,
-  TrendingUp,
   Shield,
   Heart,
   Stethoscope,
   Activity,
   Plus,
   Microscope,
-  Pill,
-  Zap,
 } from "lucide-react"
 
 export default function AboutUsSection() {
@@ -26,16 +22,15 @@ export default function AboutUsSection() {
 
   return (
     <section ref={ref} className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden w-full">
-      {/* Enhanced Background Pattern with Medical Vectors */}
+      {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5 max-w-7xl mx-auto w-full">
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-500 to-teal-500 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-tl from-teal-500 to-blue-500 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full blur-2xl"></div>
       </div>
 
-      {/* Floating Medical Vector Icons */}
+      {/* Floating Medical Icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none max-w-7xl mx-auto w-full">
-        {/* Large Medical Cross */}
         <motion.div
           animate={{
             rotate: [0, 360],
@@ -51,7 +46,6 @@ export default function AboutUsSection() {
           <Plus className="w-full h-full" />
         </motion.div>
 
-        {/* Floating Stethoscope */}
         <motion.div
           animate={{
             y: [0, -20, 0],
@@ -67,7 +61,6 @@ export default function AboutUsSection() {
           <Stethoscope className="w-full h-full" />
         </motion.div>
 
-        {/* Heart Beat */}
         <motion.div
           animate={{
             scale: [1, 1.3, 1],
@@ -82,97 +75,16 @@ export default function AboutUsSection() {
         >
           <Heart className="w-full h-full" />
         </motion.div>
-
-        {/* DNA Helix Representation */}
-        <motion.div
-          animate={{
-            rotate: [0, 360],
-            x: [0, 10, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-          className="absolute bottom-1/3 left-16 w-8 h-8 text-blue-400/70"
-        >
-          <Activity className="w-full h-full" />
-        </motion.div>
-
-        {/* Microscope */}
-        <motion.div
-          animate={{
-            y: [0, 15, 0],
-            rotate: [0, -5, 5, 0],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-20 right-1/3 w-14 h-14 text-teal-400/70"
-        >
-          <Microscope className="w-full h-full" />
-        </motion.div>
-
-        {/* Pills */}
-        <motion.div
-          animate={{
-            rotate: [0, 180, 360],
-            scale: [1, 0.8, 1],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-          className="absolute top-2/3 left-1/3 w-6 h-6 text-green-400/80"
-        >
-          <Pill className="w-full h-full" />
-        </motion.div>
-
-        {/* Medical Shield */}
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, -10, 10, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-1/4 left-1/2 w-12 h-12 text-blue-400/70"
-        >
-          <Shield className="w-full h-full" />
-        </motion.div>
-
-        {/* Lightning/Energy */}
-        <motion.div
-          animate={{
-            opacity: [0.5, 1, 0.5],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/4 left-1/2 w-8 h-8 text-yellow-400/80"
-        >
-          <Zap className="w-full h-full" />
-        </motion.div>
       </div>
 
       <div className="max-w-7xl w-full mx-auto px-4 relative z-10">
-        {/* Section Header with Medical Vector */}
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16 relative"
         >
-          {/* Decorative Medical Cross Behind Title */}
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-4 opacity-10">
             <Plus className="w-24 h-24 text-blue-600" />
           </div>
@@ -221,12 +133,9 @@ export default function AboutUsSection() {
                 patient safety and satisfaction through our innovative solutions.
               </p>
             </div>
-
-            {/* Company Stats */}
-            
           </motion.div>
 
-          {/* Right Content - Enhanced Visual Elements with Medical Vectors */}
+          {/* Right Content - Stats Card */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
@@ -234,7 +143,6 @@ export default function AboutUsSection() {
             className="relative"
           >
             <div className="relative bg-gradient-to-br from-blue-500 to-teal-500 rounded-3xl p-8 text-white overflow-hidden">
-              {/* Background Medical Pattern */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-4 left-4">
                   <Heart className="w-12 h-12" />
@@ -261,10 +169,6 @@ export default function AboutUsSection() {
                     transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center relative overflow-hidden"
                   >
-                    {/* Background Icon */}
-                    {/* <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                      <Users className="w-12 h-12" />
-                    </div> */}
                     <Users className="w-8 h-8 mx-auto mb-2 relative z-10" />
                     <p className="text-2xl font-bold">5000+</p>
                     <p className="text-sm opacity-90">Patients Served</p>
@@ -275,10 +179,6 @@ export default function AboutUsSection() {
                     transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center relative overflow-hidden"
                   >
-                    {/* Background Icon */}
-                    {/* <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                      <Award className="w-12 h-12" />
-                    </div> */}
                     <Award className="w-8 h-8 mx-auto mb-2 relative z-10" />
                     <p className="text-2xl font-bold">2+</p>
                     <p className="text-sm opacity-90">Years Experience</p>
@@ -289,10 +189,6 @@ export default function AboutUsSection() {
                     transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 }}
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center relative overflow-hidden"
                   >
-                    {/* Background Icon */}
-                    {/* <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                      <Shield className="w-12 h-12" />
-                    </div> */}
                     <Shield className="w-8 h-8 mx-auto mb-2 relative z-10" />
                     <p className="text-2xl font-bold">100%</p>
                     <p className="text-sm opacity-90">Quality Assured</p>
@@ -303,10 +199,6 @@ export default function AboutUsSection() {
                     transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3 }}
                     className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center relative overflow-hidden"
                   >
-                    {/* Background Icon */}
-                    {/* <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                      <Building2 className="w-12 h-12" />
-                    </div> */}
                     <Building2 className="w-8 h-8 mx-auto mb-2 relative z-10" />
                     <p className="text-2xl font-bold">24/7</p>
                     <p className="text-sm opacity-90">Healthcare</p>
@@ -315,7 +207,7 @@ export default function AboutUsSection() {
               </div>
             </div>
 
-            {/* Floating Medical Icons Around the Card */}
+            {/* Floating Icons */}
             <motion.div
               animate={{
                 rotate: [0, 360],
@@ -348,16 +240,15 @@ export default function AboutUsSection() {
           </motion.div>
         </div>
 
-        {/* Enhanced Mission, Vision, Focus with Medical Vectors */}
+        {/* Mission, Vision, Focus Cards */}
         <div className="grid md:grid-cols-3 gap-8">
           {/* Mission */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-white rounded-2xl p-8 shadow-xl border border-blue-100 hover:shadow-2xl transition-all duration-300 relative overflow-hidden"
+            className="bg-white rounded-2xl p-8 shadow-md border border-blue-100 transition-all duration-300 relative overflow-hidden"
           >
-            {/* Background Medical Pattern */}
             <div className="absolute top-4 right-4 opacity-5">
               <Target className="w-16 h-16 text-blue-600" />
             </div>
@@ -380,9 +271,8 @@ export default function AboutUsSection() {
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="bg-white rounded-2xl p-8 shadow-xl border border-teal-100 hover:shadow-2xl transition-all duration-300 relative overflow-hidden"
+              className="bg-white rounded-2xl p-8 shadow-md border border-teal-100 transition-all duration-300 relative overflow-hidden"
           >
-            {/* Background Medical Pattern */}
             <div className="absolute top-4 right-4 opacity-5">
               <Eye className="w-16 h-16 text-teal-600" />
             </div>
@@ -405,9 +295,8 @@ export default function AboutUsSection() {
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="bg-white rounded-2xl p-8 shadow-xl border border-blue-100 hover:shadow-2xl transition-all duration-300 relative overflow-hidden"
+            className="bg-white rounded-2xl p-8 shadow-md border border-blue-100 transition-all duration-300 relative overflow-hidden"
           >
-            {/* Background Medical Pattern */}
             <div className="absolute top-4 right-4 opacity-5">
               <Shield className="w-16 h-16 text-blue-600" />
             </div>
