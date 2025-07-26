@@ -35,7 +35,7 @@ const fadeInScale: Variants = {
 export default function Hero() {
     return (
     <>
-      <section className="relative min-h-[90vh] flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 via-white to-teal-50 overflow-hidden">
+      <section className="relative min-h-[90vh] flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 via-white to-teal-50 overflow-hidden pt-4 sm:pt-0">
         {/* Enhanced Blurred Gradient Circles */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-200/30 to-teal-200/30 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
@@ -110,13 +110,13 @@ export default function Hero() {
           </svg>
         </div>
         {/* Content */}
-        <div className="relative z-10 w-full max-w-7xl px-4 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className="relative z-10 w-full max-w-7xl px-4 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 items-center">
           {/* Left side - Content */}
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6"
+            className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 sm:space-y-6 mt-16 sm:mt-0"
           >
             <motion.div variants={fadeInUp} className="space-y-4">
               <h1 className="text-3xl md:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
@@ -183,7 +183,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, type: "spring", bounce: 0.2 }}
-            className="relative h-[500px] lg:h-[600px] flex items-center justify-center"
+            className="relative h-[400px] sm:h-[500px] lg:h-[600px] flex items-center justify-center mt-8 sm:mt-0"
           >
             <div className="relative w-full h-full">
               <Image
@@ -191,7 +191,7 @@ export default function Hero() {
                 alt="Dr. Specialist"
                 width={400}
                 height={600}
-                className="absolute left-1/2 top-[5%] transform -translate-x-[60%] h-[85%] w-auto object-contain z-10 transition-transform hover:scale-102"
+                className="absolute left-1/2 top-[2%] sm:top-[5%] transform -translate-x-[60%] h-[80%] sm:h-[85%] w-auto object-contain z-10 transition-transform hover:scale-102"
                 priority
               />
               <Image
@@ -199,16 +199,16 @@ export default function Hero() {
                 alt="Dr. Expert"
                 width={400}
                 height={600}
-                className="absolute left-1/2 top-[5%] transform -translate-x-[40%] h-[85%] w-auto object-contain z-20 transition-transform hover:scale-102"
+                className="absolute left-1/2 top-[2%] sm:top-[5%] transform -translate-x-[40%] h-[80%] sm:h-[85%] w-auto object-contain z-20 transition-transform hover:scale-102"
                 priority
               />
               
               {/* Text for Doctors Team */}
-              <div className="absolute bottom-6 rounded-lg left-1/2 transform -translate-x-1/2 z-20 bg-white/90 backdrop-blur-sm px-8 py-6 text-center w-[600px]">
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent mb-2">
+              <div className="absolute bottom-2 sm:bottom-6 rounded-lg left-1/2 transform -translate-x-1/2 z-20 bg-white/90 backdrop-blur-sm px-4 sm:px-8 py-3 sm:py-6 text-center w-[90%] sm:w-[600px]">
+                <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent mb-1 sm:mb-2">
                   Team of Expert Doctors
                 </h3>
-                <p className="text-gray-700 text-lg mb-3">
+                <p className="text-gray-700 text-base sm:text-lg">
                   Our dedicated team of specialists brings over 5 years of experience in providing comprehensive healthcare services
                 </p>
               </div>
