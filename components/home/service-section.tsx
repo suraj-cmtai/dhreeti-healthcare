@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import {
   Clock,
   TestTube,
@@ -23,6 +23,11 @@ import { Button } from "@/components/ui/button"
 export default function ServicesSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [isPaused, setIsPaused] = useState(false)
+
+  const floatingAnimation = (isPaused: boolean) => ({
+    animate: isPaused ? { scale: 1, rotate: 0, y: 0 } : undefined
+  })
 
   const services = [
     {
@@ -85,20 +90,27 @@ export default function ServicesSection() {
   ]
 
   return (
-    <section ref={ref} className="py-20 bg-white relative overflow-hidden w-full">
+    <section 
+      ref={ref} 
+      className="py-20 bg-white relative overflow-hidden w-full"
+    >
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden max-w-7xl mx-auto w-full">
         <div className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-br from-blue-100/50 to-teal-100/50 rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-tr from-teal-100/50 to-blue-100/50 rounded-full blur-3xl"></div>
       </div>
       {/* Floating Medical Vector Icons */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none max-w-7xl mx-auto w-full">
+      <div 
+        className="absolute inset-0 overflow-hidden pointer-events-auto max-w-7xl mx-auto w-full"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
         {/* Medical Cross */}
         <motion.div
-          animate={{
+          animate={!isPaused ? {
             rotate: [0, 360],
             scale: [1, 1.2, 1],
-          }}
+          } : { rotate: 0, scale: 1 }}
           transition={{
             duration: 25,
             repeat: Number.POSITIVE_INFINITY,
@@ -110,10 +122,10 @@ export default function ServicesSection() {
         </motion.div>
         {/* Floating Pills */}
         <motion.div
-          animate={{
+          animate={!isPaused ? {
             y: [0, -15, 0],
             rotate: [0, 180, 360],
-          }}
+          } : { y: 0, rotate: 0 }}
           transition={{
             duration: 10,
             repeat: Number.POSITIVE_INFINITY,
@@ -125,10 +137,10 @@ export default function ServicesSection() {
         </motion.div>
         {/* Heart Monitor */}
         <motion.div
-          animate={{
+          animate={!isPaused ? {
             scale: [1, 1.3, 1],
             opacity: [0.4, 0.8, 0.4],
-          }}
+          } : { scale: 1, opacity: 0.6 }}
           transition={{
             duration: 3,
             repeat: Number.POSITIVE_INFINITY,
@@ -140,10 +152,10 @@ export default function ServicesSection() {
         </motion.div>
         {/* Medical Shield */}
         <motion.div
-          animate={{
+          animate={!isPaused ? {
             rotate: [0, -10, 10, 0],
             scale: [1, 1.1, 1],
-          }}
+          } : { rotate: 0, scale: 1 }}
           transition={{
             duration: 8,
             repeat: Number.POSITIVE_INFINITY,

@@ -62,24 +62,27 @@ const extendedTestimonials = [...testimonials, ...testimonials, ...testimonials]
 
 export default function TestimonialSection() {
   const [currentX, setCurrentX] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentX((prev) => {
-        const cardWidth = 384 // w-96 = 384px
-        const gap = 24 // gap-6 = 24px
-        const moveDistance = cardWidth + gap
-        const resetPoint = -(testimonials.length * moveDistance)
+      if (!isPaused) {
+        setCurrentX((prev) => {
+          const cardWidth = 384 // w-96 = 384px
+          const gap = 24 // gap-6 = 24px
+          const moveDistance = cardWidth + gap
+          const resetPoint = -(testimonials.length * moveDistance)
 
-        if (prev <= resetPoint) {
-          return 0
-        }
-        return prev - 2
-      })
+          if (prev <= resetPoint) {
+            return 0
+          }
+          return prev - 2
+        })
+      }
     }, 30) // Faster, smooth continuous movement
 
     return () => clearInterval(interval)
-  }, [])
+  }, [isPaused])
 
   return (
     <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-teal-50 overflow-hidden relative">
@@ -111,7 +114,11 @@ export default function TestimonialSection() {
 
         {/* Continuous Sliding Testimonials */}
         <div className="relative px-4">
-          <div className="overflow-hidden py-8 px-4">
+          <div 
+            className="overflow-hidden py-8 px-4"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
             <motion.div
               className="flex gap-6 py-4"
               style={{
@@ -179,7 +186,6 @@ export default function TestimonialSection() {
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-blue-50 to-transparent pointer-events-none z-10 my-8" />
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-blue-50 to-transparent pointer-events-none z-10 my-8" />
         </div>
-
       </div>
     </section>
   )
