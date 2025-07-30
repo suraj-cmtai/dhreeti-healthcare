@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
@@ -64,7 +64,7 @@ export default function Header() {
           {/* CTA Button & Mobile Menu */}
           <div className="flex items-center space-x-4">
             <Button className="hidden md:inline-flex bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white">
-              Book Appointment
+              <Link href="/book-appointment">Book Appointment</Link>
             </Button>
 
             {/* Mobile Menu */}
@@ -126,7 +126,7 @@ export default function Header() {
                   {/* CTA Button */}
                   <div className="px-6 pb-4">
                     <Button className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white text-base py-2.5">
-                      Book Appointment
+                      <Link href="/book-appointment">Book Appointment</Link>
                     </Button>
                   </div>
 

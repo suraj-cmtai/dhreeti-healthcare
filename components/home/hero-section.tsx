@@ -310,7 +310,7 @@ function VideoWithFallback() {
         <>
           <video
             ref={videoRef}
-            src="/dhriti-clinic.mp4"
+            src="/dhreeti-clinic.mp4"
             className="absolute inset-0 w-full h-full object-cover rounded-xl"
             muted
             loop

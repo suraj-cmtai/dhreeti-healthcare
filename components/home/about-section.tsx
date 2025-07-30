@@ -116,21 +116,13 @@ export default function AboutUsSection() {
               </div>
 
               <p className="text-lg text-gray-700 leading-relaxed">
-                Dhreeti Healthcare and Research Private Limited is dedicated to advancing healthcare through innovative
-                manufacturing and dedicated research. Incorporated on{" "}
-                <span className="font-semibold text-blue-600">February 16, 2022</span>, this private limited company is
-                based in <span className="font-semibold text-teal-600">Arrah, Bihar</span>.
+                Dhreeti Healthcare and Research Private Limited, established in{" "}
+                <span className="font-semibold text-blue-600">February 2022</span>, is a healthcare provider located in{" "}
+                <span className="font-semibold text-teal-600">Arrah, Bihar</span>. Our mission is to bolster basic healthcare within the region, creating a comprehensive network of high-quality primary healthcare centers.
               </p>
 
               <p className="text-lg text-gray-700 leading-relaxed">
-                The core business involves the manufacture of chemical products for healthcare applications. The company
-                is committed to exploring new frontiers in this area, aiming to contribute significantly to the
-                healthcare sector.
-              </p>
-
-              <p className="text-lg text-gray-700 leading-relaxed">
-                We strive to maintain the highest standards of quality and ethical practices in all endeavors, ensuring
-                patient safety and satisfaction through our innovative solutions.
+                We operate under the conviction that a strong foundation of primary care is indispensable for effective healthcare delivery. Through our initiatives, we guarantee accessible and dependable medical services for all individuals within the community.
               </p>
             </div>
           </motion.div>

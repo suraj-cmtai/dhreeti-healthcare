@@ -177,7 +177,7 @@ export default function DiseaseInfoSection({
                 {/* Clinic Contact Details */}
                 <div className="mt-8 p-8 bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl border border-blue-200/50">
                   <div className="text-center mb-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Dhriti Medical Clinic</h3>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Dhreeti Medical Clinic</h3>
                     <p className="text-gray-600">Advanced Healthcare Solutions • Board-Certified Physicians</p>
                   </div>
                   
