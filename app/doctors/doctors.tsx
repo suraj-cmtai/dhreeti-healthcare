@@ -18,6 +18,7 @@ import {
   CheckCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import CTA from "@/components/all/cta-section";
 import HeroSection from "@/components/all/hero-section";
 
@@ -43,7 +44,7 @@ const doctors: Doctor[] = [
   {
     id: 1,
     name: "Dr. Pragya Pandey",
-    image: "/doctors/dr-pragya.jpg",
+    image: "/doctor-female.png",
     specialization: "Obstetrics and Gynecology",
     experience: 10,
     location: "Arrah, Bihar",
@@ -60,7 +61,7 @@ const doctors: Doctor[] = [
   {
     id: 2,
     name: "Dr. Ganesh Pandey",
-    image: "/doctors/dr-ganesh.jpg",
+    image: "/doctor-male.png",
     specialization: "General Medicine",
     experience: 10,
     location: "Arrah, Bihar",
@@ -98,8 +99,8 @@ export default function DoctorsPage() {
                 <div className="lg:w-1/3 mb-8 lg:mb-0">
                   <div className="text-center lg:text-left">
                     <div className="relative inline-block mb-6">
-                      <div className="w-48 h-48 bg-gradient-to-br from-blue-500 to-teal-500 rounded-full flex items-center justify-center mx-auto lg:mx-0">
-                        <User className="w-24 h-24 text-white" />
+                      <div className="w-48 h-48 border-2 border-gray-300 rounded-full flex items-center justify-center mx-auto lg:mx-0">
+                        <Image src={doctor.image} alt={doctor.name} width={450} height={450} className="rounded-full" />
                       </div>
                       <div className="absolute -bottom-2 -right-2 bg-yellow-500 rounded-full p-3">
                         <Star className="w-6 h-6 text-white" />
