@@ -122,14 +122,11 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between text-sm">
             <p className="text-gray-400">© {new Date().getFullYear()} Dhreeti Clinic. All rights reserved.</p>
             <div className="flex space-x-6 mt-2 md:mt-0">
-              <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">
+              <Link href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">
                 Privacy Policy
               </Link>
               <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">
                 Terms of Service
-              </Link>
-              <Link href="/disclaimer" className="text-gray-400 hover:text-white transition-colors">
-                Medical Disclaimer
               </Link>
             </div>
           </div>

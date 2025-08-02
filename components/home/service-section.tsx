@@ -9,16 +9,11 @@ import {
   Activity,
   Baby,
   Pill,
-  Calendar,
-  Phone,
-  MapPin,
   Stethoscope,
   Heart,
-  Users,
   Plus,
   Shield,
 } from "lucide-react"
-import { Button } from "@/components/ui/button"
 
 export default function ServicesSection() {
   const ref = useRef(null)
@@ -238,72 +233,6 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="rounded-xl bg-primary/10 text-primary p-12 text-center relative overflow-hidden"
-        >
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-4 left-4 w-8 h-8">
-              <Heart className="w-full h-full" />
-            </div>
-            <div className="absolute top-8 right-8 w-6 h-6">
-              <Stethoscope className="w-full h-full" />
-            </div>
-            <div className="absolute bottom-4 left-8 w-7 h-7">
-              <Activity className="w-full h-full" />
-            </div>
-            <div className="absolute bottom-8 right-4 w-5 h-5">
-              <Users className="w-full h-full" />
-            </div>
-          </div>
-
-          <div className="relative z-10">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6">Ready to Experience Quality Healthcare?</h3>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Book your appointment today and let our experienced team take care of your health needs
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button
-                size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-md transition-all"
-              >
-                <Calendar className="w-5 h-5 mr-2" />
-                Book Appointment
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-primary text-black hover:bg-white/10 px-8 py-4 text-lg font-semibold backdrop-blur-sm bg-transparent"
-              >
-                <Phone className="w-5 h-5 mr-2" />
-                Call Now: +91 98765 43210
-              </Button>
-            </div>
-
-            {/* Contact Info */}
-            <div className="mt-8 pt-8 border-t border-white/20">
-              <div className="grid md:grid-cols-3 gap-6 text-center">
-                <div className="flex items-center justify-center space-x-2">
-                  <Phone className="w-5 h-5" />
-                  <span>+91 98765 43210</span>
-                </div>
-                <div className="flex items-center justify-center space-x-2">
-                  <MapPin className="w-5 h-5" />
-                  <span>Arrah, Bihar</span>
-                </div>
-                <div className="flex items-center justify-center space-x-2">
-                  <Clock className="w-5 h-5" />
-                  <span>24/7 Emergency</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   )

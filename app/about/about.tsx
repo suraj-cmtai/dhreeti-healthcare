@@ -1,22 +1,17 @@
 "use client";
 
 import TestimonialSection from "@/components/home/testimonial-section";
+import CTA from "@/components/all/cta-section";
 import { motion } from "framer-motion";
 import { Building2, MapPin, Calendar, Users, Shield, Heart, Award, Target, Eye, CheckCircle, Star, Clock, Phone, Mail } from "lucide-react";
+import HeroSection from "@/components/all/hero-section";
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-1 bg-white">
         {/* Page Header */}
-        <section className="bg-gradient-to-r from-blue-600 to-teal-600 text-white py-20">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">About Dhreeti Healthcare</h1>
-            <p className="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto">
-              Learn more about our mission, vision, and commitment to providing quality healthcare services
-            </p>
-          </div>
-        </section>
+        <HeroSection title="About Dhreeti Healthcare" description="Learn more about our mission, vision, and commitment to providing quality healthcare services" />
 
         {/* Detailed About Section */}
         <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -309,36 +304,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Contact CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-blue-600 to-teal-600 text-white">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-4xl font-bold mb-6">Ready to Experience Quality Healthcare?</h2>
-              <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-                Join thousands of patients who trust us with their healthcare needs. Contact us today to schedule your appointment.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg">
-                  <Phone className="w-5 h-5" />
-                  <span>+91 98765 43210</span>
-                </div>
-                <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg">
-                  <Mail className="w-5 h-5" />
-                  <span>info@dhreeti.com</span>
-                </div>
-                <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg">
-                  <MapPin className="w-5 h-5" />
-                  <span>Arrah, Bihar</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+        <CTA />
 
         <TestimonialSection />
       </main>

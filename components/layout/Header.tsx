@@ -6,7 +6,7 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { Menu, Phone, MapPin, Clock } from "lucide-react"
+import { Menu, Phone, MapPin, Clock, ArrowRight } from "lucide-react"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -29,7 +29,7 @@ export default function Header() {
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <Image src="/logo-horizontal.png" alt="Dhreeti Healthcare" width={200} height={60} className="h-12 w-auto" />
+            <Image src="/logo-horizontal1.png" alt="Dhreeti Healthcare" width={240} height={60} className="h-12 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -65,6 +65,7 @@ export default function Header() {
           <div className="flex items-center space-x-4">
             <Button className="hidden md:inline-flex bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white">
               <Link href="/book-appointment">Book Appointment</Link>
+              <ArrowRight className="h-4 w-4 text-white" />
             </Button>
 
             {/* Mobile Menu */}
@@ -125,8 +126,11 @@ export default function Header() {
 
                   {/* CTA Button */}
                   <div className="px-6 pb-4">
-                    <Button className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white text-base py-2.5">
-                      <Link href="/book-appointment">Book Appointment</Link>
+                    <Button className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white text-base py-2.5 flex items-center justify-center gap-2">
+                      <Link href="/book-appointment" className="flex items-center gap-2 w-full h-full justify-center">
+                        Book Appointment
+                        <ArrowRight className="h-4 w-4 text-white" />
+                      </Link>
                     </Button>
                   </div>
 
