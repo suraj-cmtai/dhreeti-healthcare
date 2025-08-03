@@ -7,7 +7,6 @@ import {
   Mail, 
   MapPin, 
   GraduationCap, 
-  User, 
   Heart, 
   Star,
   Calendar,

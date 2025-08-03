@@ -7,7 +7,7 @@ import {
   Facebook,
   Twitter,
   Instagram,
-  Youtube,
+  Linkedin,
 } from "lucide-react"
 
 export default function Footer() {
@@ -27,17 +27,17 @@ export default function Footer() {
             </div>
 
             <div className="flex space-x-4">
-              <Link href="#" className="text-gray-400 hover:text-blue-600 transition-colors">
+              <Link href="https://www.facebook.com/share/19TuNETpAt/" className="text-gray-400 hover:text-blue-600 transition-colors">
                 <Facebook className="h-5 w-5" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-blue-600 transition-colors">
+              <Link href="Check out Dhreeti Clinic (@Dhreeti_clinic): https://x.com/Dhreeti_clinic?t=3zlw98gcpnzE1rRBA3kr8Q&s=08" className="text-gray-400 hover:text-blue-600 transition-colors">
                 <Twitter className="h-5 w-5" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-teal-600 transition-colors">
+              <Link href="https://www.instagram.com/dhreeti_clinic?igsh=MXRlYjM2dzhhaHBzYw==" className="text-gray-400 hover:text-teal-600 transition-colors">
                 <Instagram className="h-5 w-5" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-red-600 transition-colors">
-                <Youtube className="h-5 w-5" />
+              <Link href="https://www.linkedin.com/in/dr-pragya-and-dr-ganesh-3427022a7?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" className="text-gray-400 hover:text-red-600 transition-colors">
+                <Linkedin className="h-5 w-5" />
               </Link>
             </div>
           </div>
