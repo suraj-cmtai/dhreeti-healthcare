@@ -20,10 +20,6 @@ export default function ServicesSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [isPaused, setIsPaused] = useState(false)
 
-  const floatingAnimation = (isPaused: boolean) => ({
-    animate: isPaused ? { scale: 1, rotate: 0, y: 0 } : undefined
-  })
-
   const services = [
     {
       icon: Stethoscope,
@@ -33,6 +29,8 @@ export default function ServicesSection() {
         weekdays: "Monday to Friday: 8:00 AM - 6:00 PM",
         weekends: "Saturday & Sunday: 8:00 AM - 12:00 PM",
       },
+      features: ["General Medicine", "Obstetrics & gynaecology"],
+      bulletColor: "bg-blue-500",
       color: "from-blue-500 to-blue-600",
       bgColor: "from-blue-50 to-blue-100",
       borderColor: "border-blue-200",
@@ -41,7 +39,18 @@ export default function ServicesSection() {
       icon: TestTube,
       title: "Pathology Services",
       description: "Complete blood and urine medical investigations with accurate results",
-      features: ["Blood Tests", "Urine Analysis", "Complete Blood Count", "Biochemistry Tests"],
+      features: [
+        "Blood Tests", 
+        "Urine Analysis", 
+        "Complete Blood Count", 
+        "Biochemistry Tests",
+        "Clinical Hematology",
+        "Clinical Biochemistry",
+        "Clinical Microbiology",
+        "Clinical Pathology",
+        "Urinalysis"
+      ],
+      bulletColor: "bg-teal-500",
       color: "from-teal-500 to-teal-600",
       bgColor: "from-teal-50 to-teal-100",
       borderColor: "border-teal-200",
@@ -50,10 +59,33 @@ export default function ServicesSection() {
       icon: Scan,
       title: "Radiology",
       description: "Advanced ultrasound imaging services for accurate diagnosis",
-      features: ["Ultrasound (U.S.G.)", "Abdominal Scans", "Pelvic Scans", "Pregnancy Monitoring"],
+      features: [
+        "Ultrasound (U.S.G.)", 
+        "Abdominal Scans", 
+        "Pelvic Scans", 
+        "Pregnancy Monitoring",
+        "U.S.G.",
+        "E.C.G."
+      ],
+      bulletColor: "bg-blue-500",
       color: "from-blue-500 to-teal-500",
       bgColor: "from-blue-50 to-teal-50",
       borderColor: "border-blue-200",
+    },
+    {
+      icon: Baby,
+      title: "Gynaecological Surgery",
+      description: "Comprehensive women's health and surgical services",
+      features: [
+        "Minimally Invasive Surgery", 
+        "Reproductive Health", 
+        "Prenatal Care", 
+        "Women's Wellness",
+        "Gynaecological surgery"
+      ],
+      color: "from-pink-500 to-rose-500",
+      bgColor: "from-pink-50 to-rose-50",
+      borderColor: "border-pink-200",
     },
     {
       icon: Activity,
@@ -63,15 +95,6 @@ export default function ServicesSection() {
       color: "from-teal-500 to-blue-500",
       bgColor: "from-teal-50 to-blue-50",
       borderColor: "border-teal-200",
-    },
-    {
-      icon: Baby,
-      title: "Gynaecological Surgery",
-      description: "Comprehensive women's health and surgical services",
-      features: ["Minimally Invasive Surgery", "Reproductive Health", "Prenatal Care", "Women's Wellness"],
-      color: "from-pink-500 to-rose-500",
-      bgColor: "from-pink-50 to-rose-50",
-      borderColor: "border-pink-200",
     },
     {
       icon: Pill,
@@ -220,15 +243,17 @@ export default function ServicesSection() {
               )}
 
               {service.features && (
-                <ul className="space-y-2 relative z-10">
+                <ul className="space-y-3 relative z-10 mb-4">
                   {service.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-center text-sm text-gray-700">
-                      <div className={`w-2 h-2 bg-gradient-to-r ${service.color} rounded-full mr-3`}></div>
+                      <div className={`w-3 h-3 ${service.bulletColor || (service.title === "Pathology Services" ? "bg-teal-500" : service.title === "Radiology" ? "bg-blue-500" : `bg-gradient-to-r ${service.color}`)} rounded-full mr-3 flex-shrink-0`}></div>
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
               )}
+
+              {/* Remove the subFeatures rendering since we merged them into features */}
             </motion.div>
           ))}
         </div>
