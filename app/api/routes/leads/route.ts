@@ -5,7 +5,6 @@ import LeadService from "@/app/api/services/leads/leadServices";
 export async function GET() {
     try {
         const leads = await LeadService.getLeads();
-        console.log("Fetched all leads:", leads.length);
         return NextResponse.json({
             statusCode: 200,
             message: "Leads fetched successfully",

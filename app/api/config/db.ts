@@ -1,33 +1,25 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const MONGO_URI = process.env.MONGO_URI as string;
-
-// You can specify your database name here
-const dbName = 'Dr-Ganesh'; // Change this to your actual database name if different
-
-if (!MONGO_URI) {
-  throw new Error('Please define the MONGO_URI environment variable inside .env');
-}
-
-let cached = (global as any).mongoose;
-
-if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null };
-}
+let isConnected = false;
 
 export async function connectDB() {
-  if (cached.conn) {
-    return cached.conn;
+  if (isConnected) {
+    return;
   }
-
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGO_URI, {
-      dbName, // Explicitly mention the dbName here
-      // Add any mongoose options here if needed
-    }).then((mongoose) => {
-      return mongoose;
+  const mongoUri = process.env.MONGO_URI;
+  if (!mongoUri) {
+    throw new Error("MONGO_URI is not defined in environment variables");
+  }
+  try {
+    await mongoose.connect(mongoUri, {
+      dbName: "Dr-Ganesh", // You can change this to your actual db name if needed
+      connectTimeoutMS: 30000,
+      serverSelectionTimeoutMS: 30000,
     });
+    isConnected = true;
+    console.log(`MongoDB connected successfully`);
+  } catch (err: any) {
+    console.error(`MongoDB connection error: ${err.message}`);
+    throw err;
   }
-  cached.conn = await cached.promise;
-  return cached.conn;
 }

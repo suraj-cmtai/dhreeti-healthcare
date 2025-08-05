@@ -333,7 +333,7 @@ const AppointmentsPage = () => {
           </div>
 
           {/* Service Filter */}
-          <div>
+    <div>
             <Select value={serviceFilter} onValueChange={setServiceFilter}>
               <SelectTrigger className="w-full">
                 <div className="flex items-center">
@@ -605,3 +605,4 @@ const AppointmentsPage = () => {
 
 export default AppointmentsPage;
 
+    
