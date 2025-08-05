@@ -204,11 +204,11 @@ export default function Hero() {
 
               {/* Text for Doctors Team */}
               <div className="absolute bottom-2 sm:bottom-6 rounded-lg left-1/2 transform -translate-x-1/2 z-20 bg-white/90 backdrop-blur-sm px-4 sm:px-8 py-3 sm:py-6 text-center w-[90%] sm:w-[600px]">
-                <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent mb-1 sm:mb-2">
+                <h3 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent mb-1 sm:mb-2">
                 Our Team of Expert Clinicians
                 </h3>
-                <p className="text-gray-700 text-base sm:text-lg">
-                Our dedicated team of specialist clinicians, all with over five years of experience, provides compassionate, personalized care. We craft comprehensive treatment plans and stay current with the latest medical advancements, ensuring you receive the most trusted and effective care from the most capable hands.              </p>
+                <p className="text-gray-700 text-xs sm:text-lg">
+                Our team of dedicated specialists, all with over seven years of experience, provides compassionate, personalized most trusted and effective care.              </p>
               </div>
 
               {/* Background Circle */}
