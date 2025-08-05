@@ -3,11 +3,63 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react"
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from "lucide-react"
 import { motion } from "framer-motion"
 import HeroSection from "@/components/all/hero-section"
+import { useDispatch, useSelector } from "react-redux"
+import { addLead } from "@/lib/features/leadSlice"
+import { useState } from "react"
+import { RootState } from "@/lib/store"
+import { Lead } from "@/lib/features/leadSlice"
 
 export default function ContactPage() {
+  const dispatch = useDispatch()
+  const { loading, error } = useSelector((state: RootState) => state.leads)
+  
+  const [formData, setFormData] = useState<Omit<Lead, '_id'>>({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+    service: "General Inquiry",
+    status: "new",
+    source: "Website Contact Form"
+  })
+  
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    
+    try {
+      await dispatch(addLead(formData) as any)
+      setSubmitted(true)
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+        service: "General Inquiry",
+        status: "new",
+        source: "Website Contact Form"
+      })
+      
+      // Reset submitted status after 5 seconds
+      setTimeout(() => {
+        setSubmitted(false)
+      }, 5000)
+      
+    } catch (err) {
+      console.error("Error submitting form:", err)
+    }
+  }
+
   return (
     <>
       {/* Page Header */}
@@ -94,59 +146,96 @@ export default function ContactPage() {
             >
               <h2 className="text-2xl font-semibold text-gray-800 mb-6">Send us a Message</h2>
               
-              <form className="space-y-6">
-                <div className="grid sm:grid-cols-2 gap-4">
+              {submitted ? (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
+                  <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-4" />
+                  <h3 className="text-xl font-medium text-green-800 mb-2">Message Sent!</h3>
+                  <p className="text-green-700">
+                    Thank you for contacting us. We'll get back to you as soon as possible.
+                  </p>
+                </div>
+              ) : (
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">First Name</label>
+                    <label htmlFor="name" className="text-sm font-medium text-gray-700">Full Name</label>
                     <Input 
+                      id="name"
+                      name="name"
                       type="text" 
-                      placeholder="Your first name"
+                      placeholder="Your full name"
                       className="bg-white/50"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
+
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">Last Name</label>
+                    <label htmlFor="email" className="text-sm font-medium text-gray-700">Email Address</label>
                     <Input 
-                      type="text" 
-                      placeholder="Your last name"
+                      id="email"
+                      name="email"
+                      type="email" 
+                      placeholder="your@email.com"
                       className="bg-white/50"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Email Address</label>
-                  <Input 
-                    type="email" 
-                    placeholder="your@email.com"
-                    className="bg-white/50"
-                  />
-                </div>
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="text-sm font-medium text-gray-700">Phone Number</label>
+                    <Input 
+                      id="phone"
+                      name="phone"
+                      type="tel" 
+                      placeholder="Your phone number"
+                      className="bg-white/50"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
 
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Phone Number</label>
-                  <Input 
-                    type="tel" 
-                    placeholder="Your phone number"
-                    className="bg-white/50"
-                  />
-                </div>
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="text-sm font-medium text-gray-700">Message</label>
+                    <Textarea 
+                      id="message"
+                      name="message"
+                      placeholder="How can we help you?"
+                      className="bg-white/50 min-h-[120px]"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
 
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Message</label>
-                  <Textarea 
-                    placeholder="How can we help you?"
-                    className="bg-white/50 min-h-[120px]"
-                  />
-                </div>
-
-                <Button 
-                  className="w-full bg-gradient-to-r from-teal-500 to-blue-500 hover:from-teal-600 hover:to-blue-600 text-white py-2 px-6 rounded-lg font-medium shadow-md"
-                >
-                  Send Message
-                  <Send className="w-4 h-4 ml-2" />
-                </Button>
-              </form>
+                  <Button 
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-teal-500 to-blue-500 hover:from-teal-600 hover:to-blue-600 text-white py-2 px-6 rounded-lg font-medium shadow-md"
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="w-4 h-4 ml-2" />
+                      </>
+                    )}
+                  </Button>
+                  
+                  {error && (
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-3 mt-4">
+                      <p className="text-red-700 text-sm">{error}</p>
+                    </div>
+                  )}
+                </form>
+              )}
 
               <p className="text-sm text-gray-500 mt-6 text-center">
                 We'll get back to you within 24 hours during business days.

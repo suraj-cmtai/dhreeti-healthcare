@@ -15,28 +15,60 @@ import {
   Phone, 
   MessageSquare,
   Stethoscope,
+  CheckCircle,
 } from 'lucide-react';
 import HeroSection from '@/components/all/hero-section';
-import ServicesSection from '@/components/home/service-section';
+import { useDispatch, useSelector } from 'react-redux';
+import { addAppointment } from '@/lib/features/appointmentSlice';
+import { RootState } from '@/lib/store';
+import { Appointment } from '@/lib/features/appointmentSlice';
 
 export default function AppointmentForm() {
-  const [formData, setFormData] = useState({
-    name: '',
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state: RootState) => state.appointments);
+  
+  const [formData, setFormData] = useState<Omit<Appointment, '_id'>>({
+    patientName: '',
     email: '',
     phone: '',
     date: '',
     time: '',
     service: '',
-    message: ''
+    message: '',
+    status: 'pending'
   });
+  
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSelectChange = (field: string, value: string) => {
     setFormData({ ...formData, [field]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+    
+    try {
+      await dispatch(addAppointment(formData) as any);
+      setSubmitted(true);
+      setFormData({
+        patientName: '',
+        email: '',
+        phone: '',
+        date: '',
+        time: '',
+        service: '',
+        message: '',
+        status: 'pending'
+      });
+      
+      // Reset submitted status after 5 seconds
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+      
+    } catch (err) {
+      console.error("Error submitting appointment:", err);
+    }
   };
 
   const services = [
@@ -79,151 +111,178 @@ export default function AppointmentForm() {
                 <p className="text-gray-600">Fill in the details below to schedule your visit</p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Personal Information */}
-                <div className="grid md:grid-cols-2 gap-6">
+              {submitted ? (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
+                  <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                  <h3 className="text-2xl font-medium text-green-800 mb-2">Appointment Booked!</h3>
+                  <p className="text-green-700 text-lg mb-4">
+                    Thank you for booking an appointment with us.
+                  </p>
+                  <p className="text-gray-600">
+                    We'll confirm your appointment shortly via email or phone.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Personal Information */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="patientName" className="text-md font-semibold text-gray-700 flex items-center">
+                        <User className="w-4 h-4 mr-2 text-blue-500" />
+                        Full Name
+                      </Label>
+                      <Input
+                        type="text"
+                        id="patientName"
+                        name="patientName"
+                        value={formData.patientName}
+                        onChange={(e) => setFormData({ ...formData, patientName: e.target.value })}
+                        className="h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl"
+                        placeholder="Enter your full name"
+                        required
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="email" className="text-md font-semibold text-gray-700 flex items-center">
+                        <Mail className="w-4 h-4 mr-2 text-blue-500" />
+                        Email Address
+                      </Label>
+                      <Input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl"
+                        placeholder="Enter your email"
+                        required
+                      />
+                    </div>
+                  </div>
+
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="text-md font-semibold text-gray-700 flex items-center">
-                      <User className="w-4 h-4 mr-2 text-blue-500" />
-                      Full Name
+                    <Label htmlFor="phone" className="text-md font-semibold text-gray-700 flex items-center">
+                      <Phone className="w-4 h-4 mr-2 text-blue-500" />
+                      Phone Number
                     </Label>
                     <Input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl"
-                      placeholder="Enter your full name"
+                      placeholder="Enter your phone number"
                       required
                     />
                   </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-md font-semibold text-gray-700 flex items-center">
-                      <Mail className="w-4 h-4 mr-2 text-blue-500" />
-                      Email Address
-                    </Label>
-                    <Input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl"
-                      placeholder="Enter your email"
-                      required
-                    />
-                  </div>
-                </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-md font-semibold text-gray-700 flex items-center">
-                    <Phone className="w-4 h-4 mr-2 text-blue-500" />
-                    Phone Number
-                  </Label>
-                  <Input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl"
-                    placeholder="Enter your phone number"
-                    required
-                  />
-                </div>
-
-                {/* Service Selection */}
-                <div className="space-y-2">
-                  <Label htmlFor="service" className="text-md font-semibold text-gray-700 flex items-center">
-                    <Stethoscope className="w-4 h-4 mr-2 text-blue-500" />
-                    Select Service
-                  </Label>
-                  <Select
-                    value={formData.service}
-                    onValueChange={(value) => handleSelectChange('service', value)}
-                  >
-                    <SelectTrigger className="w-full h-14 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl">
-                      <SelectValue placeholder="Choose a service" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {services.map((service, index) => (
-                        <SelectItem key={index} value={service}>{service}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {/* Date and Time */}
-                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Service Selection */}
                   <div className="space-y-2">
-                    <Label htmlFor="date" className="text-md font-semibold text-gray-700 flex items-center">
-                      <Calendar className="w-4 h-4 mr-2 text-blue-500" />
-                      Preferred Date
-                    </Label>
-                    <Input
-                      type="date"
-                      id="date"
-                      name="date"
-                      value={formData.date}
-                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      className="h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl"
-                      required
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="time" className="text-md font-semibold text-gray-700 flex items-center">
-                      <Clock className="w-4 h-4 mr-2 text-blue-500" />
-                      Preferred Time
+                    <Label htmlFor="service" className="text-md font-semibold text-gray-700 flex items-center">
+                      <Stethoscope className="w-4 h-4 mr-2 text-blue-500" />
+                      Select Service
                     </Label>
                     <Select
-                      value={formData.time}
-                      onValueChange={(value) => handleSelectChange('time', value)}
+                      value={formData.service}
+                      onValueChange={(value) => handleSelectChange('service', value)}
                     >
                       <SelectTrigger className="w-full h-14 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl">
-                        <SelectValue placeholder="Select time" />
+                        <SelectValue placeholder="Choose a service" />
                       </SelectTrigger>
                       <SelectContent>
-                        {timeSlots.map((slot, index) => (
-                          <SelectItem key={index} value={slot}>{slot}</SelectItem>
+                        {services.map((service, index) => (
+                          <SelectItem key={index} value={service}>{service}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
                   </div>
-                </div>
 
-                {/* Message */}
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="text-md font-semibold text-gray-700 flex items-center">
-                    <MessageSquare className="w-4 h-4 mr-2 text-blue-500" />
-                    Additional Notes
-                  </Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="min-h-[100px] border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl resize-none"
-                    placeholder="Any specific concerns or notes for the doctor..."
-                  />
-                </div>
+                  {/* Date and Time */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="date" className="text-md font-semibold text-gray-700 flex items-center">
+                        <Calendar className="w-4 h-4 mr-2 text-blue-500" />
+                        Preferred Date
+                      </Label>
+                      <Input
+                        type="date"
+                        id="date"
+                        name="date"
+                        value={formData.date}
+                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                        className="h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl"
+                        required
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="time" className="text-md font-semibold text-gray-700 flex items-center">
+                        <Clock className="w-4 h-4 mr-2 text-blue-500" />
+                        Preferred Time
+                      </Label>
+                      <Select
+                        value={formData.time}
+                        onValueChange={(value) => handleSelectChange('time', value)}
+                      >
+                        <SelectTrigger className="w-full h-14 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl">
+                          <SelectValue placeholder="Select time" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {timeSlots.map((slot, index) => (
+                            <SelectItem key={index} value={slot}>{slot}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
 
-                <Button 
-                  type="submit" 
-                  className="w-full h-12 bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white font-semibold rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <Calendar className="w-5 h-5 mr-2" />
-                  Book Appointment
-                </Button>
-              </form>
+                  {/* Message */}
+                  <div className="space-y-2">
+                    <Label htmlFor="message" className="text-md font-semibold text-gray-700 flex items-center">
+                      <MessageSquare className="w-4 h-4 mr-2 text-blue-500" />
+                      Additional Notes
+                    </Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="min-h-[100px] border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl resize-none"
+                      placeholder="Any specific concerns or notes for the doctor..."
+                    />
+                  </div>
+
+                  <Button 
+                    type="submit" 
+                    className="w-full h-12 bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white font-semibold rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Processing...
+                      </>
+                    ) : (
+                      <>
+                        <Calendar className="w-5 h-5 mr-2" />
+                        Book Appointment
+                      </>
+                    )}
+                  </Button>
+                  
+                  {error && (
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-3 mt-4">
+                      <p className="text-red-700 text-sm">{error}</p>
+                    </div>
+                  )}
+                </form>
+              )}
             </motion.div>
-
           </div>
         </div>
       </section>
-      <ServicesSection />
     </div>
   );
 }

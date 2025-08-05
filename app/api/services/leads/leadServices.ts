@@ -1,34 +1,37 @@
 import Lead from '@/app/api/model/lead';
 import { connectDB } from '@/app/api/config/db';
 
-export const createLead = async (lead: typeof Lead) => {
-  await connectDB();
-  const newLead = await Lead.create(lead);
-  return newLead;
-};
+class LeadService {
 
-export const getLeads = async () => {
-  await connectDB();
-  const leads = await Lead.find();
-  return leads;
-};
+  async createLead(lead:any) {
+    await connectDB();
+    const newLead = await Lead.create(lead);
+    return newLead;
+  }
 
-export const getLeadById = async (id: string) => {
-  await connectDB();
-  const lead = await Lead.findById(id);
-  return lead;
-};
+  async getLeads() {
+    await connectDB();
+    const leads = await Lead.find();
+    return leads;
+  } 
 
+  async getLeadById(id: string) {
+    await connectDB();
+    const lead = await Lead.findById(id);
+    return lead;
+  } 
 
-export const updateLead = async (id: string, lead: typeof Lead) => {
-  await connectDB();
-  const updatedLead = await Lead.findByIdAndUpdate(id, lead, { new: true });
-  return updatedLead;
-};
+  async updateLead(id: string, lead: any) {
+    await connectDB();
+    const updatedLead = await Lead.findByIdAndUpdate(id, lead, { new: true });
+    return updatedLead;
+  } 
 
+  async deleteLead(id: string) {
+    await connectDB();
+    const deletedLead = await Lead.findByIdAndDelete(id);
+    return deletedLead;
+  } 
+} 
 
-export const deleteLead = async (id: string) => {
-  await connectDB();
-  const deletedLead = await Lead.findByIdAndDelete(id);
-  return deletedLead;
-};
+export default new LeadService();
