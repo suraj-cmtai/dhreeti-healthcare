@@ -40,15 +40,11 @@ export default function ServicesSection() {
       title: "Pathology Services",
       description: "Complete blood and urine medical investigations with accurate results",
       features: [
-        "Blood Tests", 
-        "Urine Analysis", 
-        "Complete Blood Count", 
-        "Biochemistry Tests",
+        "All Kinds of Blood Tests", 
         "Clinical Hematology",
         "Clinical Biochemistry",
         "Clinical Microbiology",
-        "Clinical Pathology",
-        "Urinalysis"
+        "Clinical Pathology"
       ],
       bulletColor: "bg-teal-500",
       color: "from-teal-500 to-teal-600",
@@ -61,10 +57,6 @@ export default function ServicesSection() {
       description: "Advanced ultrasound imaging services for accurate diagnosis",
       features: [
         "Ultrasound (U.S.G.)", 
-        "Abdominal Scans", 
-        "Pelvic Scans", 
-        "Pregnancy Monitoring",
-        "U.S.G.",
         "E.C.G."
       ],
       bulletColor: "bg-blue-500",
@@ -86,15 +78,6 @@ export default function ServicesSection() {
       color: "from-pink-500 to-rose-500",
       bgColor: "from-pink-50 to-rose-50",
       borderColor: "border-pink-200",
-    },
-    {
-      icon: Activity,
-      title: "E.C.G. Services",
-      description: "Electrocardiogram testing for heart health monitoring",
-      features: ["Heart Rate Analysis", "Rhythm Assessment", "Cardiac Health Check", "Emergency ECG"],
-      color: "from-teal-500 to-blue-500",
-      bgColor: "from-teal-50 to-blue-50",
-      borderColor: "border-teal-200",
     },
     {
       icon: Pill,
@@ -253,7 +236,6 @@ export default function ServicesSection() {
                 </ul>
               )}
 
-              {/* Remove the subFeatures rendering since we merged them into features */}
             </motion.div>
           ))}
         </div>
