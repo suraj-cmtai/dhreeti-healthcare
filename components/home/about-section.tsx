@@ -96,7 +96,7 @@ export default function AboutUsSection() {
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Advancing healthcare through innovative manufacturing and dedicated research since 2022
+            Driving healthcare forward with innovative solutions and dedicated research since 2022.
           </p>
         </motion.div>
 
@@ -263,7 +263,7 @@ export default function AboutUsSection() {
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-              className="bg-white rounded-2xl p-8 shadow-md border border-teal-100 transition-all duration-300 relative overflow-hidden"
+            className="bg-white rounded-2xl p-8 shadow-md border border-teal-100 transition-all duration-300 relative overflow-hidden"
           >
             <div className="absolute top-4 right-4 opacity-5">
               <Eye className="w-16 h-16 text-teal-600" />

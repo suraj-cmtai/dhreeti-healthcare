@@ -66,14 +66,14 @@ export default function ServicesSection() {
     },
     {
       icon: Baby,
-      title: "Gynaecological Surgery",
+      title: "Surgery",
       description: "Comprehensive women's health and surgical services",
       features: [
+        "Gynaecological surgery",
         "Minimally Invasive Surgery", 
         "Reproductive Health", 
         "Prenatal Care", 
-        "Women's Wellness",
-        "Gynaecological surgery"
+        "Women's Wellness"
       ],
       color: "from-pink-500 to-rose-500",
       bgColor: "from-pink-50 to-rose-50",

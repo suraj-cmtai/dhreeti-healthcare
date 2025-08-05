@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Dispatch } from "redux";
+import { RootState } from "@/lib/store";
+import axios from "axios";
 
 export interface Lead {
   _id?: string;
@@ -33,8 +35,8 @@ const leadSlice = createSlice({
   name: "leads",
   initialState,
   reducers: {
-    setLeads: (state, action: PayloadAction<Lead[]>) => {  
-      state.leads = action.payload;
+    setLeads: (state, action: PayloadAction<{ data: Lead[] }>) => {
+      state.leads = action.payload.data;
       state.loading = false;
       state.error = null;
     },
@@ -83,15 +85,14 @@ export const {
 export const fetchLeads = () => async (dispatch: Dispatch) => {
   try {
     dispatch(setLoading(true));
-    const response = await fetch("/api/routes/leads");
-    
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to fetch leads");
+    const response = await axios.get("/api/routes/leads");
+    // Axios always resolves unless network error, so check status
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error(response.data?.message || "Failed to fetch leads");
     }
-    
-    const data = await response.json();
-    dispatch(setLeads(data));
+    // Extract the actual leads data from the response
+    const leads = response.data?.data || [];
+    dispatch(setLeads({ data: leads }));
   } catch (error: any) {
     dispatch(setError(error.message || "An error occurred while fetching leads"));
   }
@@ -100,21 +101,17 @@ export const fetchLeads = () => async (dispatch: Dispatch) => {
 export const addLead = (lead: Lead) => async (dispatch: Dispatch) => {
   try {
     dispatch(setLoading(true));
-    const response = await fetch("/api/routes/leads", {
-      method: "POST",
+    const response = await axios.post("/api/routes/leads", lead, {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(lead),
     });
-    
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to add lead");
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error(response.data?.message || "Failed to add lead");
     }
-    
-    const data = await response.json();
-    dispatch(addLeadSuccess(data));
+    // Extract the actual lead data from the response
+    const newLead = response.data?.data;
+    dispatch(addLeadSuccess(newLead));
   } catch (error: any) {
     dispatch(setError(error.message || "An error occurred while adding lead"));
   }
@@ -125,23 +122,18 @@ export const updateLead = (lead: Lead) => async (dispatch: Dispatch) => {
     if (!lead._id) {
       throw new Error("Lead ID is required for updating");
     }
-    
     dispatch(setLoading(true));
-    const response = await fetch(`/api/routes/leads/${lead._id}`, {
-      method: "PUT",
+    const response = await axios.put(`/api/routes/leads/${lead._id}`, lead, {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(lead),
     });
-    
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to update lead");
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error(response.data?.message || "Failed to update lead");
     }
-    
-    const data = await response.json();
-    dispatch(updateLeadSuccess(data));
+    // Extract the actual lead data from the response
+    const updatedLead = response.data?.data;
+    dispatch(updateLeadSuccess(updatedLead));
   } catch (error: any) {
     dispatch(setError(error.message || "An error occurred while updating lead"));
   }
@@ -150,19 +142,18 @@ export const updateLead = (lead: Lead) => async (dispatch: Dispatch) => {
 export const deleteLead = (id: string) => async (dispatch: Dispatch) => {
   try {
     dispatch(setLoading(true));
-    const response = await fetch(`/api/routes/leads/${id}`, {
-      method: "DELETE",
-    });
-    
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to delete lead");
+    const response = await axios.delete(`/api/routes/leads/${id}`);
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error(response.data?.message || "Failed to delete lead");
     }
-    
     dispatch(deleteLeadSuccess(id));
   } catch (error: any) {
     dispatch(setError(error.message || "An error occurred while deleting lead"));
   }
 };
+
+export const selectLeads = (state: RootState) => state.leads.leads;
+export const selectLoading = (state: RootState) => state.leads.loading;
+export const selectError = (state: RootState) => state.leads.error;
 
 export default leadSlice.reducer;

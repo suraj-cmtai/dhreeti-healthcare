@@ -27,15 +27,16 @@ export default function AppointmentForm() {
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state: RootState) => state.appointments);
   
-  const [formData, setFormData] = useState<Omit<Appointment, '_id'>>({
+  const [formData, setFormData] = useState<Omit<Appointment, '_id' | 'createdAt'>>({  
     patientName: '',
-    email: '',
-    phone: '',
+    patientPhone: '',
+    patientEmail: '',
+    service: '',
+    doctor: '',
     date: '',
     time: '',
-    service: '',
-    message: '',
-    status: 'pending'
+    status: 'pending',
+    notes: '',
   });
   
   const [submitted, setSubmitted] = useState(false);
@@ -48,17 +49,24 @@ export default function AppointmentForm() {
     e.preventDefault();
     
     try {
-      await dispatch(addAppointment(formData) as any);
+      // Add current timestamp for createdAt
+      const appointmentData = {
+        ...formData,
+        createdAt: new Date().toISOString(),
+      };
+      
+      await dispatch(addAppointment(appointmentData) as any);
       setSubmitted(true);
       setFormData({
         patientName: '',
-        email: '',
-        phone: '',
+        patientEmail: '',
+        patientPhone: '',
         date: '',
         time: '',
         service: '',
-        message: '',
-        status: 'pending'
+        notes: '',
+        status: 'pending',
+        doctor: '',
       });
       
       // Reset submitted status after 5 seconds
@@ -144,16 +152,16 @@ export default function AppointmentForm() {
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-md font-semibold text-gray-700 flex items-center">
+                      <Label htmlFor="patientEmail" className="text-md font-semibold text-gray-700 flex items-center">
                         <Mail className="w-4 h-4 mr-2 text-blue-500" />
                         Email Address
                       </Label>
                       <Input
                         type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        id="patientEmail"
+                        name="patientEmail"
+                        value={formData.patientEmail}
+                        onChange={(e) => setFormData({ ...formData, patientEmail: e.target.value })}
                         className="h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl"
                         placeholder="Enter your email"
                         required
@@ -162,16 +170,16 @@ export default function AppointmentForm() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="phone" className="text-md font-semibold text-gray-700 flex items-center">
+                    <Label htmlFor="patientPhone" className="text-md font-semibold text-gray-700 flex items-center">
                       <Phone className="w-4 h-4 mr-2 text-blue-500" />
                       Phone Number
                     </Label>
                     <Input
                       type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      id="patientPhone"
+                      name="patientPhone"
+                      value={formData.patientPhone}
+                      onChange={(e) => setFormData({ ...formData, patientPhone: e.target.value })}
                       className="h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl"
                       placeholder="Enter your phone number"
                       required
@@ -195,6 +203,26 @@ export default function AppointmentForm() {
                         {services.map((service, index) => (
                           <SelectItem key={index} value={service}>{service}</SelectItem>
                         ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Doctor Selection */}
+                  <div className="space-y-2">
+                    <Label htmlFor="doctor" className="text-md font-semibold text-gray-700 flex items-center">
+                      <User className="w-4 h-4 mr-2 text-blue-500" />
+                      Select Doctor
+                    </Label>
+                    <Select
+                      value={formData.doctor}
+                      onValueChange={(value) => handleSelectChange('doctor', value)}
+                    >
+                      <SelectTrigger className="w-full h-14 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl">
+                        <SelectValue placeholder="Choose a doctor" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Dr. Ganesh Pandey">Dr. Ganesh Pandey</SelectItem>
+                        <SelectItem value="Dr. Pragya Pandey">Dr. Pragya Pandey</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -247,8 +275,8 @@ export default function AppointmentForm() {
                     <Textarea
                       id="message"
                       name="message"
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      value={formData.notes}
+                      onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                       className="min-h-[100px] border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl resize-none"
                       placeholder="Any specific concerns or notes for the doctor..."
                     />

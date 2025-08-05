@@ -1,17 +1,20 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
+import { RootState } from "@/lib/store";
 
 // Define a more complete appointment interface
 export interface Appointment {
   _id?: string;
   patientName: string;
-  email: string;
-  phone: string;
+  patientPhone: string;
+  patientEmail: string;
   service: string;
+  doctor: string;
   date: string;
   time: string;
-  doctor?: string;
-  message?: string;
-  status?: string;
+  status: string;
+  notes: string;
+  createdAt: string;
 }
 
 interface AppointmentState {
@@ -80,14 +83,15 @@ export const {
 export const fetchAppointments = () => async (dispatch: Dispatch) => {
   try {
     dispatch(setLoading(true));
-    const response = await fetch("/api/routes/appointments");
+    const response = await axios.get("/api/routes/appointments");
     
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to fetch appointments");
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error(response.data?.message || "Failed to fetch appointments");
     }
     
-    const data = await response.json();
+    // Handle nested data structure: response.data.data.data
+    const appointmentsData = response.data?.data;
+    const data = appointmentsData?.data || [];
     dispatch(setAppointments(data));
   } catch (error: any) {
     dispatch(setError(error.message || "An error occurred while fetching appointments"));
@@ -97,20 +101,19 @@ export const fetchAppointments = () => async (dispatch: Dispatch) => {
 export const addAppointment = (appointment: Appointment) => async (dispatch: Dispatch) => {
   try {
     dispatch(setLoading(true));
-    const response = await fetch("/api/routes/appointments", {
-      method: "POST",
+    const response = await axios.post("/api/routes/appointments", appointment, {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(appointment),
     });
     
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to add appointment");
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error(response.data?.message || "Failed to add appointment");
     }
     
-    const data = await response.json();
+    // Handle nested data structure: response.data.data.data
+    const appointmentData = response.data?.data;
+    const data = appointmentData?.data;
     dispatch(addAppointmentSuccess(data));
   } catch (error: any) {
     dispatch(setError(error.message || "An error occurred while adding appointment"));
@@ -124,20 +127,17 @@ export const updateAppointment = (appointment: Appointment) => async (dispatch: 
     }
     
     dispatch(setLoading(true));
-    const response = await fetch(`/api/routes/appointments/${appointment._id}`, {
-      method: "PUT",
+    const response = await axios.put(`/api/routes/appointments/${appointment._id}`, appointment, {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(appointment),
     });
     
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to update appointment");
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error(response.data?.message || "Failed to update appointment");
     }
     
-    const data = await response.json();
+    const data = response.data?.data;
     dispatch(updateAppointmentSuccess(data));
   } catch (error: any) {
     dispatch(setError(error.message || "An error occurred while updating appointment"));
@@ -147,13 +147,10 @@ export const updateAppointment = (appointment: Appointment) => async (dispatch: 
 export const deleteAppointment = (id: string) => async (dispatch: Dispatch) => {
   try {
     dispatch(setLoading(true));
-    const response = await fetch(`/api/routes/appointments/${id}`, {
-      method: "DELETE",
-    });
+    const response = await axios.delete(`/api/routes/appointments/${id}`);
     
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Failed to delete appointment");
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error(response.data?.message || "Failed to delete appointment");
     }
     
     dispatch(deleteAppointmentSuccess(id));
@@ -161,5 +158,9 @@ export const deleteAppointment = (id: string) => async (dispatch: Dispatch) => {
     dispatch(setError(error.message || "An error occurred while deleting appointment"));
   }
 };
+
+export const selectAppointments = (state: RootState) => state.appointments.appointments;
+export const selectLoading = (state: RootState) => state.appointments.loading;
+export const selectError = (state: RootState) => state.appointments.error;
 
 export default appointmentSlice.reducer;    

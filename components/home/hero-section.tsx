@@ -33,7 +33,7 @@ const fadeInScale: Variants = {
 }
 
 export default function Hero() {
-    return (
+  return (
     <>
       <section className="relative min-h-[90vh] flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 via-white to-teal-50 overflow-hidden pt-4 sm:pt-0">
         {/* Enhanced Blurred Gradient Circles */}
@@ -134,12 +134,11 @@ export default function Hero() {
                 विश्वसनीय एवं किफायती स्वास्थ्य सेवा आपके लिए
               </motion.p>
               <motion.p variants={fadeInUp} className="text-lg md:text-xl text-gray-600 max-w-xl">
-                Providing reliable and affordable healthcare services with modern facilities and experienced doctors since 2022.
-              </motion.p>
+              Since 2022, we've revolutionized healthcare by making top-tier services accessible and affordable. We combine modern facilities with experienced, compassionate doctors to provide a new standard of reliable care. Our mission is to build a healthier community by ensuring everyone has access to the best medical services without financial strain.             </motion.p>
             </motion.div>
-            
+
             {/* CTA Buttons */}
-            <motion.div 
+            <motion.div
               variants={fadeInScale}
               whileHover={{ scale: 1.02 }}
               className="flex flex-col sm:flex-row gap-4 mt-8"
@@ -154,7 +153,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Trust Badge */}
-            <motion.div 
+            <motion.div
               variants={fadeInScale}
               className="mt-4 inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-teal-100 shadow-md transition-all"
             >
@@ -202,17 +201,16 @@ export default function Hero() {
                 className="absolute left-1/2 top-[2%] sm:top-[5%] transform -translate-x-[40%] h-[80%] sm:h-[85%] w-auto object-contain z-20 transition-transform hover:scale-102"
                 priority
               />
-              
+
               {/* Text for Doctors Team */}
               <div className="absolute bottom-2 sm:bottom-6 rounded-lg left-1/2 transform -translate-x-1/2 z-20 bg-white/90 backdrop-blur-sm px-4 sm:px-8 py-3 sm:py-6 text-center w-[90%] sm:w-[600px]">
                 <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent mb-1 sm:mb-2">
-                  Team of Expert Doctors
+                Our Team of Expert Clinicians
                 </h3>
                 <p className="text-gray-700 text-base sm:text-lg">
-                  Our dedicated team of specialists brings over 5 years of experience in providing comprehensive healthcare services
-                </p>
+                Our dedicated team of specialist clinicians, all with over five years of experience, provides compassionate, personalized care. We craft comprehensive treatment plans and stay current with the latest medical advancements, ensuring you receive the most trusted and effective care from the most capable hands.              </p>
               </div>
-              
+
               {/* Background Circle */}
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
@@ -239,7 +237,7 @@ export default function Hero() {
         <div className="container mx-auto px-4">
           <div className="max-w-[800px] mx-auto relative">
             {/* Section Title */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -261,7 +259,7 @@ export default function Hero() {
               {/* Corner Decorations */}
               <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-teal-500/30 rounded-tl-lg"></div>
               <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-blue-500/30 rounded-br-lg"></div>
-              
+
               {/* Glass Container */}
               <div className="relative backdrop-blur-sm bg-white/30 p-4 rounded-xl shadow-lg border border-white/20">
                 <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-xl">
