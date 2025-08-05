@@ -1,22 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Home, Search, Phone, AlertTriangle } from "lucide-react";
+import { Home, Search } from "lucide-react";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center px-4">
       <div className="max-w-md w-full text-center">
-        {/* 404 Icon */}
-        <div className="mb-8">
-          <div className="relative">
-            <div className="w-24 h-24 mx-auto bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center mb-4">
-              <AlertTriangle className="w-12 h-12 text-white" />
-            </div>
-            <div className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-sm font-bold">!</span>
-            </div>
-          </div>
-        </div>
 
         {/* Error Code */}
         <h1 className="text-8xl font-bold text-gray-800 mb-4">404</h1>
