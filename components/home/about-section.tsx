@@ -253,8 +253,7 @@ export default function AboutUsSection() {
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
             <p className="text-gray-600 leading-relaxed">
-              To contribute to a healthier society by developing high-quality chemical products for healthcare
-              applications and conducting research to find innovative solutions for medical challenges.
+            Our mission is to provide accessible, affordable, and dependable healthcare. We empower our community with essential medical services, building trust and ensuring everyone can lead a healthier life without financial burden.
             </p>
           </motion.div>
 
@@ -277,8 +276,7 @@ export default function AboutUsSection() {
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
             <p className="text-gray-600 leading-relaxed">
-              To be a recognized leader in the healthcare manufacturing and research sector, known for our commitment to
-              quality, innovation, and societal well-being.
+            Our vision is to be the leading and most trusted healthcare provider in our three-tier city, creating a healthier community where quality care is a right, not a luxury.
             </p>
           </motion.div>
 
@@ -301,8 +299,7 @@ export default function AboutUsSection() {
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Commitment</h3>
             <p className="text-gray-600 leading-relaxed">
-              We are committed to maintaining the highest quality standards in our products and operations, ensuring
-              patient safety and satisfaction through ethical practices.
+            We are committed to excellence in basic care, financial accessibility, and ethical practice, guided by core principles that ensure trust and well-being for our community.
             </p>
           </motion.div>
         </div>
