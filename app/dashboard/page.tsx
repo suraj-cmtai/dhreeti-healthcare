@@ -1,11 +1,10 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Users, 
   CalendarClock, 
   TrendingUp, 
-  BarChart3, 
   Activity, 
   ArrowRight, 
   CheckCircle, 
@@ -13,7 +12,6 @@ import {
   Clock, 
   UserRound,
   Phone,
-  Mail,
   Calendar,
   MessageSquare,
   ChevronRight,
@@ -31,110 +29,65 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '@/lib/store';
+import { fetchAppointments, selectAppointments, selectLoading as selectAppointmentsLoading } from '@/lib/features/appointmentSlice';
+import { fetchLeads, selectLeads, selectLoading as selectLeadsLoading } from '@/lib/features/leadSlice';
 
 // Define types
 type AppointmentStatus = 'confirmed' | 'pending' | 'completed' | 'cancelled';
 type LeadStatus = 'new' | 'contacted' | 'interested' | 'not_interested' | 'converted';
 
-// Mock data for dashboard
-const dashboardStats = {
-  totalPatients: 1248,
-  totalAppointments: 567,
-  totalLeads: 128,
-  conversionRate: 42,
-  appointmentsToday: 12,
-  newLeadsToday: 5
-};
-
-// Mock data for recent appointments
-interface Appointment {
-  id: string;
-  patientName: string;
-  patientPhone: string;
-  service: string;
-  doctor: string;
-  date: string;
-  time: string;
-  status: AppointmentStatus;
-}
-
-const recentAppointments: Appointment[] = [
-  {
-    id: 'APT-001',
-    patientName: 'Rahul Sharma',
-    patientPhone: '+91 98765 43210',
-    service: 'General Medicine',
-    doctor: 'Dr. Ganesh Pandey',
-    date: '2023-11-15',
-    time: '10:30 AM',
-    status: 'confirmed'
-  },
-  {
-    id: 'APT-002',
-    patientName: 'Priya Patel',
-    patientPhone: '+91 87654 32109',
-    service: 'Obstetrics & Gynaecology',
-    doctor: 'Dr. Pragya Pandey',
-    date: '2023-11-15',
-    time: '11:00 AM',
-    status: 'pending'
-  },
-  {
-    id: 'APT-003',
-    patientName: 'Amit Kumar',
-    patientPhone: '+91 76543 21098',
-    service: 'Pathology Services',
-    doctor: 'Dr. Ganesh Pandey',
-    date: '2023-11-16',
-    time: '09:30 AM',
-    status: 'completed'
-  }
-];
-
-// Mock data for recent leads
-interface Lead {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  service: string;
-  status: LeadStatus;
-  date: string;
-}
-
-const recentLeads: Lead[] = [
-  {
-    id: 'LD-001',
-    name: 'Rahul Sharma',
-    email: 'rahul.sharma@gmail.com',
-    phone: '+91 98765 43210',
-    service: 'General Medicine',
-    status: 'new',
-    date: '2023-11-15'
-  },
-  {
-    id: 'LD-002',
-    name: 'Priya Patel',
-    email: 'priya.patel@gmail.com',
-    phone: '+91 87654 32109',
-    service: 'Obstetrics & Gynaecology',
-    status: 'contacted',
-    date: '2023-11-14'
-  },
-  {
-    id: 'LD-003',
-    name: 'Amit Kumar',
-    email: 'amit.kumar@gmail.com',
-    phone: '+91 76543 21098',
-    service: 'Pathology Services',
-    status: 'interested',
-    date: '2023-11-13'
-  }
-];
-
 const DashboardPage = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  
+  // Fetch data from Redux
+  const appointmentsData = useSelector(selectAppointments);
+  const leadsData = useSelector(selectLeads);
+  const appointmentsLoading = useSelector(selectAppointmentsLoading);
+  const leadsLoading = useSelector(selectLeadsLoading);
+  
+  // Ensure data is arrays
+  const appointments = Array.isArray(appointmentsData) ? appointmentsData : [];
+  const leads = Array.isArray(leadsData) ? leadsData : [];
+
+  useEffect(() => {
+    dispatch(fetchAppointments());
+    dispatch(fetchLeads());
+  }, [dispatch]);
+
+  // Calculate real statistics
+  const today = new Date().toISOString().split('T')[0];
+  
+  const dashboardStats = {
+    totalPatients: appointments.length, // Unique patients would be better but using total appointments for now
+    totalAppointments: appointments.length,
+    totalLeads: leads.length,
+    conversionRate: leads.length > 0 ? Math.round((leads.filter(lead => lead.status === 'converted').length / leads.length) * 100) : 0,
+    appointmentsToday: appointments.filter(apt => apt.date === today).length,
+    newLeadsToday: leads.filter(lead => lead.date === today).length
+  };
+
+  // Get recent appointments (last 5)
+  const recentAppointments = [...appointments]
+    .sort((a, b) => {
+      const dateA = a.date ? new Date(a.date).getTime() : 0;
+      const dateB = b.date ? new Date(b.date).getTime() : 0;
+      return dateB - dateA;
+    })
+    .slice(0, 5);
+
+  // Get recent leads (last 5)
+  const recentLeads = [...leads]
+    .sort((a, b) => {
+      const dateA = a.date ? new Date(a.date).getTime() : 0;
+      const dateB = b.date ? new Date(b.date).getTime() : 0;
+      return dateB - dateA;
+    })
+    .slice(0, 5);
+
   // Status badge component for appointments
-  const AppointmentStatusBadge = ({ status }: { status: AppointmentStatus }) => {
+  const AppointmentStatusBadge = ({ status }: { status: string }) => {
     const statusStyles = {
       confirmed: "bg-green-100 text-green-800",
       pending: "bg-yellow-100 text-yellow-800",
@@ -149,10 +102,12 @@ const DashboardPage = () => {
       cancelled: <XCircle className="w-3 h-3 mr-1" />
     };
 
+    const statusLabel = status.charAt(0).toUpperCase() + status.slice(1);
+
     return (
-      <Badge className={`flex items-center ${statusStyles[status]} capitalize`}>
-        {statusIcons[status]}
-        {status}
+      <Badge className={`flex items-center ${statusStyles[status as keyof typeof statusStyles] || "bg-gray-100 text-gray-800"} capitalize`}>
+        {statusIcons[status as keyof typeof statusIcons] || <Clock className="w-3 h-3 mr-1" />}
+        {statusLabel}
       </Badge>
     );
   };
@@ -190,6 +145,17 @@ const DashboardPage = () => {
       </Badge>
     );
   };
+
+  // Loading state
+  if (appointmentsLoading || leadsLoading) {
+    return (
+      <div className="p-6">
+        <div className="text-center py-8">
+          <div className="text-gray-500">Loading dashboard data...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6">
@@ -306,7 +272,7 @@ const DashboardPage = () => {
               </div>
               <div>
                 <p className="text-sm text-gray-500">Completed</p>
-                <p className="text-2xl font-bold">324</p>
+                <p className="text-2xl font-bold">{appointments.filter(apt => apt.status === 'completed').length}</p>
               </div>
             </div>
           </CardContent>
@@ -344,7 +310,7 @@ const DashboardPage = () => {
               </div>
               <div>
                 <p className="text-sm text-gray-500">Converted</p>
-                <p className="text-2xl font-bold">54</p>
+                <p className="text-2xl font-bold">{leads.filter(lead => lead.status === 'converted').length}</p>
               </div>
             </div>
           </CardContent>
@@ -377,21 +343,27 @@ const DashboardPage = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {recentAppointments.map((appointment) => (
-                <div key={appointment.id} className="flex items-start justify-between border-b pb-3">
-                  <div>
-                    <div className="font-medium">{appointment.patientName}</div>
-                    <div className="text-sm text-gray-500 flex items-center mt-1">
-                      <Calendar className="w-3 h-3 mr-1" />
-                      {new Date(appointment.date).toLocaleDateString('en-IN')} at {appointment.time}
+              {recentAppointments.length > 0 ? (
+                recentAppointments.map((appointment) => (
+                  <div key={appointment._id} className="flex items-start justify-between border-b pb-3">
+                    <div>
+                      <div className="font-medium">{appointment.patientName}</div>
+                      <div className="text-sm text-gray-500 flex items-center mt-1">
+                        <Calendar className="w-3 h-3 mr-1" />
+                        {new Date(appointment.date).toLocaleDateString('en-IN')} at {appointment.time}
+                      </div>
+                      <div className="text-sm text-gray-500">{appointment.service} • {appointment.doctor}</div>
                     </div>
-                    <div className="text-sm text-gray-500">{appointment.service} • {appointment.doctor}</div>
+                    <div>
+                      <AppointmentStatusBadge status={appointment.status} />
+                    </div>
                   </div>
-                  <div>
-                    <AppointmentStatusBadge status={appointment.status} />
-                  </div>
+                ))
+              ) : (
+                <div className="text-center py-4 text-gray-500">
+                  No appointments found
                 </div>
-              ))}
+              )}
             </div>
           </CardContent>
         </Card>
@@ -412,24 +384,30 @@ const DashboardPage = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {recentLeads.map((lead) => (
-                <div key={lead.id} className="flex items-start justify-between border-b pb-3">
-                  <div>
-                    <div className="font-medium">{lead.name}</div>
-                    <div className="text-sm text-gray-500 flex items-center mt-1">
-                      <Phone className="w-3 h-3 mr-1" />
-                      {lead.phone}
+              {recentLeads.length > 0 ? (
+                recentLeads.map((lead) => (
+                  <div key={lead._id} className="flex items-start justify-between border-b pb-3">
+                    <div>
+                      <div className="font-medium">{lead.name}</div>
+                      <div className="text-sm text-gray-500 flex items-center mt-1">
+                        <Phone className="w-3 h-3 mr-1" />
+                        {lead.phone}
+                      </div>
+                      <div className="text-sm text-gray-500 flex items-center mt-1">
+                        <MessageSquare className="w-3 h-3 mr-1" />
+                        {lead.service || 'General Inquiry'}
+                      </div>
                     </div>
-                    <div className="text-sm text-gray-500 flex items-center mt-1">
-                      <MessageSquare className="w-3 h-3 mr-1" />
-                      {lead.service}
+                    <div>
+                      <LeadStatusBadge status={lead.status} />
                     </div>
                   </div>
-                  <div>
-                    <LeadStatusBadge status={lead.status} />
-                  </div>
+                ))
+              ) : (
+                <div className="text-center py-4 text-gray-500">
+                  No leads found
                 </div>
-              ))}
+              )}
             </div>
           </CardContent>
         </Card>
