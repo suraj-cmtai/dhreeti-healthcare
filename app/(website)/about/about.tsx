@@ -108,8 +108,7 @@ export default function AboutPage() {
               >
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  To bolster basic healthcare within the region by creating a comprehensive network of high-quality primary healthcare centers, ensuring that every individual has access to dependable medical services.
-                </p>
+                Our mission at Dhreeti Clinic is simple: to make dependable healthcare both accessible and affordable. We provide essential medical services with a focus on patient care and trust, empowering our community in our three-tier city to lead healthier lives without financial burden.                </p>
               </motion.div>
 
               <motion.div
@@ -120,8 +119,7 @@ export default function AboutPage() {
               >
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  To establish a strong foundation of primary care that serves as the cornerstone for effective tertiary healthcare services, guaranteeing accessible and dependable medical care for all community members.
-                </p>
+                To be the leading and most trusted basic healthcare provider in our three-tier city, known for our commitment to excellence, affordability, and the well-being of every patient we serve. We envision a healthier community where quality care is a right, not a luxury.                </p>
               </motion.div>
             </div>
           </div>
