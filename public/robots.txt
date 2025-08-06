@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://dhreeticlinics.com/sitemap.xml
