@@ -127,7 +127,7 @@ export default function Hero() {
                   transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
                   className="bg-gradient-to-r from-blue-600 via-teal-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent"
                 >
-                  Dhreeti Healthcare
+                  Dhreeti Clinic
                 </motion.span>
               </h1>
               <motion.p variants={fadeInUp} className="text-xl md:text-2xl bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent font-semibold">
@@ -335,7 +335,7 @@ function VideoWithFallback() {
       ) : (
         <Image
           src="/logo-horizontal.png"
-          alt="Dhreeti Healthcare Logo"
+          alt="Dhreeti Clinic Logo"
           fill
           style={{ objectFit: "cover" }}
         />

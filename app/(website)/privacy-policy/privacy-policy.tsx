@@ -126,7 +126,7 @@ export default function PrivacyPolicyPage() {
               </span>
             </h2>
             <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              At Dhreeti Healthcare and Research Private Limited, we are committed to protecting your privacy and ensuring the security of your personal and health information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our healthcare services.
+              At Dhreeti Clinic and Research Private Limited, we are committed to protecting your privacy and ensuring the security of your personal and health information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our healthcare services.
             </p>
           </motion.div>
 

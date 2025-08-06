@@ -29,7 +29,7 @@ export default function Header() {
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <Image src="/logo-horizontal1.png" alt="Dhreeti Healthcare" width={240} height={60} className="h-12 w-auto" />
+            <Image src="/logo-horizontal1.png" alt="Dhreeti Clinic" width={240} height={60} className="h-12 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -91,7 +91,7 @@ export default function Header() {
                   <div className="flex items-center justify-between px-6 py-4 border-b">
                     <Image
                       src="/logo.png"
-                      alt="Dhreeti Healthcare"
+                      alt="Dhreeti Clinic"
                       width={200}
                       height={70}
                       className="h-16 w-auto"

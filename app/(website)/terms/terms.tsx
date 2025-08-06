@@ -131,7 +131,7 @@ export default function TermsPage() {
   return (
     <>
       {/* Banner Section */}
-      <HeroSection title="Terms and Conditions" description="Please read these terms carefully before using our healthcare services. These terms govern your relationship with Dhreeti Healthcare." />
+      <HeroSection title="Terms and Conditions" description="Please read these terms carefully before using our healthcare services. These terms govern your relationship with Dhreeti Clinic." />
 
 
       {/* Main Content */}

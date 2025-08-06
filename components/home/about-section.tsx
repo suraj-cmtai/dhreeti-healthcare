@@ -92,7 +92,7 @@ export default function AboutUsSection() {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 relative z-10">
             About{" "}
             <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-              Dhreeti Healthcare
+              Dhreeti Clinic
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -112,11 +112,11 @@ export default function AboutUsSection() {
             <div className="space-y-6">
               <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-teal-100 rounded-full">
                 <Building2 className="w-5 h-5 text-blue-600 mr-2" />
-                <span className="text-sm font-semibold text-blue-800">Dhreeti Healthcare and Research Pvt. Ltd.</span>
+                <span className="text-sm font-semibold text-blue-800">Dhreeti Clinic and Research Pvt. Ltd.</span>
               </div>
 
               <p className="text-lg text-gray-700 leading-relaxed">
-                Dhreeti Healthcare and Research Private Limited, established in{" "}
+                Dhreeti Clinic and Research Private Limited, established in{" "}
                 <span className="font-semibold text-blue-600">February 2022</span>, is a healthcare provider located in{" "}
                 <span className="font-semibold text-teal-600">Arrah, Bihar</span>. Our mission is to bolster basic healthcare within the region, creating a comprehensive network of high-quality primary healthcare centers.
               </p>

@@ -11,7 +11,7 @@ export default function AboutPage() {
     <div className="min-h-screen flex flex-col">
       <main className="flex-1 bg-white">
         {/* Page Header */}
-        <HeroSection title="About Dhreeti Healthcare" description="Learn more about our mission, vision, and commitment to providing quality healthcare services" />
+        <HeroSection title="About Dhreeti Clinic" description="Learn more about our mission, vision, and commitment to providing quality healthcare services" />
 
         {/* Detailed About Section */}
         <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -27,7 +27,7 @@ export default function AboutPage() {
                 <div className="space-y-6">
                   <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-teal-100 rounded-full">
                     <Building2 className="w-5 h-5 text-blue-600 mr-2" />
-                    <span className="text-sm font-semibold text-blue-800">Dhreeti Healthcare and Research Pvt. Ltd.</span>
+                    <span className="text-sm font-semibold text-blue-800">Dhreeti Clinic and Research Pvt. Ltd.</span>
                   </div>
 
                   <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -38,7 +38,7 @@ export default function AboutPage() {
                   </h2>
 
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    Dhreeti Healthcare and Research Private Limited, established in{" "}
+                    Dhreeti Clinic and Research Private Limited, established in{" "}
                     <span className="font-semibold text-blue-600">February 2022</span>, is a healthcare provider located in{" "}
                     <span className="font-semibold text-teal-600">Arrah, Bihar</span>. Our core mission is to bolster basic healthcare within the region, operating under the conviction that a strong foundation of primary care is indispensable for the effective functioning of tertiary services.
                   </p>

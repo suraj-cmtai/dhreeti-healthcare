@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dhreeti Healthcare ",
-  description: "Dhreeti Healthcare is a platform for disease diagnosis and treatment",
+  title: "Dhreeti Clinic ",
+  description: "Dhreeti Clinic is a platform for disease diagnosis and treatment",
 };
 
 export default function RootLayout({

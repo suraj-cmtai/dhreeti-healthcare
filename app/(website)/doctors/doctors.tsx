@@ -51,8 +51,8 @@ const doctors: Doctor[] = [
     email: "dr.pragya@dhreetihealthcare.com",
     education: "MBBS",
     role: "Consultant",
-    additionalRole: "Director at Dhreeti Healthcare and Research Private Limited",
-    about: "Dr. Pragya Pandey is a highly experienced Consultant in Obstetrics and Gynecology, with over 10 years of experience. She holds an MBBS degree and is dedicated to providing comprehensive and compassionate care to women at all stages of life. Dr. Pandey has a special interest in high-risk pregnancies, infertility, and laparoscopic surgery. She is also a Director at Dhreeti Healthcare and Research Private Limited.",
+    additionalRole: "Director at Dhreeti Clinic and Research Private Limited",
+    about: "Dr. Pragya Pandey is a highly experienced Consultant in Obstetrics and Gynecology, with over 10 years of experience. She holds an MBBS degree and is dedicated to providing comprehensive and compassionate care to women at all stages of life. Dr. Pandey has a special interest in high-risk pregnancies, infertility, and laparoscopic surgery. She is also a Director at Dhreeti Clinic and Research Private Limited.",
     expertise: ["High-risk Pregnancies", "Infertility Treatment", "Laparoscopic Surgery", "Women's Health", "Prenatal Care", "Gynecological Surgery"],
     awards: ["Excellence in Women's Health 2023", "Best Gynecologist Award 2022", "Patient Care Excellence 2021"],
     availability: "Mon-Fri: 9 AM - 6 PM, Sat: 9 AM - 2 PM"
@@ -68,8 +68,8 @@ const doctors: Doctor[] = [
     email: "dr.ganesh@dhreetihealthcare.com",
     education: "MBBS",
     role: "Consultant",
-    additionalRole: "Director at Dhreeti Healthcare and Research Private Limited",
-    about: "Dr. Ganesh Pandey is a seasoned Consultant in General Medicine, with over 10 years of experience in diagnosing and treating a wide range of medical conditions. He holds an MBBS degree and is known for his holistic approach to patient care, focusing on preventive medicine and health education. Dr. Pandey's expertise includes managing chronic diseases, infectious diseases, and providing general health check-ups. He also serves as a Director at Dhreeti Healthcare and Research Private Limited.",
+    additionalRole: "Director at Dhreeti Clinic and Research Private Limited",
+    about: "Dr. Ganesh Pandey is a seasoned Consultant in General Medicine, with over 10 years of experience in diagnosing and treating a wide range of medical conditions. He holds an MBBS degree and is known for his holistic approach to patient care, focusing on preventive medicine and health education. Dr. Pandey's expertise includes managing chronic diseases, infectious diseases, and providing general health check-ups. He also serves as a Director at Dhreeti Clinic and Research Private Limited.",
     expertise: ["Chronic Disease Management", "Infectious Diseases", "Preventive Medicine", "Health Check-ups", "General Consultation", "Emergency Care"],
     awards: ["Excellence in General Medicine 2023", "Patient Care Award 2022", "Community Health Champion 2021"],
     availability: "Mon-Fri: 8 AM - 7 PM, Sat: 8 AM - 3 PM"
