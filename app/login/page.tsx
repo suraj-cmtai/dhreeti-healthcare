@@ -158,15 +158,6 @@ const LoginPage = () => {
             )}
           </Button>
         </form>
-        
-        <div className="mt-8 text-center">
-          <p className="text-sm text-gray-600">
-            For demo purposes, use:
-          </p>
-          <p className="text-xs text-gray-500 mt-1">
-            Email: admin@dhreeti.com | Password: admin123
-          </p>
-        </div>
       </div>
     </div>
   );
