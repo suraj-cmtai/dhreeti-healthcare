@@ -7,23 +7,12 @@ import {
   LogOut, 
   Menu, 
   X, 
-  User, 
-  Bell, 
-  ChevronDown,
   Home,
   CalendarClock,
   Users,
-  Settings
+  CalendarDays
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { usePathname } from 'next/navigation';
 
 const AdminHeader = () => {
@@ -35,6 +24,7 @@ const AdminHeader = () => {
     { name: 'Dashboard', href: '/dashboard', icon: Home },
     { name: 'Appointments', href: '/dashboard/appointments', icon: CalendarClock },
     { name: 'Leads', href: '/dashboard/leads', icon: Users },
+    { name: 'Events', href: '/dashboard/events', icon: CalendarDays },
   ];
 
   const isActive = (path: string) => {

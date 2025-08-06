@@ -308,7 +308,7 @@ function VideoWithFallback() {
         <>
           <video
             ref={videoRef}
-            src="/dhreeti-clinic.mp4"
+            src="/videos/dhreeti-clinic.mp4"
             className="absolute inset-0 w-full h-full object-cover rounded-xl"
             muted
             loop
@@ -334,7 +334,7 @@ function VideoWithFallback() {
         </>
       ) : (
         <Image
-          src="/logo-horizontal.png"
+            src="/logo-horizontal.png"
           alt="Dhreeti Clinic Logo"
           fill
           style={{ objectFit: "cover" }}
