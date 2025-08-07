@@ -26,8 +26,11 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/all/hero-section";
+import { useRouter } from "next/navigation"; 
+import SchemeSection from "@/components/home/scheme-section";
 
 export default function ServicesPage() {
+  const router = useRouter();
   const mainServices = [
     {
       id: 1,
@@ -418,6 +421,8 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      <SchemeSection />
+
       {/* Call to Action */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-teal-600 text-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
@@ -434,6 +439,7 @@ export default function ServicesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
                 size="lg"
+                onClick={() => router.push("/book-appointment")}
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-md transition-all"
               >
                 <Calendar className="w-5 h-5 mr-2" />
@@ -442,10 +448,11 @@ export default function ServicesPage() {
               <Button
                 size="lg"
                 variant="outline"
+                onClick={() => router.push("tel:+919901515300")}
                 className="border-2 border-white text-primary hover:bg-white/10 px-8 py-4 text-lg font-semibold backdrop-blur-sm"
               >
                 <Phone className="w-5 h-5 mr-2" />
-                Call Now: +91 98765 43210
+                Call Now: +91 9901515300
               </Button>
             </div>
 

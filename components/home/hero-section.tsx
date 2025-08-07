@@ -130,9 +130,6 @@ export default function Hero() {
                   Dhreeti Clinic
                 </motion.span>
               </h1>
-              <motion.p variants={fadeInUp} className="text-xl md:text-2xl bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent font-semibold">
-                विश्वसनीय एवं किफायती स्वास्थ्य सेवा आपके लिए
-              </motion.p>
               <motion.p variants={fadeInUp} className="text-lg md:text-xl text-gray-600 max-w-xl">
               Since 2022, we've revolutionized healthcare by making top-tier services accessible and affordable. We combine modern facilities with experienced, compassionate doctors to provide a new standard of reliable care. Our mission is to build a healthier community by ensuring everyone has access to the best medical services without financial strain.             </motion.p>
             </motion.div>

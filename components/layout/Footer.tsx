@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import {  
+import {
   Phone,
   Mail,
   MapPin,
@@ -14,15 +14,15 @@ export default function Footer() {
   return (
     <footer className="bg-gradient-to-br from-gray-50 to-gray-100 border-t">
       {/* Main Footer */}
-      
+
       <div className="max-w-7xl w-full mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Healthcare Info */}
           <div className="space-y-6">
             <div>
-              <Image src="/logo.png" alt="Dhreeti Clinic" width={120} height={120} className="h-16 w-auto mb-4" />
+              <Image src="/logo-horizontal1.png" alt="Dhreeti Clinic" width={120} height={120} className="h-16 w-auto mb-4" />
               <p className="text-gray-600 text-sm leading-relaxed">
-                विश्वसनीय एवं किफायती स्वास्थ्य सेवा आपके लिए। Providing reliable and affordable healthcare services since 2022.
+                Reliable and affordable health care for you.
               </p>
             </div>
 
@@ -50,9 +50,7 @@ export default function Footer() {
                 { name: "About Us", href: "/about" },
                 { name: "Our Services", href: "/services" },
                 { name: "Our Doctors", href: "/doctors" },
-                { name: "Patient Portal", href: "/portal" },
-                { name: "Health Tips", href: "/blog" },
-                { name: "Careers", href: "/careers" },
+                { name: "Book Appointment", href: "/book-appointment" },
               ].map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-gray-600 hover:text-blue-600 transition-colors text-sm">

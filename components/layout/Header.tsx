@@ -44,18 +44,16 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group ${
-                    isActive ? "text-blue-600" : ""
-                  }`}
+                  className={`text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group ${isActive ? "text-blue-600" : ""
+                    }`}
                   style={isActive ? { color: "#2563eb" } : {}}
                 >
                   {item.name}
                   <span
-                    className={`absolute -bottom-1 left-0 h-0.5 bg-teal-500 transition-all duration-200 ${
-                      isActive
-                        ? "w-full"
-                        : "w-0 group-hover:w-full"
-                    }`}
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-teal-500 transition-all duration-200 ${isActive
+                      ? "w-full"
+                      : "w-0 group-hover:w-full"
+                      }`}
                   ></span>
                 </Link>
               )
@@ -111,11 +109,10 @@ export default function Header() {
                         <Link
                           key={item.name}
                           href={item.href}
-                          className={`block rounded-lg px-3 py-2 text-base font-medium transition-colors ${
-                            isActive
-                              ? "text-blue-600 bg-blue-50"
-                              : "text-gray-700 hover:bg-blue-50 hover:text-blue-700"
-                          }`}
+                          className={`block rounded-lg px-3 py-2 text-base font-medium transition-colors ${isActive
+                            ? "text-blue-600 bg-blue-50"
+                            : "text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                            }`}
                           style={isActive ? { color: "#2563eb", backgroundColor: "#eff6ff", textDecoration: "underline" } : {}}
                           onClick={() => setIsOpen(false)}
                         >
@@ -139,11 +136,15 @@ export default function Header() {
                   <div className="px-6 pb-6 space-y-3 text-sm text-gray-600 border-t pt-4">
                     <div className="flex items-center space-x-2">
                       <Phone className="h-4 w-4 text-blue-600" />
-                      <span className="truncate">+91 98765 43210</span>
+                      <span className="truncate">9901515300</span>
+                      <span className="truncate">9279797955</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <MapPin className="h-4 w-4 text-blue-600" />
-                      <span className="truncate">123 Health Street, Medical District</span>
+                      <span className="truncate">
+                        Near D.E.O Office Moulabagh<br />
+                        Arrah Bhojpur Bihar<br />
+                        Pin No 802301</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Clock className="h-4 w-4 text-blue-600" />

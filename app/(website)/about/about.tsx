@@ -27,7 +27,7 @@ export default function AboutPage() {
                 <div className="space-y-6">
                   <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-teal-100 rounded-full">
                     <Building2 className="w-5 h-5 text-blue-600 mr-2" />
-                    <span className="text-sm font-semibold text-blue-800">Dhreeti Clinic and Research Pvt. Ltd.</span>
+                    <span className="text-sm font-semibold text-blue-800">DHREETI HEALTHCARE AND RESEARCH PRIVATE LIMITED</span>
                   </div>
 
                   <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -38,7 +38,7 @@ export default function AboutPage() {
                   </h2>
 
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    Dhreeti Clinic and Research Private Limited, established in{" "}
+                    DHREETI HEALTHCARE AND RESEARCH PRIVATE LIMITED, established in{" "}
                     <span className="font-semibold text-blue-600">February 2022</span>, is a healthcare provider located in{" "}
                     <span className="font-semibold text-teal-600">Arrah, Bihar</span>. Our core mission is to bolster basic healthcare within the region, operating under the conviction that a strong foundation of primary care is indispensable for the effective functioning of tertiary services.
                   </p>
@@ -108,7 +108,7 @@ export default function AboutPage() {
               >
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
                 <p className="text-gray-600 leading-relaxed">
-                Our mission at Dhreeti Clinic is simple: to make dependable healthcare both accessible and affordable. We provide essential medical services with a focus on patient care and trust, empowering our community in our three-tier city to lead healthier lives without financial burden.                </p>
+                  Our mission at Dhreeti Clinic is simple: to make dependable healthcare both accessible and affordable. We provide essential medical services with a focus on patient care and trust, empowering our community in our three-tier city to lead healthier lives without financial burden.                </p>
               </motion.div>
 
               <motion.div
@@ -119,7 +119,7 @@ export default function AboutPage() {
               >
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
                 <p className="text-gray-600 leading-relaxed">
-                To be the leading and most trusted basic healthcare provider in our three-tier city, known for our commitment to excellence, affordability, and the well-being of every patient we serve. We envision a healthier community where quality care is a right, not a luxury.                </p>
+                  To be the leading and most trusted basic healthcare provider in our three-tier city, known for our commitment to excellence, affordability, and the well-being of every patient we serve. We envision a healthier community where quality care is a right, not a luxury.                </p>
               </motion.div>
             </div>
           </div>

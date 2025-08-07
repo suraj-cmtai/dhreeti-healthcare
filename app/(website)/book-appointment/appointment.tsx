@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addAppointment } from '@/lib/features/appointmentSlice';
 import { RootState } from '@/lib/store';
 import { Appointment } from '@/lib/features/appointmentSlice';
+import SchemeSection from '@/components/home/scheme-section';
 
 export default function AppointmentForm() {
   const dispatch = useDispatch();
@@ -311,6 +312,7 @@ export default function AppointmentForm() {
           </div>
         </div>
       </section>
+      <SchemeSection />
     </div>
   );
 }

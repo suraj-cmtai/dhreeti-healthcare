@@ -29,6 +29,7 @@ import CTA from "@/components/all/cta-section";
 import { AppDispatch } from "@/lib/store";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEvents, selectEvents, selectLoading, selectError } from "@/lib/features/eventSlice";
+import SchemeSection from "@/components/home/scheme-section";
 
 export default function Events() {
   const dispatch = useDispatch<AppDispatch>();
@@ -221,6 +222,8 @@ export default function Events() {
           )}
         </div>
       </section>
+
+      <SchemeSection />
 
       {/* Past Events Section */}
       <section className="py-20 bg-white">
