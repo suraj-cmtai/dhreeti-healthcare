@@ -123,14 +123,14 @@ export default function Hero() {
           >
             <motion.div variants={fadeInUp} className="space-y-4">
               <h1 className="text-3xl md:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
-                {t('hero.clinicName')}{' '}
+                {t('hero.welcome')}{' '}
                 <motion.span
                   initial={{ backgroundPosition: "0% 50%" }}
                   animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
                   className="bg-gradient-to-r from-blue-600 via-teal-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent"
                 >
-                  {t('hero.welcome')}
+                  {t('hero.clinicName')}
                 </motion.span>
               </h1>
               <motion.p variants={fadeInUp} className="text-lg md:text-xl text-gray-600 max-w-xl">
