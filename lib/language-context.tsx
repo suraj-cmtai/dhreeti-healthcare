@@ -979,6 +979,51 @@ const enTranslations = {
       }
     }
   },
+  serviceSection: {
+    title: "Our Services",
+    description: "Comprehensive healthcare services designed to meet all your medical needs under one roof",
+    opd: {
+      features: ["General Medicine", "Obstetrics & gynaecology"]
+    },
+    pathology: {
+      features: [
+        "All Kinds of Blood Tests", 
+        "Clinical Hematology",
+        "Clinical Biochemistry",
+        "Clinical Microbiology",
+        "Clinical Pathology"
+      ]
+    },
+    radiology: {
+      features: [
+        "Ultrasound (U.S.G.)", 
+        "E.C.G."
+      ]
+    },
+    surgery: {
+      title: "Surgery",
+      description: "Comprehensive women's health and surgical services",
+      features: [
+        "Gynaecological surgery",
+        "Minimally Invasive Surgery", 
+        "Reproductive Health", 
+        "Prenatal Care", 
+        "Women's Wellness"
+      ]
+    },
+    pharmacy: {
+      features: [
+        "Prescription Medicines", 
+        "Over-the-Counter Drugs", 
+        "Medical Supplies", 
+        "Health Consultations"
+      ]
+    },
+    schedule: {
+      weekdays: "Monday to Friday: 8:00 AM - 6:00 PM",
+      weekends: "Saturday & Sunday: 8:00 AM - 12:00 PM"
+    }
+  },
 }
 
 const hiTranslations = {
@@ -1946,6 +1991,51 @@ const hiTranslations = {
         title: "कोई पिछला इवेंट नहीं",
         description: "हमने अभी तक कोई इवेंट आयोजित नहीं किया है। हमारे आगामी स्वास्थ्य कार्यक्रमों और सामुदायिक पहलों के लिए बने रहें।"
       }
+    }
+  },
+  serviceSection: {
+    title: "हमारी सेवाएं",
+    description: "व्यापक स्वास्थ्य सेवाएं जो आपकी सभी चिकित्सा आवश्यकताओं को एक छत के नीचे पूरा करने के लिए डिज़ाइन की गई हैं",
+    opd: {
+      features: ["सामान्य चिकित्सा", "प्रसूति एवं स्त्री रोग"]
+    },
+    pathology: {
+      features: [
+        "सभी प्रकार के रक्त परीक्षण", 
+        "क्लिनिकल हेमेटोलॉजी",
+        "क्लिनिकल बायोकेमिस्ट्री",
+        "क्लिनिकल माइक्रोबायोलॉजी",
+        "क्लिनिकल पैथोलॉजी"
+      ]
+    },
+    radiology: {
+      features: [
+        "अल्ट्रासाउंड (यू.एस.जी.)", 
+        "ई.सी.जी."
+      ]
+    },
+    surgery: {
+      title: "सर्जरी",
+      description: "व्यापक महिला स्वास्थ्य और सर्जिकल सेवाएं",
+      features: [
+        "स्त्री रोग संबंधी सर्जरी",
+        "न्यूनतम इनवेसिव सर्जरी", 
+        "प्रजनन स्वास्थ्य", 
+        "प्रसव पूर्व देखभाल", 
+        "महिला कल्याण"
+      ]
+    },
+    pharmacy: {
+      features: [
+        "प्रिस्क्रिप्शन दवाएं", 
+        "ओवर-द-काउंटर दवाएं", 
+        "चिकित्सा आपूर्ति", 
+        "स्वास्थ्य परामर्श"
+      ]
+    },
+    schedule: {
+      weekdays: "सोमवार से शुक्रवार: सुबह 8:00 बजे - शाम 6:00 बजे",
+      weekends: "शनिवार और रविवार: सुबह 8:00 बजे - दोपहर 12:00 बजे"
     }
   },
 }
