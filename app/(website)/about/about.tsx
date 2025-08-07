@@ -5,13 +5,16 @@ import CTA from "@/components/all/cta-section";
 import { motion } from "framer-motion";
 import { Building2, MapPin, Calendar, Users, Shield, Heart, Award, Target, Eye, CheckCircle, Star, Clock, Phone, Mail } from "lucide-react";
 import HeroSection from "@/components/all/hero-section";
+import { useLanguage } from "@/lib/language-context";
 
 export default function AboutPage() {
+  const { t } = useLanguage();
+  
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-1 bg-white">
         {/* Page Header */}
-        <HeroSection title="About Dhreeti Clinic" description="Learn more about our mission, vision, and commitment to providing quality healthcare services" />
+        <HeroSection title={t('aboutPage.pageTitle')} description={t('aboutPage.pageDescription')} />
 
         {/* Detailed About Section */}
         <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -27,38 +30,38 @@ export default function AboutPage() {
                 <div className="space-y-6">
                   <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-teal-100 rounded-full">
                     <Building2 className="w-5 h-5 text-blue-600 mr-2" />
-                    <span className="text-sm font-semibold text-blue-800">DHREETI HEALTHCARE AND RESEARCH PRIVATE LIMITED</span>
+                    <span className="text-sm font-semibold text-blue-800">{t('aboutPage.companyName')}</span>
                   </div>
 
                   <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                    Advancing Healthcare in{" "}
+                    {t('aboutPage.heading.prefix')}{" "}
                     <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                      Arrah, Bihar
+                      {t('aboutPage.heading.highlighted')}
                     </span>
                   </h2>
 
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    DHREETI HEALTHCARE AND RESEARCH PRIVATE LIMITED, established in{" "}
-                    <span className="font-semibold text-blue-600">February 2022</span>, is a healthcare provider located in{" "}
-                    <span className="font-semibold text-teal-600">Arrah, Bihar</span>. Our core mission is to bolster basic healthcare within the region, operating under the conviction that a strong foundation of primary care is indispensable for the effective functioning of tertiary services.
+                    {t('aboutPage.paragraph1.prefix')}{" "}
+                    <span className="font-semibold text-blue-600">{t('aboutPage.paragraph1.date')}</span>, {t('aboutPage.paragraph1.middle')}{" "}
+                    <span className="font-semibold text-teal-600">{t('aboutPage.paragraph1.location')}</span>. {t('aboutPage.paragraph1.suffix')}
                   </p>
 
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    Our strategic vision involves creating a comprehensive network of high-quality primary healthcare centers. Through this initiative, we aim to guarantee accessible and dependable medical services for all individuals within the community.
+                    {t('aboutPage.paragraph2')}
                   </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
                     <div className="flex items-center space-x-3">
                       <Calendar className="w-5 h-5 text-blue-600" />
-                      <span className="text-sm text-gray-600">Est. February 2022</span>
+                      <span className="text-sm text-gray-600">{t('aboutPage.established')}</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <MapPin className="w-5 h-5 text-teal-600" />
-                      <span className="text-sm text-gray-600">Arrah, Bihar</span>
+                      <span className="text-sm text-gray-600">{t('aboutPage.location')}</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Users className="w-5 h-5 text-blue-600" />
-                      <span className="text-sm text-gray-600">Community Focused</span>
+                      <span className="text-sm text-gray-600">{t('aboutPage.focus')}</span>
                     </div>
                   </div>
                 </div>
@@ -75,23 +78,23 @@ export default function AboutPage() {
                   <div className="grid grid-cols-2 gap-6">
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
                       <Shield className="w-8 h-8 mx-auto mb-2" />
-                      <p className="text-2xl font-bold">Primary Care</p>
-                      <p className="text-sm opacity-90">Foundation</p>
+                      <p className="text-2xl font-bold">{t('aboutPage.stats.primaryCare.title')}</p>
+                      <p className="text-sm opacity-90">{t('aboutPage.stats.primaryCare.subtitle')}</p>
                     </div>
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
                       <Heart className="w-8 h-8 mx-auto mb-2" />
-                      <p className="text-2xl font-bold">Quality</p>
-                      <p className="text-sm opacity-90">Healthcare</p>
+                      <p className="text-2xl font-bold">{t('aboutPage.stats.quality.title')}</p>
+                      <p className="text-sm opacity-90">{t('aboutPage.stats.quality.subtitle')}</p>
                     </div>
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
                       <Users className="w-8 h-8 mx-auto mb-2" />
-                      <p className="text-2xl font-bold">Accessible</p>
-                      <p className="text-sm opacity-90">Services</p>
+                      <p className="text-2xl font-bold">{t('aboutPage.stats.accessible.title')}</p>
+                      <p className="text-sm opacity-90">{t('aboutPage.stats.accessible.subtitle')}</p>
                     </div>
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
                       <Building2 className="w-8 h-8 mx-auto mb-2" />
-                      <p className="text-2xl font-bold">Network</p>
-                      <p className="text-sm opacity-90">Centers</p>
+                      <p className="text-2xl font-bold">{t('aboutPage.stats.network.title')}</p>
+                      <p className="text-sm opacity-90">{t('aboutPage.stats.network.subtitle')}</p>
                     </div>
                   </div>
                 </div>
@@ -106,9 +109,10 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="bg-white rounded-2xl p-8 shadow-lg border border-blue-100"
               >
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('about.mission')}</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Our mission at Dhreeti Clinic is simple: to make dependable healthcare both accessible and affordable. We provide essential medical services with a focus on patient care and trust, empowering our community in our three-tier city to lead healthier lives without financial burden.                </p>
+                  {t('aboutPage.missionText')}
+                </p>
               </motion.div>
 
               <motion.div
@@ -117,9 +121,10 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="bg-white rounded-2xl p-8 shadow-lg border border-teal-100"
               >
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('about.vision')}</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  To be the leading and most trusted basic healthcare provider in our three-tier city, known for our commitment to excellence, affordability, and the well-being of every patient we serve. We envision a healthier community where quality care is a right, not a luxury.                </p>
+                  {t('aboutPage.visionText')}
+                </p>
               </motion.div>
             </div>
           </div>
@@ -135,13 +140,13 @@ export default function AboutPage() {
               className="text-center mb-16"
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Our{" "}
+                {t('aboutPage.coreValues.prefix')}{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                  Core Values
+                  {t('aboutPage.coreValues.highlighted')}
                 </span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                The principles that guide our commitment to excellence in healthcare
+                {t('aboutPage.coreValues.description')}
               </p>
             </motion.div>
 
@@ -149,26 +154,26 @@ export default function AboutPage() {
               {[
                 {
                   icon: Heart,
-                  title: "Compassion",
-                  description: "We treat every patient with empathy and understanding",
+                  title: t('aboutPage.values.compassion.title'),
+                  description: t('aboutPage.values.compassion.description'),
                   color: "from-red-500 to-pink-500"
                 },
                 {
                   icon: Shield,
-                  title: "Quality",
-                  description: "Maintaining the highest standards in all our services",
+                  title: t('aboutPage.values.quality.title'),
+                  description: t('aboutPage.values.quality.description'),
                   color: "from-blue-500 to-blue-600"
                 },
                 {
                   icon: Users,
-                  title: "Community",
-                  description: "Serving our local community with dedication",
+                  title: t('aboutPage.values.community.title'),
+                  description: t('aboutPage.values.community.description'),
                   color: "from-teal-500 to-teal-600"
                 },
                 {
                   icon: Target,
-                  title: "Excellence",
-                  description: "Striving for excellence in everything we do",
+                  title: t('aboutPage.values.excellence.title'),
+                  description: t('aboutPage.values.excellence.description'),
                   color: "from-green-500 to-emerald-500"
                 }
               ].map((value, index) => (
@@ -200,13 +205,13 @@ export default function AboutPage() {
               className="text-center mb-16"
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Our{" "}
+                {t('aboutPage.facilities.prefix')}{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                  Facilities & Services
+                  {t('aboutPage.facilities.highlighted')}
                 </span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                State-of-the-art facilities designed to provide comprehensive healthcare solutions
+                {t('aboutPage.facilities.description')}
               </p>
             </motion.div>
 
@@ -214,21 +219,21 @@ export default function AboutPage() {
               {[
                 {
                   icon: Heart,
-                  title: "Primary Care",
-                  description: "Comprehensive outpatient services with experienced doctors",
-                  features: ["General Consultation", "Health Checkups", "Preventive Care"]
+                  title: t('aboutPage.services.primaryCare.title'),
+                  description: t('aboutPage.services.primaryCare.description'),
+                  features: t('aboutPage.services.primaryCare.features')
                 },
                 {
                   icon: Shield,
-                  title: "Diagnostic Services",
-                  description: "Advanced laboratory and imaging facilities",
-                  features: ["Blood Tests", "Ultrasound", "ECG Services"]
+                  title: t('aboutPage.services.diagnostic.title'),
+                  description: t('aboutPage.services.diagnostic.description'),
+                  features: t('aboutPage.services.diagnostic.features')
                 },
                 {
                   icon: Users,
-                  title: "Specialized Care",
-                  description: "Expert care in various medical specialties",
-                  features: ["Women's Health", "Cardiac Care", "Emergency Services"]
+                  title: t('aboutPage.services.specialized.title'),
+                  description: t('aboutPage.services.specialized.description'),
+                  features: t('aboutPage.services.specialized.features')
                 }
               ].map((service, index) => (
                 <motion.div
@@ -244,7 +249,7 @@ export default function AboutPage() {
                   <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
                   <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
                   <ul className="space-y-2">
-                    {service.features.map((feature, featureIndex) => (
+                    {Array.isArray(service.features) && service.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center text-sm text-gray-600">
                         <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
                         {feature}
@@ -267,22 +272,38 @@ export default function AboutPage() {
               className="text-center mb-16"
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Our{" "}
+                {t('aboutPage.achievements.prefix')}{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                  Achievements
+                  {t('aboutPage.achievements.highlighted')}
                 </span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Milestones that reflect our commitment to healthcare excellence
+                {t('aboutPage.achievements.description')}
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
-                { number: "5000+", label: "Patients Served", icon: Users },
-                { number: "2+", label: "Years of Service", icon: Calendar },
-                { number: "100%", label: "Quality Assured", icon: Award },
-                { number: "24/7", label: "Emergency Care", icon: Clock }
+                { 
+                  number: t('aboutPage.stats.patients.number'), 
+                  label: t('aboutPage.stats.patients.label'), 
+                  icon: Users 
+                },
+                { 
+                  number: t('aboutPage.stats.years.number'), 
+                  label: t('aboutPage.stats.years.label'), 
+                  icon: Calendar 
+                },
+                { 
+                  number: t('aboutPage.stats.quality.number'), 
+                  label: t('aboutPage.stats.quality.label'), 
+                  icon: Award 
+                },
+                { 
+                  number: t('aboutPage.stats.emergency.number'), 
+                  label: t('aboutPage.stats.emergency.label'), 
+                  icon: Clock 
+                }
               ].map((achievement, index) => (
                 <motion.div
                   key={index}

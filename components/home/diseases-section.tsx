@@ -13,6 +13,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Phone, MapPin, Clock, Heart, Stethoscope, Shield } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 interface DiseaseInfoProps {
   diseaseName: string
@@ -29,9 +30,44 @@ export default function DiseaseInfoSection({
   cures,
   layout = "center",
 }: DiseaseInfoProps) {
+  const { t } = useLanguage()
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  
+  // Determine which disease we're dealing with based on the name
+  const getDiseaseKey = () => {
+    if (diseaseName.toLowerCase().includes("diabetes") || 
+        diseaseName.toLowerCase().includes("मधुमेह")) {
+      return "diabetes";
+    } else if (diseaseName.toLowerCase().includes("hypertension") || 
+               diseaseName.toLowerCase().includes("उच्च रक्तचाप")) {
+      return "hypertension";
+    } else if (diseaseName.toLowerCase().includes("tuberculosis") || 
+               diseaseName.toLowerCase().includes("क्षय रोग") || 
+               diseaseName.toLowerCase().includes("टीबी")) {
+      return "tuberculosis";
+    } else if (diseaseName.toLowerCase().includes("thyroid") || 
+               diseaseName.toLowerCase().includes("थायराइड")) {
+      return "thyroid";
+    } else if (diseaseName.toLowerCase().includes("dengue") || 
+               diseaseName.toLowerCase().includes("डेंगू")) {
+      return "dengue";
+    }
+    return "diabetes"; // Default fallback
+  };
+
+  const diseaseKey = getDiseaseKey();
+  
+  // Get translated disease data
+  const translatedName = t(`diseases.${diseaseKey}.name`);
+  const translatedDescription = t(`diseases.${diseaseKey}.description`);
+  const translatedSymptoms = t(`diseases.${diseaseKey}.symptoms`);
+  const translatedCures = t(`diseases.${diseaseKey}.cures`);
+  
+  // Convert to array if needed
+  const symptomsArray = Array.isArray(translatedSymptoms) ? translatedSymptoms : symptoms;
+  const curesArray = Array.isArray(translatedCures) ? translatedCures : cures;
 
   return (
     <section ref={ref} className="w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-teal-50 overflow-x-hidden overflow-y-hidden relative">
@@ -81,7 +117,7 @@ export default function DiseaseInfoSection({
           >
             <Image
               src={bodyImage || "/placeholder.svg"}
-              alt={`${diseaseName} affected areas`}
+              alt={`${translatedName} affected areas`}
               width={340}
               height={420}
               className="w-full h-auto max-h-[420px] object-contain"
@@ -98,14 +134,14 @@ export default function DiseaseInfoSection({
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
               <span className="bg-gradient-to-r from-blue-600 via-teal-500 to-blue-600 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-                {diseaseName}
+                {translatedName}
               </span>
             </h2>
             <p className="text-gray-700 text-base sm:text-lg mb-2 max-w-xl">
-              {`Here are the most common symptoms associated with ${diseaseName}. If you experience any of these, consult a healthcare professional for proper diagnosis and treatment.`}
+              {`${t('diseases.commonText.symptomsIntro')} ${translatedName}. ${t('diseases.commonText.consultDoctor')}`}
             </p>
             <div className="w-full flex flex-wrap gap-3">
-              {symptoms.map((symptom, index) => (
+              {symptomsArray.map((symptom, index) => (
                 <div
                   key={index}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-teal-100 text-teal-700 font-medium shadow-sm"
@@ -133,17 +169,17 @@ export default function DiseaseInfoSection({
                   className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl font-semibold shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105 rounded-2xl animate-pulse"
                 >
                   <Stethoscope className="w-6 h-6 mr-3" />
-                  View Details
+                  {t('diseases.viewDetails')}
                 </Button>
               </DialogTrigger>
               
               <DialogContent className="max-w-5xl max-h-[85vh] overflow-y-auto">
                 <DialogHeader className="text-center pb-6 border-b border-gray-200">
                   <DialogTitle className="text-3xl font-bold text-blue-600 mb-2">
-                    {diseaseName} Treatment Protocol
+                    {translatedName} {t('diseases.treatmentProtocol')}
                   </DialogTitle>
                   <DialogDescription className="text-gray-600 text-lg">
-                    Evidence-based medical treatment and comprehensive care guidelines
+                    {t('diseases.treatmentDescription')}
                   </DialogDescription>
                 </DialogHeader>
 
@@ -151,10 +187,10 @@ export default function DiseaseInfoSection({
                 <div className="mt-8">
                   <div className="flex items-center mb-6">
                     <Heart className="w-6 h-6 text-red-500 mr-3" />
-                    <h3 className="text-2xl font-semibold text-gray-900">Medical Treatment Plan</h3>
+                    <h3 className="text-2xl font-semibold text-gray-900">{t('diseases.medicalTreatmentPlan')}</h3>
                   </div>
                   <div className="space-y-4">
-                    {cures.map((instruction, index) => (
+                    {curesArray.map((instruction, index) => (
                       <div key={index} className="flex items-start space-x-4 p-4 bg-gradient-to-r from-blue-50 to-teal-50 rounded-xl border border-blue-200/50">
                         <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-teal-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                           <span className="text-white text-sm font-bold">{index + 1}</span>
@@ -170,15 +206,15 @@ export default function DiseaseInfoSection({
                 {/* Professional Disclaimer */}
                 <div className="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-xl">
                   <p className="text-sm text-amber-800 font-medium">
-                    <strong>Medical Disclaimer:</strong> This information is for educational purposes only and should not replace professional medical advice. Always consult with a qualified healthcare provider for proper diagnosis and treatment.
+                    <strong>{t('diseases.disclaimer.title')}</strong> {t('diseases.disclaimer.text')}
                   </p>
                 </div>
 
                 {/* Clinic Contact Details */}
                 <div className="mt-8 p-8 bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl border border-blue-200/50">
                   <div className="text-center mb-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Dhreeti Medical Clinic</h3>
-                    <p className="text-gray-600">Advanced Healthcare Solutions • Board-Certified Physicians</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{t('diseases.clinic.name')}</h3>
+                    <p className="text-gray-600">{t('diseases.clinic.tagline')}</p>
                   </div>
                   
                   <div className="grid md:grid-cols-3 gap-6 text-center">
@@ -187,9 +223,9 @@ export default function DiseaseInfoSection({
                         <Phone className="w-7 h-7 text-white" />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900 text-lg">Contact Us</p>
-                        <p className="text-gray-700 font-medium">+91 98765 43210</p>
-                        <p className="text-sm text-red-600 font-medium">Emergency: +91 98765 43211</p>
+                        <p className="font-semibold text-gray-900 text-lg">{t('diseases.clinic.contactUs')}</p>
+                        <p className="text-gray-700 font-medium">{t('contact.phone1')}</p>
+                        <p className="text-sm text-red-600 font-medium">{t('contact.phone2')}</p>
                       </div>
                     </div>
 
@@ -198,9 +234,9 @@ export default function DiseaseInfoSection({
                         <MapPin className="w-7 h-7 text-white" />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900 text-lg">Our Location</p>
-                        <p className="text-gray-700">123 Health Street</p>
-                        <p className="text-gray-700">Medical District, City</p>
+                        <p className="font-semibold text-gray-900 text-lg">{t('diseases.clinic.location')}</p>
+                        <p className="text-gray-700">{t('contact.address').split('\n')[0]}</p>
+                        <p className="text-gray-700">{t('contact.address').split('\n')[1]}</p>
                       </div>
                     </div>
 
@@ -209,9 +245,8 @@ export default function DiseaseInfoSection({
                         <Clock className="w-7 h-7 text-white" />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900 text-lg">Operating Hours</p>
-                        <p className="text-gray-700">Mon-Sat: 9AM-8PM</p>
-                        <p className="text-gray-700">Sunday: 10AM-6PM</p>
+                        <p className="font-semibold text-gray-900 text-lg">{t('diseases.clinic.hours')}</p>
+                        <p className="text-gray-700">{t('contact.timing')}</p>
                       </div>
                     </div>
                   </div>
@@ -225,7 +260,7 @@ export default function DiseaseInfoSection({
                     onClick={() => setIsDialogOpen(false)}
                   >
                     <Phone className="w-5 h-5 mr-3" />
-                    Schedule Professional Consultation
+                    {t('diseases.scheduleConsultation')}
                   </Button>
                 </div>
               </DialogContent>

@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
+import { useLanguage } from "@/lib/language-context"
 import {
   Clock,
   TestTube,
@@ -15,21 +16,45 @@ import {
   Shield,
 } from "lucide-react"
 
+// Define types for our service items
+interface ServiceItem {
+  icon: any;
+  title: string;
+  description: string;
+  schedule?: {
+    weekdays: string;
+    weekends: string;
+  };
+  features: string[];
+  bulletColor: string;
+  color: string;
+  bgColor: string;
+  borderColor: string;
+}
+
 export default function ServicesSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [isPaused, setIsPaused] = useState(false)
+  const { t } = useLanguage()
 
-  const services = [
+  // Helper function to safely get features array from translations
+  const getFeatures = (path: string): string[] => {
+    const value = t(path)
+    // Check if it's an array and return it, otherwise return empty array
+    return Array.isArray(value) ? value : []
+  }
+
+  const services: ServiceItem[] = [
     {
       icon: Stethoscope,
-      title: "O.P.D. Services",
-      description: "Comprehensive outpatient department services with experienced doctors",
+      title: t('services.opdServices.title'),
+      description: t('services.opdServices.description'),
       schedule: {
-        weekdays: "Monday to Friday: 8:00 AM - 6:00 PM",
-        weekends: "Saturday & Sunday: 8:00 AM - 12:00 PM",
+        weekdays: t('services.opdServices.weekdays'),
+        weekends: t('services.opdServices.weekends'),
       },
-      features: ["General Medicine", "Obstetrics & gynaecology"],
+      features: getFeatures('services.opdServices.features'),
       bulletColor: "bg-blue-500",
       color: "from-blue-500 to-blue-600",
       bgColor: "from-blue-50 to-blue-100",
@@ -37,15 +62,9 @@ export default function ServicesSection() {
     },
     {
       icon: TestTube,
-      title: "Pathology Services",
-      description: "Complete blood and urine medical investigations with accurate results",
-      features: [
-        "All Kinds of Blood Tests", 
-        "Clinical Hematology",
-        "Clinical Biochemistry",
-        "Clinical Microbiology",
-        "Clinical Pathology"
-      ],
+      title: t('services.pathology.title'),
+      description: t('services.pathology.description'),
+      features: getFeatures('services.pathology.features'),
       bulletColor: "bg-teal-500",
       color: "from-teal-500 to-teal-600",
       bgColor: "from-teal-50 to-teal-100",
@@ -53,12 +72,9 @@ export default function ServicesSection() {
     },
     {
       icon: Scan,
-      title: "Radiology",
-      description: "Advanced ultrasound imaging services for accurate diagnosis",
-      features: [
-        "Ultrasound (U.S.G.)", 
-        "E.C.G."
-      ],
+      title: t('services.radiology.title'),
+      description: t('services.radiology.description'),
+      features: getFeatures('services.radiology.features'),
       bulletColor: "bg-blue-500",
       color: "from-blue-500 to-teal-500",
       bgColor: "from-blue-50 to-teal-50",
@@ -66,24 +82,20 @@ export default function ServicesSection() {
     },
     {
       icon: Baby,
-      title: "Surgery",
-      description: "Comprehensive women's health and surgical services",
-      features: [
-        "Gynaecological surgery",
-        "Minimally Invasive Surgery", 
-        "Reproductive Health", 
-        "Prenatal Care", 
-        "Women's Wellness"
-      ],
+      title: t('services.surgery.title'),
+      description: t('services.surgery.description'),
+      features: getFeatures('services.surgery.features'),
+      bulletColor: "bg-pink-500",
       color: "from-pink-500 to-rose-500",
       bgColor: "from-pink-50 to-rose-50",
       borderColor: "border-pink-200",
     },
     {
       icon: Pill,
-      title: "Pharmacy",
-      description: "Complete pharmaceutical services with quality medications",
-      features: ["Prescription Medicines", "Over-the-Counter Drugs", "Medical Supplies", "Health Consultations"],
+      title: t('services.pharmacy.title'),
+      description: t('services.pharmacy.description'),
+      features: getFeatures('services.pharmacy.features'),
+      bulletColor: "bg-green-500",
       color: "from-green-500 to-emerald-500",
       bgColor: "from-green-50 to-emerald-50",
       borderColor: "border-green-200",
@@ -177,11 +189,11 @@ export default function ServicesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Our{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">Services</span>
+            {t('services.title').split(' ')[0]}{" "}
+            <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">{t('services.title').split(' ').slice(1).join(' ')}</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Comprehensive healthcare services designed to meet all your medical needs under one roof
+            {t('services.subtitle')}
           </p>
         </motion.div>
 
@@ -225,11 +237,11 @@ export default function ServicesSection() {
                 </div>
               )}
 
-              {service.features && (
+              {service.features && service.features.length > 0 && (
                 <ul className="space-y-3 relative z-10 mb-4">
-                  {service.features.map((feature, featureIndex) => (
+                  {service.features.map((feature: string, featureIndex: number) => (
                     <li key={featureIndex} className="flex items-center text-sm text-gray-700">
-                      <div className={`w-3 h-3 ${service.bulletColor || (service.title === "Pathology Services" ? "bg-teal-500" : service.title === "Radiology" ? "bg-blue-500" : `bg-gradient-to-r ${service.color}`)} rounded-full mr-3 flex-shrink-0`}></div>
+                      <div className={`w-3 h-3 ${service.bulletColor} rounded-full mr-3 flex-shrink-0`}></div>
                       <span>{feature}</span>
                     </li>
                   ))}

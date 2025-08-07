@@ -6,20 +6,25 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { Menu, Phone, MapPin, Clock, ArrowRight } from "lucide-react"
+import { Menu, Phone, MapPin, Clock, ArrowRight, Globe } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const { language, toggleLanguage, t } = useLanguage()
   const pathname = usePathname()
 
   const navigation = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Doctors", href: "/doctors" },
-    { name: "Events", href: "/events" },
-    { name: "Contact", href: "/contact" },
+    { name: t('navigation.home'), href: "/" },
+    { name: t('navigation.about'), href: "/about" },
+    { name: t('navigation.services'), href: "/services" },
+    { name: t('navigation.doctors'), href: "/doctors" },
+    { name: t('navigation.events'), href: "/events" },
+    { name: t('navigation.contact'), href: "/contact" },
   ]
+
+  // Language label for display
+  const langLabel = language === "en" ? "En" : "हि"
 
   return (
     <header
@@ -62,8 +67,17 @@ export default function Header() {
 
           {/* CTA Button & Mobile Menu */}
           <div className="flex items-center space-x-4">
+            <button
+              className="flex items-center focus:outline-none cursor-pointer"
+              onClick={toggleLanguage}
+              aria-label={t('header.changeLanguage')}
+              type="button"
+            >
+              <Globe className="h-6 w-6 text-blue-600" />
+              <span className="text-sm mr-2 text-gray-600">{langLabel}</span>
+            </button>
             <Button className="hidden md:inline-flex bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white">
-              <Link href="/book-appointment">Book Appointment</Link>
+              <Link href="/book-appointment">{t('header.bookAppointment')}</Link>
               <ArrowRight className="h-4 w-4 text-white" />
             </Button>
 
@@ -126,7 +140,7 @@ export default function Header() {
                   <div className="px-6 pb-4">
                     <Button className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white text-base py-2.5 flex items-center justify-center gap-2">
                       <Link href="/book-appointment" className="flex items-center gap-2 w-full h-full justify-center">
-                        Book Appointment
+                        {t('header.bookAppointment')}
                         <ArrowRight className="h-4 w-4 text-white" />
                       </Link>
                     </Button>
@@ -136,19 +150,18 @@ export default function Header() {
                   <div className="px-6 pb-6 space-y-3 text-sm text-gray-600 border-t pt-4">
                     <div className="flex items-center space-x-2">
                       <Phone className="h-4 w-4 text-blue-600" />
-                      <span className="truncate">9901515300</span>
-                      <span className="truncate">9279797955</span>
+                      <span className="truncate">{t('contact.phone1')}</span>
+                      <span className="truncate">{t('contact.phone2')}</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <MapPin className="h-4 w-4 text-blue-600" />
                       <span className="truncate">
-                        Near D.E.O Office Moulabagh<br />
-                        Arrah Bhojpur Bihar<br />
-                        Pin No 802301</span>
+                        {t('contact.address')}
+                      </span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Clock className="h-4 w-4 text-blue-600" />
-                      <span>Mon-Sat: 9AM-8PM</span>
+                      <span>{t('contact.timing')}</span>
                     </div>
                   </div>
                 </div>

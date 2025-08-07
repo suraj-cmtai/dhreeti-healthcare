@@ -1,13 +1,20 @@
 "use client"
 
 import { motion } from "framer-motion"
-import {  TestTube, Shield, Heart, Scan, Activity } from "lucide-react"
+import { TestTube, Shield, Heart, Scan, Activity } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
-const diseases = [
+// Define the disease type
+interface Disease {
+  icon: any;
+  title: string;
+  symptoms: string[];
+}
+
+const diseases: Disease[] = [
   {
     icon: Activity,
-    title: "Tuberculosis",
-    description: "A bacterial infection primarily affecting the lungs, requiring comprehensive treatment.",
+    title: "tuberculosis",
     symptoms: [
       "Persistent Cough",
       "Chest Pain",
@@ -19,8 +26,7 @@ const diseases = [
   },
   {
     icon: Activity,
-    title: "Dengue",
-    description: "A viral infection spread by mosquitoes, causing severe flu-like symptoms.",
+    title: "dengue",
     symptoms: [
       "High Fever",
       "Severe Headache",
@@ -32,8 +38,7 @@ const diseases = [
   },
   {
     icon: Heart,
-    title: "Hypertension",
-    description: "High blood pressure condition requiring careful monitoring and management.",
+    title: "hypertension",
     symptoms: [
       "Headaches",
       "Shortness of Breath",
@@ -45,8 +50,7 @@ const diseases = [
   },
   {
     icon: TestTube,
-    title: "Diabetes",
-    description: "A metabolic disorder affecting blood sugar levels and requiring lifestyle management.",
+    title: "diabetes",
     symptoms: [
       "Excessive Thirst",
       "Frequent Urination",
@@ -58,8 +62,7 @@ const diseases = [
   },
   {
     icon: Scan,
-    title: "Thyroid",
-    description: "Disorders affecting the thyroid gland and hormonal balance in the body.",
+    title: "thyroid",
     symptoms: [
       "Weight Changes",
       "Fatigue",
@@ -72,6 +75,8 @@ const diseases = [
 ]
 
 export default function WhyChooseSection() {
+  const { t } = useLanguage()
+  
   // Duplicate the diseases array for seamless looping
   const marqueeDiseases = [...diseases, ...diseases]
 
@@ -97,13 +102,13 @@ export default function WhyChooseSection() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full bg-gradient-to-r from-blue-100 to-teal-100 text-teal-700 font-semibold text-sm shadow">
             <Shield className="w-5 h-5 text-teal-500" />
-            Why Choose Us
+            {t('whyChoose.title')}
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Our <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">Specializations</span>
+            {t('whyChoose.subtitle').split(' ')[0]} <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">{t('whyChoose.subtitle').split(' ').slice(1).join(' ')}</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Expert treatment and care for various diseases with modern facilities and experienced specialists.
+            {t('whyChoose.description')}
           </p>
         </div>
         {/* Marquee Row */}
@@ -116,6 +121,16 @@ export default function WhyChooseSection() {
           >
             {marqueeDiseases.map((disease, i) => {
               const Icon = disease.icon
+              // Get disease key
+              const diseaseKey = disease.title;
+              // Try to get translated title, description and symptoms
+              const translatedTitle = t(`diseases.${diseaseKey}.name`);
+              const translatedDescription = t(`diseases.${diseaseKey}.description`);
+              const translatedSymptoms = t(`diseases.${diseaseKey}.symptoms`);
+              
+              // Ensure symptoms is an array
+              const symptomsArray: string[] = Array.isArray(translatedSymptoms) ? translatedSymptoms : disease.symptoms;
+              
               return (
                 <div
                   key={i}
@@ -133,11 +148,11 @@ export default function WhyChooseSection() {
                     <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-blue-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                       <Icon className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{disease.title}</h3>
-                    <p className="text-gray-600 leading-relaxed mb-4 text-sm">{disease.description}</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{translatedTitle}</h3>
+                    <p className="text-gray-600 leading-relaxed mb-4 text-sm">{translatedDescription}</p>
                     {/* Symptom Tags */}
                     <div className="flex flex-wrap gap-2">
-                      {disease.symptoms.map((symptom, index) => (
+                      {symptomsArray.slice(0, 6).map((symptom: string, index: number) => (
                         <span
                           key={index}
                           className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-white to-teal-50 border border-teal-200 text-gray-700 group-hover:border-blue-200 transition-colors shadow-sm"

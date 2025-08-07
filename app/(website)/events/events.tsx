@@ -30,12 +30,35 @@ import { AppDispatch } from "@/lib/store";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEvents, selectEvents, selectLoading, selectError } from "@/lib/features/eventSlice";
 import SchemeSection from "@/components/home/scheme-section";
+import { useLanguage } from "@/lib/language-context";
+
+// Define the event type based on what's coming from the API
+interface EventContactInfo {
+  phone: string;
+  email: string;
+}
+
+interface Event {
+  _id: string;
+  type: string;
+  status: string;
+  category: string;
+  title: string;
+  description: string;
+  date: string;
+  time: string;
+  location: string;
+  attendees: number;
+  highlights: string[];
+  contactInfo: EventContactInfo;
+}
 
 export default function Events() {
   const dispatch = useDispatch<AppDispatch>();
   const eventsData = useSelector(selectEvents);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
+  const { t, language } = useLanguage();
 
   // Ensure events is always an array
   const events = Array.isArray(eventsData) ? eventsData : [];
@@ -55,22 +78,24 @@ export default function Events() {
       'completed': "bg-blue-100 text-blue-800"
     };
 
-    const statusLabels = {
-      'registration-open': "Registration Open",
-      'registration-closed': "Registration Closed",
-      'completed': "Completed"
+    const statusLabels: Record<string, string> = {
+      'registration-open': t('eventsPage.status.registrationOpen'),
+      'registration-closed': t('eventsPage.status.registrationClosed'),
+      'completed': t('eventsPage.status.completed')
     };
 
     return (
       <Badge className={`${statusStyles[status as keyof typeof statusStyles]} capitalize`}>
-        {statusLabels[status as keyof typeof statusLabels]}
+        {statusLabels[status] || status}
       </Badge>
     );
   };
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-IN', {
+    // Use the current language for date formatting
+    const locale = language === 'hi' ? 'hi-IN' : 'en-IN';
+    return date.toLocaleDateString(locale, {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
@@ -83,7 +108,7 @@ export default function Events() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="text-gray-500">Loading events...</div>
+          <div className="text-gray-500">{t('eventsPage.loading')}</div>
         </div>
       </div>
     );
@@ -93,8 +118,8 @@ export default function Events() {
     <>
       {/* Banner Section */}
       <HeroSection 
-        title="Healthcare Events & Programs" 
-        description="Join our community health initiatives, awareness programs, and medical camps designed to promote better health and wellness for everyone." 
+        title={t('eventsPage.pageTitle')} 
+        description={t('eventsPage.pageDescription')} 
       />
 
       {/* Upcoming Events Section */}
@@ -107,13 +132,13 @@ export default function Events() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Upcoming{" "}
+              {t('eventsPage.upcomingEvents.title.prefix')}{" "}
               <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-                Events
+                {t('eventsPage.upcomingEvents.title.highlighted')}
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Don't miss out on our upcoming health programs, workshops, and medical camps
+              {t('eventsPage.upcomingEvents.description')}
             </p>
           </motion.div>
 
@@ -158,12 +183,12 @@ export default function Events() {
                         </div>
                         <div className="flex items-center space-x-3">
                           <Users className="w-5 h-5 text-purple-600" />
-                          <span className="text-gray-700">{event.attendees} attendees</span>
+                          <span className="text-gray-700">{t('eventsPage.attendees').replace('{count}', event.attendees.toString())}</span>
                         </div>
                       </div>
 
                       <div className="pt-4 border-t border-gray-100">
-                        <h4 className="font-semibold text-gray-900 mb-3">Highlights:</h4>
+                        <h4 className="font-semibold text-gray-900 mb-3">{t('eventsPage.highlights')}:</h4>
                         <div className="space-y-2">
                           {event.highlights.map((highlight, idx) => (
                             <div key={idx} className="flex items-center space-x-2">
@@ -178,7 +203,7 @@ export default function Events() {
                     <CardFooter className="pt-4 border-t border-gray-100">
                       <div className="w-full space-y-3">
                         <Button className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white">
-                          Register Now
+                          {t('eventsPage.registerNow')}
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                         <div className="flex items-center justify-center space-x-4 text-sm text-gray-600">
@@ -206,16 +231,16 @@ export default function Events() {
             >
               <div className="bg-white rounded-lg p-8 shadow-sm border border-gray-100">
                 <AlertTriangle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-700 mb-2">No Upcoming Events</h3>
+                <h3 className="text-xl font-semibold text-gray-700 mb-2">{t('eventsPage.upcomingEvents.noEvents.title')}</h3>
                 <p className="text-gray-500 mb-4">
-                  We don't have any upcoming events at the moment. Please check back later for new health programs and workshops.
+                  {t('eventsPage.upcomingEvents.noEvents.description')}
                 </p>
                 <Button 
                   variant="outline" 
                   className="border-blue-200 text-blue-600 hover:bg-blue-50"
                   onClick={() => window.location.href = '/contact'}
                 >
-                  Contact Us
+                  {t('eventsPage.contactUs')}
                 </Button>
               </div>
             </motion.div>
@@ -235,13 +260,13 @@ export default function Events() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Past{" "}
+              {t('eventsPage.pastEvents.title.prefix')}{" "}
               <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-                Events
+                {t('eventsPage.pastEvents.title.highlighted')}
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Take a look at our successful health programs and community initiatives
+              {t('eventsPage.pastEvents.description')}
             </p>
           </motion.div>
 
@@ -286,12 +311,12 @@ export default function Events() {
                         </div>
                         <div className="flex items-center space-x-3">
                           <Users className="w-5 h-5 text-purple-600" />
-                          <span className="text-gray-700">{event.attendees} attendees</span>
+                          <span className="text-gray-700">{t('eventsPage.attendees').replace('{count}', event.attendees.toString())}</span>
                         </div>
                       </div>
 
                       <div className="pt-4 border-t border-gray-200">
-                        <h4 className="font-semibold text-gray-900 mb-3">Highlights:</h4>
+                        <h4 className="font-semibold text-gray-900 mb-3">{t('eventsPage.highlights')}:</h4>
                         <div className="space-y-2">
                           {event.highlights.map((highlight, idx) => (
                             <div key={idx} className="flex items-center space-x-2">
@@ -307,7 +332,7 @@ export default function Events() {
                       <div className="w-full">
                         <Button variant="outline" className="w-full border-blue-200 text-blue-600 hover:bg-blue-50">
                           <Star className="mr-2 h-4 w-4" />
-                          Event Completed
+                          {t('eventsPage.eventCompleted')}
                         </Button>
                       </div>
                     </CardFooter>
@@ -324,9 +349,9 @@ export default function Events() {
             >
               <div className="bg-gray-50 rounded-lg p-8 shadow-sm border border-gray-100">
                 <Star className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-700 mb-2">No Past Events</h3>
+                <h3 className="text-xl font-semibold text-gray-700 mb-2">{t('eventsPage.pastEvents.noEvents.title')}</h3>
                 <p className="text-gray-500">
-                  We haven't held any events yet. Stay tuned for our upcoming health programs and community initiatives.
+                  {t('eventsPage.pastEvents.noEvents.description')}
                 </p>
               </div>
             </motion.div>

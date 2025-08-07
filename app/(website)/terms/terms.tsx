@@ -17,121 +17,76 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/all/hero-section";
+import { useLanguage } from "@/lib/language-context";
 
 export default function TermsPage() {
+  const { t } = useLanguage();
+  
   const termsSections = [
     {
-      title: "Acceptance of Terms",
+      title: t('terms.sections.acceptance.title'),
       icon: CheckCircle,
-      content: [
-        "By accessing and using our healthcare services, you agree to these terms",
-        "These terms apply to all patients, visitors, and users of our services",
-        "We reserve the right to modify these terms at any time",
-        "Continued use after changes constitutes acceptance of new terms",
-        "Please review these terms regularly for updates"
-      ]
+      content: t('terms.sections.acceptance.content')
     },
     {
-      title: "Healthcare Services",
+      title: t('terms.sections.services.title'),
       icon: Shield,
-      content: [
-        "We provide comprehensive healthcare and medical services",
-        "All services are subject to medical professional availability",
-        "Emergency services are available 24/7",
-        "Appointments are required for non-emergency care",
-        "We maintain the right to refuse service when necessary"
-      ]
+      content: t('terms.sections.services.content')
     },
     {
-      title: "Patient Responsibilities",
+      title: t('terms.sections.responsibilities.title'),
       icon: Users,
-      content: [
-        "Provide accurate and complete medical information",
-        "Follow prescribed treatment plans and medications",
-        "Attend scheduled appointments on time",
-        "Inform us of any changes in health status",
-        "Respect facility policies and other patients"
-      ]
+      content: t('terms.sections.responsibilities.content')
     },
     {
-      title: "Payment and Billing",
+      title: t('terms.sections.payment.title'),
       icon: Scale,
-      content: [
-        "All services must be paid for at the time of service",
-        "We accept cash, cards, and digital payments",
-        "Insurance claims are processed as per policy terms",
-        "Late payments may result in service restrictions",
-        "Refund policies apply as per healthcare regulations"
-      ]
+      content: t('terms.sections.payment.content')
     },
     {
-      title: "Privacy and Confidentiality",
+      title: t('terms.sections.privacy.title'),
       icon: Shield,
-      content: [
-        "Patient information is kept strictly confidential",
-        "Medical records are protected under healthcare laws",
-        "Information sharing requires patient consent",
-        "We comply with all privacy regulations",
-        "Data security measures are in place"
-      ]
+      content: t('terms.sections.privacy.content')
     },
     {
-      title: "Limitation of Liability",
+      title: t('terms.sections.liability.title'),
       icon: AlertTriangle,
-      content: [
-        "We provide care to the best of our professional ability",
-        "Medical outcomes cannot be guaranteed",
-        "We are not liable for indirect or consequential damages",
-        "Liability is limited to the extent permitted by law",
-        "Patients acknowledge inherent medical risks"
-      ]
+      content: t('terms.sections.liability.content')
     },
     {
-      title: "Appointment and Cancellation",
+      title: t('terms.sections.appointment.title'),
       icon: Calendar,
-      content: [
-        "Appointments must be scheduled in advance",
-        "24-hour notice required for cancellations",
-        "No-shows may result in appointment restrictions",
-        "Emergency appointments take priority",
-        "Rescheduling is subject to availability"
-      ]
+      content: t('terms.sections.appointment.content')
     },
     {
-      title: "Code of Conduct",
+      title: t('terms.sections.conduct.title'),
       icon: Award,
-      content: [
-        "Respectful behavior is required at all times",
-        "No harassment or discrimination is tolerated",
-        "Follow facility safety and hygiene protocols",
-        "Maintain appropriate conduct in waiting areas",
-        "Violations may result in service termination"
-      ]
+      content: t('terms.sections.conduct.content')
     }
   ];
 
   const contactInfo = [
     {
       icon: Phone,
-      label: "Phone",
-      value: "+91 98765 43210"
+      label: t('terms.contact.phone.label'),
+      value: t('terms.contact.phone.value')
     },
     {
       icon: Mail,
-      label: "Email",
-      value: "legal@dhreetihealthcare.com"
+      label: t('terms.contact.email.label'),
+      value: t('terms.contact.email.value')
     },
     {
       icon: MapPin,
-      label: "Address",
-      value: "Arrah, Bihar, India"
+      label: t('terms.contact.address.label'),
+      value: t('terms.contact.address.value')
     }
   ];
 
   return (
     <>
       {/* Banner Section */}
-      <HeroSection title="Terms and Conditions" description="Please read these terms carefully before using our healthcare services. These terms govern your relationship with Dhreeti Clinic." />
+      <HeroSection title={t('terms.pageTitle')} description={t('terms.pageDescription')} />
 
 
       {/* Main Content */}
@@ -145,13 +100,13 @@ export default function TermsPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              Understanding Our{" "}
+              {t('terms.intro.title.prefix')}{" "}
               <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                Terms of Service
+                {t('terms.intro.title.highlighted')}
               </span>
             </h2>
             <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              These Terms and Conditions outline the rules, guidelines, and agreements that govern your use of our healthcare services. By accessing our services, you acknowledge that you have read, understood, and agree to be bound by these terms.
+              {t('terms.intro.description')}
             </p>
           </motion.div>
 
@@ -173,7 +128,7 @@ export default function TermsPage() {
                 </div>
 
                 <div className="space-y-3">
-                  {section.content.map((item, itemIndex) => (
+                  {Array.isArray(section.content) && section.content.map((item, itemIndex) => (
                     <div key={itemIndex} className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
                       <span className="text-gray-700 leading-relaxed">{item}</span>
@@ -195,27 +150,27 @@ export default function TermsPage() {
               <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-teal-500 rounded-xl flex items-center justify-center mr-4">
                 <FileText className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900">Important Information</h3>
+              <h3 className="text-2xl font-bold text-gray-900">{t('terms.additional.title')}</h3>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Governing Law</h4>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">{t('terms.additional.governing.title')}</h4>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  These terms are governed by the laws of India. Any disputes arising from these terms or our services will be subject to the exclusive jurisdiction of the courts in Arrah, Bihar.
+                  {t('terms.additional.governing.description1')}
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  We comply with all applicable healthcare laws and regulations in India.
+                  {t('terms.additional.governing.description2')}
                 </p>
               </div>
 
               <div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Severability</h4>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">{t('terms.additional.severability.title')}</h4>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  If any provision of these terms is found to be unenforceable or invalid, the remaining provisions will continue to be valid and enforceable to the fullest extent permitted by law.
+                  {t('terms.additional.severability.description1')}
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  The invalidity of any provision does not affect the validity of the entire agreement.
+                  {t('terms.additional.severability.description2')}
                 </p>
               </div>
             </div>
@@ -229,9 +184,9 @@ export default function TermsPage() {
             className="bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-3xl p-8 shadow-lg"
           >
             <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold mb-4">Questions About Terms?</h3>
+              <h3 className="text-3xl font-bold mb-4">{t('terms.contact.title')}</h3>
               <p className="text-xl opacity-90">
-                If you have any questions about these Terms and Conditions, please contact our legal team:
+                {t('terms.contact.description')}
               </p>
             </div>
 
@@ -258,9 +213,9 @@ export default function TermsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Need Legal Assistance?</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">{t('terms.cta.title')}</h2>
             <p className="text-xl mb-8 text-gray-600 max-w-2xl mx-auto">
-              Our legal team is available to answer any questions about our terms and conditions.
+              {t('terms.cta.description')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -269,7 +224,7 @@ export default function TermsPage() {
                 className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white px-8 py-4 text-lg font-semibold shadow-md transition-all"
               >
                 <Mail className="w-5 h-5 mr-2" />
-                Contact Legal Team
+                {t('terms.cta.contactButton')}
               </Button>
               <Button
                 size="lg"
@@ -277,7 +232,7 @@ export default function TermsPage() {
                 className="border-2 border-blue-500 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
               >
                 <FileText className="w-5 h-5 mr-2" />
-                Download Terms
+                {t('terms.cta.downloadButton')}
               </Button>
             </div>
           </motion.div>

@@ -11,8 +11,10 @@ import { addLead } from "@/lib/features/leadSlice"
 import { useState } from "react"
 import { RootState } from "@/lib/store"
 import { Lead } from "@/lib/features/leadSlice"
+import { useLanguage } from "@/lib/language-context"
 
 export default function ContactPage() {
+  const { t } = useLanguage();
   const dispatch = useDispatch()
   const { loading, error } = useSelector((state: RootState) => state.leads)
   
@@ -63,7 +65,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Page Header */}
-      <HeroSection title="Contact Us" description="Get in touch with us for appointments, inquiries, or emergency care" />
+      <HeroSection title={t('contact.pageTitle')} description={t('contact.pageDescription')} />
 
       {/* Contact Content */}
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-teal-50 py-8 sm:py-16">
@@ -76,7 +78,7 @@ export default function ContactPage() {
               className="space-y-4 sm:space-y-8"
             >
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-lg border border-teal-100">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h2>
+                <h2 className="text-2xl font-semibold text-gray-800 mb-6">{t('contact.info.title')}</h2>
                 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
@@ -84,11 +86,14 @@ export default function ContactPage() {
                       <MapPin className="w-6 h-6 text-teal-600" />
                     </div>
                     <div>
-                      <h3 className="font-medium text-gray-800">Our Location</h3>
+                      <h3 className="font-medium text-gray-800">{t('contact.info.location')}</h3>
                       <p className="text-gray-600">
-                        Near D.E.O Office Moulabagh<br />
-                        Arrah Bhojpur Bihar<br />
-                        Pin No 802301
+                        {t('contact.address').split('\n').map((line, i) => (
+                          <span key={i}>
+                            {line}
+                            {i < t('contact.address').split('\n').length - 1 && <br />}
+                          </span>
+                        ))}
                       </p>
                     </div>
                   </div>
@@ -98,9 +103,9 @@ export default function ContactPage() {
                       <Phone className="w-6 h-6 text-blue-600" />
                     </div>
                     <div>
-                      <h3 className="font-medium text-gray-800">Mobile Number</h3>
-                      <p className="text-gray-600">9901515300</p>
-                      <p className="text-gray-600">9279797955</p>
+                      <h3 className="font-medium text-gray-800">{t('contact.info.phone')}</h3>
+                      <p className="text-gray-600">{t('contact.phone1')}</p>
+                      <p className="text-gray-600">{t('contact.phone2')}</p>
                     </div>
                   </div>
 
@@ -109,8 +114,8 @@ export default function ContactPage() {
                       <Mail className="w-6 h-6 text-teal-600" />
                     </div>
                     <div>
-                      <h3 className="font-medium text-gray-800">E-mail</h3>
-                      <p className="text-gray-600">dhreeti.india@gmail.com</p>
+                      <h3 className="font-medium text-gray-800">{t('contact.info.email')}</h3>
+                      <p className="text-gray-600">{t('footer.email')}</p>
                     </div>
                   </div>
 
@@ -119,10 +124,10 @@ export default function ContactPage() {
                       <Clock className="w-6 h-6 text-blue-600" />
                     </div>
                     <div>
-                      <h3 className="font-medium text-gray-800">O.P.D. Services</h3>
+                      <h3 className="font-medium text-gray-800">{t('footer.opdServices')}</h3>
                       <p className="text-gray-600">
-                        <span className="font-semibold">Monday to Friday:</span> 8 a.m. to 6 p.m.<br />
-                        <span className="font-semibold">Saturday &amp; Sunday:</span> 8 a.m. to 12 p.m.
+                        <span className="font-semibold">{t('schemes.consultation.weekdays')}:</span> {t('schemes.consultation.weekdayHours')}<br />
+                        <span className="font-semibold">{t('schemes.consultation.weekends')}:</span> {t('schemes.consultation.weekendHours')}
                       </p>
                     </div>
                   </div>
@@ -131,9 +136,9 @@ export default function ContactPage() {
 
               {/* Emergency Info */}
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-blue-100">
-                <h3 className="text-lg font-medium text-gray-800 mb-2">Emergency Services</h3>
+                <h3 className="text-lg font-medium text-gray-800 mb-2">{t('contact.emergency.title')}</h3>
                 <p className="text-gray-600">
-                  24/7 emergency support available at our facility. For emergencies, please call our mobile numbers above.
+                  {t('contact.emergency.description')}
                 </p>
               </div>
             </motion.div>
@@ -144,25 +149,25 @@ export default function ContactPage() {
               animate={{ opacity: 1, x: 0 }}
               className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-teal-100"
             >
-              <h2 className="text-2xl font-semibold text-gray-800 mb-6">Send us a Message</h2>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-6">{t('contact.form.title')}</h2>
               
               {submitted ? (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
                   <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-xl font-medium text-green-800 mb-2">Message Sent!</h3>
+                  <h3 className="text-xl font-medium text-green-800 mb-2">{t('contact.form.success.title')}</h3>
                   <p className="text-green-700">
-                    Thank you for contacting us. We'll get back to you as soon as possible.
+                    {t('contact.form.success.message')}
                   </p>
                 </div>
               ) : (
                 <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium text-gray-700">Full Name</label>
+                    <label htmlFor="name" className="text-sm font-medium text-gray-700">{t('contact.form.name')}</label>
                     <Input 
                       id="name"
                       name="name"
                       type="text" 
-                      placeholder="Your full name"
+                      placeholder={t('contact.form.namePlaceholder')}
                       className="bg-white/50"
                       value={formData.name}
                       onChange={handleChange}
@@ -171,12 +176,12 @@ export default function ContactPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-gray-700">Email Address</label>
+                    <label htmlFor="email" className="text-sm font-medium text-gray-700">{t('contact.form.email')}</label>
                     <Input 
                       id="email"
                       name="email"
                       type="email" 
-                      placeholder="your@email.com"
+                      placeholder={t('contact.form.emailPlaceholder')}
                       className="bg-white/50"
                       value={formData.email}
                       onChange={handleChange}
@@ -185,12 +190,12 @@ export default function ContactPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="phone" className="text-sm font-medium text-gray-700">Phone Number</label>
+                    <label htmlFor="phone" className="text-sm font-medium text-gray-700">{t('contact.form.phone')}</label>
                     <Input 
                       id="phone"
                       name="phone"
                       type="tel" 
-                      placeholder="Your phone number"
+                      placeholder={t('contact.form.phonePlaceholder')}
                       className="bg-white/50"
                       value={formData.phone}
                       onChange={handleChange}
@@ -199,11 +204,11 @@ export default function ContactPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium text-gray-700">Message</label>
+                    <label htmlFor="message" className="text-sm font-medium text-gray-700">{t('contact.form.message')}</label>
                     <Textarea 
                       id="message"
                       name="message"
-                      placeholder="How can we help you?"
+                      placeholder={t('contact.form.messagePlaceholder')}
                       className="bg-white/50 min-h-[120px]"
                       value={formData.message}
                       onChange={handleChange}
@@ -219,11 +224,11 @@ export default function ContactPage() {
                     {loading ? (
                       <>
                         <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                        Sending...
+                        {t('contact.form.sending')}
                       </>
                     ) : (
                       <>
-                        Send Message
+                        {t('contact.form.submit')}
                         <Send className="w-4 h-4 ml-2" />
                       </>
                     )}
@@ -238,7 +243,7 @@ export default function ContactPage() {
               )}
 
               <p className="text-sm text-gray-500 mt-6 text-center">
-                We'll get back to you within 24 hours during business days.
+                {t('contact.form.response')}
               </p>
             </motion.div>
           </div>

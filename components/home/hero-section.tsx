@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Plus, Heart, Stethoscope, Activity, Pill, Shield, ArrowRight } from "lucide-react";
 import { useRef, useState } from "react"
 import { Play, Pause } from "lucide-react"
+import { useLanguage } from "@/lib/language-context";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -33,6 +34,8 @@ const fadeInScale: Variants = {
 }
 
 export default function Hero() {
+  const { t } = useLanguage();
+  
   return (
     <>
       <section className="relative min-h-[90vh] flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 via-white to-teal-50 overflow-hidden pt-4 sm:pt-0">
@@ -120,18 +123,19 @@ export default function Hero() {
           >
             <motion.div variants={fadeInUp} className="space-y-4">
               <h1 className="text-3xl md:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
-                Welcome to{' '}
+                {t('hero.clinicName')}{' '}
                 <motion.span
                   initial={{ backgroundPosition: "0% 50%" }}
                   animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
                   className="bg-gradient-to-r from-blue-600 via-teal-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent"
                 >
-                  Dhreeti Clinic
+                  {t('hero.welcome')}
                 </motion.span>
               </h1>
               <motion.p variants={fadeInUp} className="text-lg md:text-xl text-gray-600 max-w-xl">
-              Since 2022, we've revolutionized healthcare by making top-tier services accessible and affordable. We combine modern facilities with experienced, compassionate doctors to provide a new standard of reliable care. Our mission is to build a healthier community by ensuring everyone has access to the best medical services without financial strain.             </motion.p>
+                {t('hero.description')}
+              </motion.p>
             </motion.div>
 
             {/* CTA Buttons */}
@@ -144,7 +148,7 @@ export default function Hero() {
                 size="lg"
                 className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white text-lg font-semibold shadow-md transition-all transform"
               >
-                Book an appointment
+                {t('hero.bookAppointment')}
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </motion.div>
@@ -170,7 +174,7 @@ export default function Hero() {
                   <Heart className="w-4 h-4" />
                 </motion.div>
               </div>
-              <span className="text-gray-700 font-medium">Trusted by 1000+ patients</span>
+              <span className="text-gray-700 font-medium">{t('hero.trustedBy')}</span>
             </motion.div>
           </motion.div>
 
@@ -202,10 +206,11 @@ export default function Hero() {
               {/* Text for Doctors Team */}
               <div className="absolute bottom-2 sm:bottom-6 rounded-lg left-1/2 transform -translate-x-1/2 z-20 bg-white/90 backdrop-blur-sm px-4 sm:px-8 py-3 sm:py-6 text-center w-[90%] sm:w-[600px]">
                 <h3 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent mb-1 sm:mb-2">
-                Our Team of Expert Clinicians
+                  {t('hero.expertTeam')}
                 </h3>
                 <p className="text-gray-700 text-xs sm:text-lg">
-                Our team of dedicated specialists, all with over seven years of experience, provides compassionate, personalized most trusted and effective care.              </p>
+                  {t('hero.teamDescription')}
+                </p>
               </div>
 
               {/* Background Circle */}
@@ -241,7 +246,7 @@ export default function Hero() {
               className="text-center mb-8"
             >
               <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">
-                Take a Virtual Tour
+                {t('hero.virtualTour')}
               </h2>
             </motion.div>
 
@@ -270,7 +275,7 @@ export default function Hero() {
                   className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full shadow-md border border-teal-100/50 flex items-center gap-2"
                 >
                   <Shield className="w-4 h-4 text-teal-500" />
-                  <span className="text-gray-700 text-sm font-medium">Watch Our Story</span>
+                  <span className="text-gray-700 text-sm font-medium">{t('hero.watchStory')}</span>
                 </motion.div>
               </div>
             </motion.div>

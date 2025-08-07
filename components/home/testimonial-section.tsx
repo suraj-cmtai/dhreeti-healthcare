@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Star, Quote } from "lucide-react"
 import Image from "next/image"
+import { useLanguage } from "@/lib/language-context"
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -13,46 +14,39 @@ const fadeInUp: Variants = {
 
 const testimonials = [
   {
-    name: "Priya Sharma",
+    id: "testimonial1",
     image: "/indian-woman-patient-smiling.png",
     rating: 5,
-    text: "Excellent care and very professional staff. Dr. was very patient in explaining my condition and the treatment options. Highly recommended!",
     treatment: "Diabetes Management",
   },
   {
-    name: "Rajesh Kumar",
-    image:
-      "/male-doctor.png",
+    id: "testimonial2",
+    image: "/male-doctor.png",
     rating: 5,
-    text: "The diagnostic services are top-notch. Quick results and accurate reports. The staff is courteous and the facility is very clean.",
     treatment: "Health Checkup",
   },
   {
-    name: "Anita Patel",
+    id: "testimonial3",
     image: "/female-doctor.png",
     rating: 5,
-    text: "I've been coming here for my regular checkups for over a year. The doctors are knowledgeable and the service is consistently good.",
     treatment: "Preventive Care",
   },
   {
-    name: "Suresh Gupta",
+    id: "testimonial1", // Reusing the same testimonials with different treatments
     image: "/male-doctor.png",
     rating: 5,
-    text: "Great experience with the cardiology department. The ECG service was quick and the doctor explained everything clearly.",
     treatment: "Cardiac Care",
   },
   {
-    name: "Meera Singh",
+    id: "testimonial2",
     image: "/female-patient.png",
     rating: 5,
-    text: "The gynecology services are excellent. Very comfortable environment and professional care. Thank you for the wonderful service!",
     treatment: "Women's Health",
   },
   {
-    name: "Amit Verma",
+    id: "testimonial3",
     image: "/male-patient.png",
     rating: 5,
-    text: "Outstanding pathology services. Results were delivered on time and the staff was very helpful throughout the process.",
     treatment: "Lab Tests",
   },
 ]
@@ -61,6 +55,7 @@ const testimonials = [
 const extendedTestimonials = [...testimonials, ...testimonials, ...testimonials]
 
 export default function TestimonialSection() {
+  const { t } = useLanguage()
   const [currentX, setCurrentX] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
 
@@ -102,13 +97,13 @@ export default function TestimonialSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            What Our{" "}
+            {t('testimonials.title').split(' ')[0]}{" "}
             <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-              Patients Say
+              {t('testimonials.title').split(' ').slice(1).join(' ')}
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Real experiences from our valued patients who trust us with their healthcare
+            {t('testimonials.description')}
           </p>
         </motion.div>
 
@@ -127,58 +122,64 @@ export default function TestimonialSection() {
               }}
               transition={{ type: "tween", ease: "linear", duration: 0 }}
             >
-              {extendedTestimonials.map((testimonial, index) => (
-                <motion.div
-                  key={`${testimonial.name}-${index}`}
-                  className="flex-shrink-0 w-96 p-3"
-                  whileHover={{
-                    scale: 1.05,
-                    rotateY: 5,
-                    z: 50,
-                  }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                >
-                  <Card className="h-full bg-gradient-to-br from-teal-50 to-blue-50 border border-teal-200 hover:border-blue-200 transition-all duration-300 hover:shadow-2xl group backdrop-blur-md">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-4 mb-4">
-                        {testimonial.image.startsWith("https://") ? (
-                          <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-teal-200">
-                            <Image
+              {extendedTestimonials.map((testimonial, index) => {
+                // Get the translated name and text based on testimonial ID
+                const translatedName = t(`testimonials.${testimonial.id}Name`);
+                const translatedText = t(`testimonials.${testimonial.id}Text`);
+                
+                return (
+                  <motion.div
+                    key={`${testimonial.id}-${index}`}
+                    className="flex-shrink-0 w-96 p-3"
+                    whileHover={{
+                      scale: 1.05,
+                      rotateY: 5,
+                      z: 50,
+                    }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    <Card className="h-full bg-gradient-to-br from-teal-50 to-blue-50 border border-teal-200 hover:border-blue-200 transition-all duration-300 hover:shadow-2xl group backdrop-blur-md">
+                      <CardContent className="p-6">
+                        <div className="flex items-center gap-4 mb-4">
+                          {testimonial.image.startsWith("https://") ? (
+                            <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-teal-200">
+                              <Image
+                                src={testimonial.image || "/placeholder.svg"}
+                                alt={translatedName}
+                                fill
+                                style={{ objectFit: "cover" }}
+                              />
+                            </div>
+                          ) : (
+                            <img
                               src={testimonial.image || "/placeholder.svg"}
-                              alt={testimonial.name}
-                              fill
-                              style={{ objectFit: "cover" }}
+                              alt={translatedName}
+                              className="w-14 h-14 rounded-full border-2 border-teal-200"
                             />
+                          )}
+                          <div>
+                            <h4 className="text-lg font-bold text-gray-900">{translatedName}</h4>
+                            <p className="text-sm bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent font-medium">{testimonial.treatment}</p>
                           </div>
-                        ) : (
-                          <img
-                            src={testimonial.image || "/placeholder.svg"}
-                            alt={testimonial.name}
-                            className="w-14 h-14 rounded-full border-2 border-teal-200"
-                          />
-                        )}
-                        <div>
-                          <h4 className="text-lg font-bold text-gray-900">{testimonial.name}</h4>
-                          <p className="text-sm bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent font-medium">{testimonial.treatment}</p>
                         </div>
-                      </div>
 
-                      <div className="flex items-center gap-1 mb-4">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-teal-500 text-teal-500" />
-                        ))}
-                      </div>
+                        <div className="flex items-center gap-1 mb-4">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 fill-teal-500 text-teal-500" />
+                          ))}
+                        </div>
 
-                      <div className="relative">
-                        <Quote className="absolute -top-2 -left-2 w-8 h-8 text-teal-300" />
-                        <p className="text-gray-600 italic pl-6 leading-relaxed">
-                          {testimonial.text}
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+                        <div className="relative">
+                          <Quote className="absolute -top-2 -left-2 w-8 h-8 text-teal-300" />
+                          <p className="text-gray-600 italic pl-6 leading-relaxed">
+                            {translatedText}
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                )
+              })}
             </motion.div>
           </div>
 

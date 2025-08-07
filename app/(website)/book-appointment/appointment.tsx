@@ -23,8 +23,10 @@ import { addAppointment } from '@/lib/features/appointmentSlice';
 import { RootState } from '@/lib/store';
 import { Appointment } from '@/lib/features/appointmentSlice';
 import SchemeSection from '@/components/home/scheme-section';
+import { useLanguage } from '@/lib/language-context';
 
 export default function AppointmentForm() {
+  const { t } = useLanguage();
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state: RootState) => state.appointments);
   
@@ -80,14 +82,7 @@ export default function AppointmentForm() {
     }
   };
 
-  const services = [
-    "General Consultation",
-    "Obstetrics & Gynecology",
-    "Pathology Tests",
-    "Radiology Services",
-    "Pharmacy",
-    "Emergency Care"
-  ];
+  const services = t('appointment.services');
 
   const timeSlots = [
     "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM",
@@ -99,7 +94,7 @@ export default function AppointmentForm() {
   return (
     <div>
       {/* Banner Section */}
-      <HeroSection title="Book Your Appointment" description="Schedule your visit with our expert doctors. Fill out the form below to reserve your slot." />
+      <HeroSection title={t('appointment.pageTitle')} description={t('appointment.pageDescription')} />
 
       {/* Appointment Form Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -116,19 +111,19 @@ export default function AppointmentForm() {
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <Calendar className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Book Your Appointment</h2>
-                <p className="text-gray-600">Fill in the details below to schedule your visit</p>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">{t('appointment.formTitle')}</h2>
+                <p className="text-gray-600">{t('appointment.formSubtitle')}</p>
               </div>
 
               {submitted ? (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-2xl font-medium text-green-800 mb-2">Appointment Booked!</h3>
+                  <h3 className="text-2xl font-medium text-green-800 mb-2">{t('appointment.success.title')}</h3>
                   <p className="text-green-700 text-lg mb-4">
-                    Thank you for booking an appointment with us.
+                    {t('appointment.success.message')}
                   </p>
                   <p className="text-gray-600">
-                    We'll confirm your appointment shortly via email or phone.
+                    {t('appointment.success.followUp')}
                   </p>
                 </div>
               ) : (
@@ -138,7 +133,7 @@ export default function AppointmentForm() {
                     <div className="space-y-2">
                       <Label htmlFor="patientName" className="text-md font-semibold text-gray-700 flex items-center">
                         <User className="w-4 h-4 mr-2 text-blue-500" />
-                        Full Name
+                        {t('appointment.form.fullName')}
                       </Label>
                       <Input
                         type="text"
@@ -147,7 +142,7 @@ export default function AppointmentForm() {
                         value={formData.patientName}
                         onChange={(e) => setFormData({ ...formData, patientName: e.target.value })}
                         className="h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl"
-                        placeholder="Enter your full name"
+                        placeholder={t('appointment.form.fullNamePlaceholder')}
                         required
                       />
                     </div>
@@ -155,7 +150,7 @@ export default function AppointmentForm() {
                     <div className="space-y-2">
                       <Label htmlFor="patientEmail" className="text-md font-semibold text-gray-700 flex items-center">
                         <Mail className="w-4 h-4 mr-2 text-blue-500" />
-                        Email Address
+                        {t('appointment.form.email')}
                       </Label>
                       <Input
                         type="email"
@@ -164,7 +159,7 @@ export default function AppointmentForm() {
                         value={formData.patientEmail}
                         onChange={(e) => setFormData({ ...formData, patientEmail: e.target.value })}
                         className="h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl"
-                        placeholder="Enter your email"
+                        placeholder={t('appointment.form.emailPlaceholder')}
                         required
                       />
                     </div>
@@ -173,7 +168,7 @@ export default function AppointmentForm() {
                   <div className="space-y-2">
                     <Label htmlFor="patientPhone" className="text-md font-semibold text-gray-700 flex items-center">
                       <Phone className="w-4 h-4 mr-2 text-blue-500" />
-                      Phone Number
+                      {t('appointment.form.phone')}
                     </Label>
                     <Input
                       type="tel"
@@ -182,7 +177,7 @@ export default function AppointmentForm() {
                       value={formData.patientPhone}
                       onChange={(e) => setFormData({ ...formData, patientPhone: e.target.value })}
                       className="h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl"
-                      placeholder="Enter your phone number"
+                      placeholder={t('appointment.form.phonePlaceholder')}
                       required
                     />
                   </div>
@@ -191,17 +186,17 @@ export default function AppointmentForm() {
                   <div className="space-y-2">
                     <Label htmlFor="service" className="text-md font-semibold text-gray-700 flex items-center">
                       <Stethoscope className="w-4 h-4 mr-2 text-blue-500" />
-                      Select Service
+                      {t('appointment.form.service')}
                     </Label>
                     <Select
                       value={formData.service}
                       onValueChange={(value) => handleSelectChange('service', value)}
                     >
                       <SelectTrigger className="w-full h-14 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl">
-                        <SelectValue placeholder="Choose a service" />
+                        <SelectValue placeholder={t('appointment.form.servicePlaceholder')} />
                       </SelectTrigger>
                       <SelectContent>
-                        {services.map((service, index) => (
+                        {Array.isArray(services) && services.map((service, index) => (
                           <SelectItem key={index} value={service}>{service}</SelectItem>
                         ))}
                       </SelectContent>
@@ -212,14 +207,14 @@ export default function AppointmentForm() {
                   <div className="space-y-2">
                     <Label htmlFor="doctor" className="text-md font-semibold text-gray-700 flex items-center">
                       <User className="w-4 h-4 mr-2 text-blue-500" />
-                      Select Doctor
+                      {t('appointment.form.doctor')}
                     </Label>
                     <Select
                       value={formData.doctor}
                       onValueChange={(value) => handleSelectChange('doctor', value)}
                     >
                       <SelectTrigger className="w-full h-14 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl">
-                        <SelectValue placeholder="Choose a doctor" />
+                        <SelectValue placeholder={t('appointment.form.doctorPlaceholder')} />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="Dr. Ganesh Pandey">Dr. Ganesh Pandey</SelectItem>
@@ -233,7 +228,7 @@ export default function AppointmentForm() {
                     <div className="space-y-2">
                       <Label htmlFor="date" className="text-md font-semibold text-gray-700 flex items-center">
                         <Calendar className="w-4 h-4 mr-2 text-blue-500" />
-                        Preferred Date
+                        {t('appointment.form.date')}
                       </Label>
                       <Input
                         type="date"
@@ -249,14 +244,14 @@ export default function AppointmentForm() {
                     <div className="space-y-2">
                       <Label htmlFor="time" className="text-md font-semibold text-gray-700 flex items-center">
                         <Clock className="w-4 h-4 mr-2 text-blue-500" />
-                        Preferred Time
+                        {t('appointment.form.time')}
                       </Label>
                       <Select
                         value={formData.time}
                         onValueChange={(value) => handleSelectChange('time', value)}
                       >
                         <SelectTrigger className="w-full h-14 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl">
-                          <SelectValue placeholder="Select time" />
+                          <SelectValue placeholder={t('appointment.form.timePlaceholder')} />
                         </SelectTrigger>
                         <SelectContent>
                           {timeSlots.map((slot, index) => (
@@ -271,7 +266,7 @@ export default function AppointmentForm() {
                   <div className="space-y-2">
                     <Label htmlFor="message" className="text-md font-semibold text-gray-700 flex items-center">
                       <MessageSquare className="w-4 h-4 mr-2 text-blue-500" />
-                      Additional Notes
+                      {t('appointment.form.notes')}
                     </Label>
                     <Textarea
                       id="message"
@@ -279,7 +274,7 @@ export default function AppointmentForm() {
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                       className="min-h-[100px] border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-xl resize-none"
-                      placeholder="Any specific concerns or notes for the doctor..."
+                      placeholder={t('appointment.form.notesPlaceholder')}
                     />
                   </div>
 
@@ -291,12 +286,12 @@ export default function AppointmentForm() {
                     {loading ? (
                       <>
                         <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                        Processing...
+                        {t('appointment.form.processing')}
                       </>
                     ) : (
                       <>
                         <Calendar className="w-5 h-5 mr-2" />
-                        Book Appointment
+                        {t('appointment.form.submit')}
                       </>
                     )}
                   </Button>

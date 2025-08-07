@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link"
 import Image from "next/image"
 import {
@@ -9,8 +11,11 @@ import {
   Instagram,
   Linkedin,
 } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 export default function Footer() {
+  const { t } = useLanguage();
+  
   return (
     <footer className="bg-gradient-to-br from-gray-50 to-gray-100 border-t">
       {/* Main Footer */}
@@ -22,7 +27,7 @@ export default function Footer() {
             <div>
               <Image src="/logo-horizontal1.png" alt="Dhreeti Clinic" width={120} height={120} className="h-16 w-auto mb-4" />
               <p className="text-gray-600 text-sm leading-relaxed">
-                Reliable and affordable health care for you.
+                {t('footer.tagline')}
               </p>
             </div>
 
@@ -44,13 +49,13 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Quick Links</h3>
+            <h3 className="font-semibold text-gray-900 mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-3">
               {[
-                { name: "About Us", href: "/about" },
-                { name: "Our Services", href: "/services" },
-                { name: "Our Doctors", href: "/doctors" },
-                { name: "Book Appointment", href: "/book-appointment" },
+                { name: t('footer.links.about'), href: "/about" },
+                { name: t('footer.links.services'), href: "/services" },
+                { name: t('footer.links.doctors'), href: "/doctors" },
+                { name: t('footer.links.bookAppointment'), href: "/book-appointment" },
               ].map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
@@ -64,33 +69,36 @@ export default function Footer() {
           {/* Services */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-4 flex items-center">
-              O.P.D. Services
+              {t('footer.opdServices')}
             </h3>
             <ul className="space-y-3">
               <li>
-                <span className="text-gray-700 text-sm font-semibold">Monday to Friday</span>
+                <span className="text-gray-700 text-sm font-semibold">{t('schemes.consultation.weekdays')}</span>
                 <br />
-                <span className="text-gray-600 text-sm">8 a.m. to 6 p.m.</span>
+                <span className="text-gray-600 text-sm">{t('schemes.consultation.weekdayHours')}</span>
               </li>
               <li>
-                <span className="text-gray-700 text-sm font-semibold">Saturday &amp; Sunday</span>
+                <span className="text-gray-700 text-sm font-semibold">{t('schemes.consultation.weekends')}</span>
                 <br />
-                <span className="text-gray-600 text-sm">8 a.m. to 12 p.m.</span>
+                <span className="text-gray-600 text-sm">{t('schemes.consultation.weekendHours')}</span>
               </li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Contact Info</h3>
+            <h3 className="font-semibold text-gray-900 mb-4">{t('footer.contactInfo')}</h3>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-sm text-gray-600">
-                    Near D.E.O Office Moulabagh<br />
-                    Arrah Bhojpur Bihar<br />
-                    Pin No 802301
+                    {t('contact.address').split('\n').map((line, i) => (
+                      <span key={i}>
+                        {line}
+                        {i < t('contact.address').split('\n').length - 1 && <br />}
+                      </span>
+                    ))}
                   </p>
                 </div>
               </div>
@@ -98,14 +106,14 @@ export default function Footer() {
               <div className="flex items-start space-x-3">
                 <Phone className="h-5 w-5 text-teal-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm text-gray-600">9901515300</p>
-                  <p className="text-sm text-gray-600">9279797955</p>
+                  <p className="text-sm text-gray-600">{t('contact.phone1')}</p>
+                  <p className="text-sm text-gray-600">{t('contact.phone2')}</p>
                 </div>
               </div>
 
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-blue-600 flex-shrink-0" />
-                <p className="text-sm text-gray-600">dhreeti.india@gmail.com</p>
+                <p className="text-sm text-gray-600">{t('footer.email')}</p>
               </div>
 
             </div>
@@ -118,13 +126,13 @@ export default function Footer() {
       <div className="border-t border-gray-200">
         <div className="max-w-7xl w-full mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row items-center justify-between text-sm">
-            <p className="text-gray-400">© {new Date().getFullYear()} Dhreeti Clinic. All rights reserved.</p>
+            <p className="text-gray-400">© {new Date().getFullYear()} {t('footer.copyright')}</p>
             <div className="flex space-x-6 mt-2 md:mt-0">
-              <Link href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">
-                Privacy Policy
+              <Link href="/privacy-policy" className="text-gray-400 hover:text-primary transition-colors">
+                {t('footer.privacyPolicy')}
               </Link>
-              <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">
-                Terms of Service
+              <Link href="/terms" className="text-gray-400 hover:text-primary transition-colors">
+                {t('footer.terms')}
               </Link>
             </div>
           </div>

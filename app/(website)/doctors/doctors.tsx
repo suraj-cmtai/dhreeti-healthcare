@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import CTA from "@/components/all/cta-section";
 import HeroSection from "@/components/all/hero-section";
+import { useLanguage } from "@/lib/language-context";
 
 interface Doctor {
   id: number;
@@ -38,46 +39,53 @@ interface Doctor {
   availability: string;
 }
 
-const doctors: Doctor[] = [
-  {
-    id: 1,
-    name: "Dr. Pragya Pandey",
-    image: "/doctor-female.png",
-    specialization: "Obstetrics and Gynecology",
-    experience: 10,
-    location: "Arrah, Bihar",
-    phone: "9279797955",
-    email: "dhreeti.india@gmail.com",
-    education: "MBBS",
-    role: "Consultant",
-    additionalRole: "Dhreeti Healthcare and Research Private Limited",
-    about: "Dr. Pragya Pandey is a highly experienced Consultant in Obstetrics and Gynecology, with over 10 years of experience. She holds an MBBS degree and is dedicated to providing comprehensive and compassionate care to women at all stages of life. Dr. Pandey has a special interest in high-risk pregnancies, infertility, and laparoscopic surgery. She is also a Director at Dhreeti Clinic and Research Private Limited.",
-    expertise: ["High-risk Pregnancies", "Infertility Treatment", "Laparoscopic Surgery", "Women's Health", "Prenatal Care", "Gynecological Surgery"],
-    availability: "Mon-Fri: 9 AM - 6 PM, Sat: 9 AM - 2 PM"
-  },
-  {
-    id: 2,
-    name: "Dr. Ganesh Pandey",
-    image: "/doctor-male.png",
-    specialization: "General Medicine",
-    experience: 10,
-    location: "Arrah, Bihar",
-    phone: "9901515300",
-    email: "dhreeti.india@gmail.com",
-    education: "MBBS",
-    role: "Consultant",
-    additionalRole: "Dhreeti Healthcare and Research Private Limited",
-    about: "Dr. Ganesh Pandey is a seasoned General Physician and primary care provider, serving as the first point of contact for a wide range of health issues. With over 10 years of experience, he is trained to diagnose, treat, and manage a broad spectrum of illnesses in adults, acting as a central coordinator for patients' overall healthcare. Dr. Pandey specializes in treating common acute illnesses and infections including respiratory infections (common cold, flu, sinusitis, bronchitis, strep throat, pneumonia), gastrointestinal issues (stomach flu, diarrhea, nausea, vomiting, acid reflux, food allergies), urinary tract infections, skin conditions, and minor injuries. He also excels in managing chronic diseases such as diabetes, high cholesterol, obesity, hypertension, heart disease, asthma, COPD, arthritis, osteoporosis, and thyroid problems. Additionally, Dr. Pandey provides mental health support for anxiety and depression, along with comprehensive preventive care including routine health screenings, vaccinations, and lifestyle counseling. While he handles a vast array of conditions, he ensures proper referrals to specialists when needed while continuing to oversee and coordinate patient care for comprehensive treatment.",
-    expertise: ["Acute Illnesses & Infections", "Chronic Disease Management", "Preventive Care", "Mental Health Support", "Health Screenings", "Lifestyle Counseling"],
-    availability: "Mon-Fri: 8 AM - 7 PM, Sat: 8 AM - 3 PM"
-  }
-];
-
 export default function DoctorsPage() {
+  const { t } = useLanguage();
+  
+  const getExpertise = (key: string): string[] => {
+    const expertise = t(key);
+    return Array.isArray(expertise) ? expertise : [];
+  };
+  
+  const doctors: Doctor[] = [
+    {
+      id: 1,
+      name: t('doctorsPage.doctors.pragya.name'),
+      image: "/doctor-female.png",
+      specialization: t('doctorsPage.doctors.pragya.specialization'),
+      experience: 10,
+      location: t('doctorsPage.doctors.pragya.location'),
+      phone: t('contact.phone2'),
+      email: t('footer.email'),
+      education: t('doctorsPage.doctors.pragya.education'),
+      role: t('doctorsPage.doctors.pragya.role'),
+      additionalRole: t('doctorsPage.doctors.pragya.additionalRole'),
+      about: t('doctorsPage.doctors.pragya.about'),
+      expertise: getExpertise('doctorsPage.doctors.pragya.expertise'),
+      availability: t('doctorsPage.doctors.pragya.availability')
+    },
+    {
+      id: 2,
+      name: t('doctorsPage.doctors.ganesh.name'),
+      image: "/doctor-male.png",
+      specialization: t('doctorsPage.doctors.ganesh.specialization'),
+      experience: 10,
+      location: t('doctorsPage.doctors.ganesh.location'),
+      phone: t('contact.phone1'),
+      email: t('footer.email'),
+      education: t('doctorsPage.doctors.ganesh.education'),
+      role: t('doctorsPage.doctors.ganesh.role'),
+      additionalRole: t('doctorsPage.doctors.ganesh.additionalRole'),
+      about: t('doctorsPage.doctors.ganesh.about'),
+      expertise: getExpertise('doctorsPage.doctors.ganesh.expertise'),
+      availability: t('doctorsPage.doctors.ganesh.availability')
+    }
+  ];
+
   return (
     <>
       {/* Banner Section */}
-      <HeroSection title="Meet Our Expert Doctors" description="Our team of experienced and compassionate doctors is dedicated to providing the highest quality healthcare for you and your family." />
+      <HeroSection title={t('doctorsPage.pageTitle')} description={t('doctorsPage.pageDescription')} />
 
       {/* Doctors Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -114,7 +122,7 @@ export default function DoctorsPage() {
                       </div>
                       <div className="flex items-center justify-center lg:justify-start space-x-3">
                         <Clock className="w-5 h-5 text-teal-600" />
-                        <span className="text-gray-700">{doctor.experience} Years Experience</span>
+                        <span className="text-gray-700">{t('doctorsPage.experienceYears').replace('{years}', doctor.experience.toString())}</span>
                       </div>
                       <div className="flex items-center justify-center lg:justify-start space-x-3">
                         <MapPin className="w-5 h-5 text-green-600" />
@@ -125,14 +133,14 @@ export default function DoctorsPage() {
                     <div className="flex flex-col sm:flex-row gap-3 w-full max-w-sm mx-auto lg:mx-0 lg:max-w-none">
                       <Button className="flex-1 bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white text-xs sm:text-sm lg:text-base px-2 sm:px-4">
                         <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                        Book Appointment
+                        {t('doctorsPage.bookAppointment')}
                       </Button>
                       <Button
                         variant="outline"
                         className="flex-1 bg-white text-primary hover:bg-white hover:text-primary border-primary hover:border-primary min-w-0 text-xs sm:text-sm lg:text-base px-2 sm:px-4"
                       >
                         <Phone className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                        Call Now
+                        {t('doctorsPage.callNow')}
                       </Button>
                     </div>
                     
@@ -149,7 +157,7 @@ export default function DoctorsPage() {
                           <Phone className="w-6 h-6 text-blue-600" />
                         </div>
                         <div>
-                          <p className="text-sm text-gray-600">Phone</p>
+                          <p className="text-sm text-gray-600">{t('doctorsPage.contactInfo.phone')}</p>
                           <p className="font-semibold text-gray-900">{doctor.phone}</p>
                         </div>
                       </div>
@@ -159,7 +167,7 @@ export default function DoctorsPage() {
                           <Mail className="w-6 h-6 text-teal-600" />
                         </div>
                         <div>
-                          <p className="text-sm text-gray-600">Email</p>
+                          <p className="text-sm text-gray-600">{t('doctorsPage.contactInfo.email')}</p>
                           <p className="font-semibold text-gray-900">{doctor.email}</p>
                         </div>
                       </div>
@@ -169,7 +177,7 @@ export default function DoctorsPage() {
                           <Building2 className="w-6 h-6 text-green-600" />
                         </div>
                         <div>
-                          <p className="text-sm text-gray-600">Additional Role</p>
+                          <p className="text-sm text-gray-600">{t('doctorsPage.contactInfo.additionalRole')}</p>
                           <p className="font-semibold text-gray-900 text-sm">{doctor.additionalRole}</p>
                         </div>
                       </div>
@@ -179,7 +187,7 @@ export default function DoctorsPage() {
                           <Calendar className="w-6 h-6 text-purple-600" />
                         </div>
                         <div>
-                          <p className="text-sm text-gray-600">Availability</p>
+                          <p className="text-sm text-gray-600">{t('doctorsPage.contactInfo.availability')}</p>
                           <p className="font-semibold text-gray-900 text-sm">{doctor.availability}</p>
                         </div>
                       </div>
@@ -189,7 +197,7 @@ export default function DoctorsPage() {
                     <div className="mb-8">
                       <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                         <Heart className="w-7 h-7 text-red-500 mr-3" />
-                        About Doctor
+                        {t('doctorsPage.aboutDoctor')}
                       </h3>
                       <p className="text-gray-700 leading-relaxed text-lg">{doctor.about}</p>
                     </div>
@@ -200,7 +208,7 @@ export default function DoctorsPage() {
                       <div>
                         <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
                           <Shield className="w-7 h-7 text-blue-500 mr-3" />
-                          Areas of Expertise
+                          {t('doctorsPage.areasOfExpertise')}
                         </h3>
                         <div className="space-y-3">
                           {doctor.expertise.map((skill, index) => (
@@ -230,13 +238,13 @@ export default function DoctorsPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Why Choose{" "}
+              {t('doctorsPage.whyChoose.title.prefix')}{" "}
               <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                Our Doctors
+                {t('doctorsPage.whyChoose.title.highlighted')}
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Experience healthcare excellence with our team of dedicated and experienced medical professionals
+              {t('doctorsPage.whyChoose.description')}
             </p>
           </motion.div>
 
@@ -244,23 +252,23 @@ export default function DoctorsPage() {
             {[
               {
                 icon: Users,
-                title: "Experienced Team",
-                description: "Our doctors have 10+ years of experience in their respective specialties"
+                title: t('doctorsPage.whyChoose.experienced.title'),
+                description: t('doctorsPage.whyChoose.experienced.description')
               },
               {
                 icon: Award,
-                title: "Award Winning",
-                description: "Recognized for excellence in patient care and medical expertise"
+                title: t('doctorsPage.whyChoose.awardWinning.title'),
+                description: t('doctorsPage.whyChoose.awardWinning.description')
               },
               {
                 icon: Heart,
-                title: "Compassionate Care",
-                description: "Dedicated to providing personalized and compassionate healthcare"
+                title: t('doctorsPage.whyChoose.compassionate.title'),
+                description: t('doctorsPage.whyChoose.compassionate.description')
               },
               {
                 icon: Shield,
-                title: "Quality Assured",
-                description: "Highest standards of medical care with modern facilities and equipment"
+                title: t('doctorsPage.whyChoose.qualityAssured.title'),
+                description: t('doctorsPage.whyChoose.qualityAssured.description')
               }
             ].map((feature, index) => (
               <motion.div

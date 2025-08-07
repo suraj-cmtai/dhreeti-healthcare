@@ -15,10 +15,12 @@ import {
   Plus,
   Microscope,
 } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 export default function AboutUsSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { t } = useLanguage()
 
   return (
     <section ref={ref} className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden w-full">
@@ -90,13 +92,10 @@ export default function AboutUsSection() {
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 relative z-10">
-            About{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-              Dhreeti Clinic
-            </span>
+            {t('about.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Driving healthcare forward with innovative solutions and dedicated research since 2022.
+            {t('about.subtitle')}
           </p>
         </motion.div>
 
@@ -112,17 +111,12 @@ export default function AboutUsSection() {
             <div className="space-y-6">
               <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-100 to-teal-100 rounded-full">
                 <Building2 className="w-5 h-5 text-blue-600 mr-2" />
-                <span className="text-sm font-semibold text-blue-800">Dhreeti Clinic and Research Pvt. Ltd.</span>
+                <span className="text-sm font-semibold text-blue-800">DHREETI HEALTHCARE AND RESEARCH PRIVATE LIMITED
+                </span>
               </div>
 
               <p className="text-lg text-gray-700 leading-relaxed">
-                Dhreeti Clinic and Research Private Limited, established in{" "}
-                <span className="font-semibold text-blue-600">February 2022</span>, is a healthcare provider located in{" "}
-                <span className="font-semibold text-teal-600">Arrah, Bihar</span>. Our mission is to bolster basic healthcare within the region, creating a comprehensive network of high-quality primary healthcare centers.
-              </p>
-
-              <p className="text-lg text-gray-700 leading-relaxed">
-                We operate under the conviction that a strong foundation of primary care is indispensable for effective healthcare delivery. Through our initiatives, we guarantee accessible and dependable medical services for all individuals within the community.
+                {t('about.description')}
               </p>
             </div>
           </motion.div>
@@ -251,9 +245,9 @@ export default function AboutUsSection() {
             <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 relative z-10">
               <Target className="w-8 h-8 text-white" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('about.mission')}</h3>
             <p className="text-gray-600 leading-relaxed">
-            Our mission is to provide accessible, affordable, and dependable healthcare. We empower our community with essential medical services, building trust and ensuring everyone can lead a healthier life without financial burden.
+              {t('about.missionText')}
             </p>
           </motion.div>
 
@@ -274,9 +268,9 @@ export default function AboutUsSection() {
             <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-6 relative z-10">
               <Eye className="w-8 h-8 text-white" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('about.vision')}</h3>
             <p className="text-gray-600 leading-relaxed">
-            Our vision is to be the leading and most trusted healthcare provider in our three-tier city, creating a healthier community where quality care is a right, not a luxury.
+              {t('about.visionText')}
             </p>
           </motion.div>
 
@@ -297,9 +291,12 @@ export default function AboutUsSection() {
             <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-teal-500 rounded-xl flex items-center justify-center mb-6 relative z-10">
               <Shield className="w-8 h-8 text-white" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Commitment</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('about.values')}</h3>
             <p className="text-gray-600 leading-relaxed">
-            We are committed to excellence in basic care, financial accessibility, and ethical practice, guided by core principles that ensure trust and well-being for our community.
+              {t('about.value1Title')}: {t('about.value1Text')}<br />
+              {t('about.value2Title')}: {t('about.value2Text')}<br />
+              {t('about.value3Title')}: {t('about.value3Text')}<br />
+              {t('about.value4Title')}: {t('about.value4Text')}
             </p>
           </motion.div>
         </div>

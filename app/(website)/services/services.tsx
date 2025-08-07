@@ -28,177 +28,180 @@ import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/all/hero-section";
 import { useRouter } from "next/navigation"; 
 import SchemeSection from "@/components/home/scheme-section";
+import { useLanguage } from "@/lib/language-context";
 
 export default function ServicesPage() {
   const router = useRouter();
+  const { t } = useLanguage();
+  
   const mainServices = [
     {
       id: 1,
       icon: Stethoscope,
-      title: "O.P.D. Services",
-      description: "Comprehensive outpatient department services with experienced doctors",
+      title: t('services.opdServices.title'),
+      description: t('services.opdServices.description'),
       color: "from-blue-500 to-blue-600",
       bgColor: "from-blue-50 to-blue-100",
       borderColor: "border-blue-200",
       subCards: [
         {
-          title: "General Medicine",
+          title: t('servicesPage.opd.generalMedicine.title'),
           icon: Heart,
-          description: "Comprehensive medical care for adults and children",
-          features: ["Health Checkups", "Disease Management", "Preventive Care", "Chronic Disease Care"],
-          timing: "Mon-Fri: 8 AM - 6 PM"
+          description: t('servicesPage.opd.generalMedicine.description'),
+          features: t('servicesPage.opd.generalMedicine.features'),
+          timing: t('servicesPage.opd.generalMedicine.timing')
         },
         {
-          title: "Obstetrics & Gynaecology",
+          title: t('servicesPage.opd.gynecology.title'),
           icon: Baby,
-          description: "Specialized care for women's health and pregnancy",
-          features: ["Prenatal Care", "Gynecological Exams", "Family Planning", "Women's Wellness"],
-          timing: "Mon-Fri: 9 AM - 5 PM"
+          description: t('servicesPage.opd.gynecology.description'),
+          features: t('servicesPage.opd.gynecology.features'),
+          timing: t('servicesPage.opd.gynecology.timing')
         },
         {
-          title: "Health Checkups",
+          title: t('servicesPage.opd.healthCheckups.title'),
           icon: Users,
-          description: "Comprehensive health screening and preventive care",
-          features: ["Regular Checkups", "Vaccination", "Health Education", "Screening Tests"],
-          timing: "Mon-Sat: 8 AM - 12 PM"
+          description: t('servicesPage.opd.healthCheckups.description'),
+          features: t('servicesPage.opd.healthCheckups.features'),
+          timing: t('servicesPage.opd.healthCheckups.timing')
         },
         {
-          title: "Emergency Care",
+          title: t('servicesPage.opd.emergencyCare.title'),
           icon: Shield,
-          description: "24/7 emergency medical services with rapid response",
-          features: ["Emergency Treatment", "Quick Response", "Critical Care", "Ambulance Service"],
-          timing: "24/7 Available"
+          description: t('servicesPage.opd.emergencyCare.description'),
+          features: t('servicesPage.opd.emergencyCare.features'),
+          timing: t('servicesPage.opd.emergencyCare.timing')
         }
       ]
     },
     {
       id: 2,
       icon: TestTube,
-      title: "Pathology Services",
-      description: "Complete blood and urine medical investigations with accurate results",
+      title: t('services.pathology.title'),
+      description: t('services.pathology.description'),
       color: "from-teal-500 to-teal-600",
       bgColor: "from-teal-50 to-teal-100",
       borderColor: "border-teal-200",
       subCards: [
         {
-          title: "Clinical Hematology",
+          title: t('servicesPage.pathology.hematology.title'),
           icon: Droplets,
-          description: "Complete blood count and blood disorder diagnosis",
-          features: ["Complete Blood Count", "Hemoglobin Test", "Blood Grouping", "Anemia Diagnosis"],
-          timing: "Results in 24 hours"
+          description: t('servicesPage.pathology.hematology.description'),
+          features: t('servicesPage.pathology.hematology.features'),
+          timing: t('servicesPage.pathology.hematology.timing')
         },
         {
-          title: "Clinical Biochemistry",
+          title: t('servicesPage.pathology.biochemistry.title'),
           icon: Syringe,
-          description: "Biochemical analysis for metabolic disorders",
-          features: ["Blood Sugar Tests", "Kidney Function", "Liver Function", "Lipid Profile"],
-          timing: "Results in 24-48 hours"
+          description: t('servicesPage.pathology.biochemistry.description'),
+          features: t('servicesPage.pathology.biochemistry.features'),
+          timing: t('servicesPage.pathology.biochemistry.timing')
         },
         {
-          title: "Clinical Microbiology",
+          title: t('servicesPage.pathology.microbiology.title'),
           icon: Microscope,
-          description: "Microbial culture and sensitivity testing",
-          features: ["Culture Tests", "Antibiotic Sensitivity", "Infection Diagnosis", "Bacterial Analysis"],
-          timing: "Results in 48-72 hours"
+          description: t('servicesPage.pathology.microbiology.description'),
+          features: t('servicesPage.pathology.microbiology.features'),
+          timing: t('servicesPage.pathology.microbiology.timing')
         },
         {
-          title: "Clinical Pathology",
+          title: t('servicesPage.pathology.clinical.title'),
           icon: FileText,
-          description: "Tissue and cell analysis for disease diagnosis",
-          features: ["Cytology Tests", "Histopathology", "Fine Needle Aspiration", "Tissue Analysis"],
-          timing: "Results in 48-72 hours"
+          description: t('servicesPage.pathology.clinical.description'),
+          features: t('servicesPage.pathology.clinical.features'),
+          timing: t('servicesPage.pathology.clinical.timing')
         },
         {
-          title: "Urinalysis",
+          title: t('servicesPage.pathology.urinalysis.title'),
           icon: Thermometer,
-          description: "Complete urine examination and analysis",
-          features: ["Urine Routine", "Microscopic Analysis", "Chemical Analysis", "Culture Tests"],
-          timing: "Results in 24 hours"
+          description: t('servicesPage.pathology.urinalysis.description'),
+          features: t('servicesPage.pathology.urinalysis.features'),
+          timing: t('servicesPage.pathology.urinalysis.timing')
         }
       ]
     },
     {
       id: 3,
       icon: Scan,
-      title: "Radiology Services",
-      description: "Advanced ultrasound imaging services for accurate diagnosis",
+      title: t('services.radiology.title'),
+      description: t('services.radiology.description'),
       color: "from-blue-500 to-teal-500",
       bgColor: "from-blue-50 to-teal-50",
       borderColor: "border-blue-200",
       subCards: [
         {
-          title: "U.S.G. (Ultrasound)",
+          title: t('servicesPage.radiology.ultrasound.title'),
           icon: Eye,
-          description: "High-resolution ultrasound imaging for various body parts",
-          features: ["Abdominal Ultrasound", "Pelvic Ultrasound", "Pregnancy Ultrasound", "Cardiac Ultrasound"],
-          timing: "Same-day reports available"
+          description: t('servicesPage.radiology.ultrasound.description'),
+          features: t('servicesPage.radiology.ultrasound.features'),
+          timing: t('servicesPage.radiology.ultrasound.timing')
         },
         {
-          title: "E.C.G. (Electrocardiogram)",
+          title: t('servicesPage.radiology.ecg.title'),
           icon: Activity,
-          description: "Heart rhythm and electrical activity monitoring",
-          features: ["Resting ECG", "Stress ECG", "Holter Monitoring", "Cardiac Assessment"],
-          timing: "Immediate results"
+          description: t('servicesPage.radiology.ecg.description'),
+          features: t('servicesPage.radiology.ecg.features'),
+          timing: t('servicesPage.radiology.ecg.timing')
         },
         {
-          title: "Digital Imaging",
+          title: t('servicesPage.radiology.imaging.title'),
           icon: Scan,
-          description: "High-quality digital imaging and reporting",
-          features: ["Digital Reports", "Online Access", "Expert Interpretation", "Quality Assurance"],
-          timing: "Quick processing"
+          description: t('servicesPage.radiology.imaging.description'),
+          features: t('servicesPage.radiology.imaging.features'),
+          timing: t('servicesPage.radiology.imaging.timing')
         },
         {
-          title: "Emergency Imaging",
+          title: t('servicesPage.radiology.emergency.title'),
           icon: Shield,
-          description: "Emergency radiology services for critical cases",
-          features: ["Emergency Ultrasound", "Quick Diagnosis", "Critical Care Support", "24/7 Available"],
-          timing: "24/7 Emergency Service"
+          description: t('servicesPage.radiology.emergency.description'),
+          features: t('servicesPage.radiology.emergency.features'),
+          timing: t('servicesPage.radiology.emergency.timing')
         }
       ]
     },
     {
       id: 4,
       icon: Pill,
-      title: "Pharmacy Services",
-      description: "Complete pharmaceutical services with quality medications",
+      title: t('services.pharmacy.title'),
+      description: t('services.pharmacy.description'),
       color: "from-green-500 to-emerald-500",
       bgColor: "from-green-50 to-emerald-50",
       borderColor: "border-green-200",
       subCards: [
         {
-          title: "Prescription Medicines",
+          title: t('servicesPage.pharmacy.prescription.title'),
           icon: Pill,
-          description: "Complete range of prescription and OTC medications",
-          features: ["Prescription Drugs", "Over-the-Counter", "Generic Medicines", "Branded Medicines"],
-          timing: "Licensed pharmacy"
+          description: t('servicesPage.pharmacy.prescription.description'),
+          features: t('servicesPage.pharmacy.prescription.features'),
+          timing: t('servicesPage.pharmacy.prescription.timing')
         },
         {
-          title: "Surgical Supplies",
+          title: t('servicesPage.pharmacy.surgical.title'),
           icon: Shield,
-          description: "Complete range of surgical supplies and medical equipment",
-          features: ["Surgical Instruments", "Medical Devices", "Disposables", "First Aid Supplies"],
-          timing: "Quality assured"
+          description: t('servicesPage.pharmacy.surgical.description'),
+          features: t('servicesPage.pharmacy.surgical.features'),
+          timing: t('servicesPage.pharmacy.surgical.timing')
         },
         {
-          title: "Health Supplements",
+          title: t('servicesPage.pharmacy.supplements.title'),
           icon: Heart,
-          description: "Vitamins, minerals and health supplements",
-          features: ["Vitamins", "Minerals", "Protein Supplements", "Herbal Products"],
-          timing: "Competitive pricing"
+          description: t('servicesPage.pharmacy.supplements.description'),
+          features: t('servicesPage.pharmacy.supplements.features'),
+          timing: t('servicesPage.pharmacy.supplements.timing')
         },
         {
-          title: "Medical Consultation",
+          title: t('servicesPage.pharmacy.consultation.title'),
           icon: Users,
-          description: "Professional pharmaceutical consultation and guidance",
-          features: ["Drug Interaction", "Dosage Guidance", "Side Effects", "Medication Review"],
-          timing: "Expert consultation"
+          description: t('servicesPage.pharmacy.consultation.description'),
+          features: t('servicesPage.pharmacy.consultation.features'),
+          timing: t('servicesPage.pharmacy.consultation.timing')
         },
         {
-          title: "Home Delivery",
+          title: t('servicesPage.pharmacy.delivery.title'),
           icon: MapPin,
-          description: "Convenient home delivery of medicines and supplies",
-          features: ["Home Delivery", "Online Ordering", "Quick Delivery", "Safe Packaging"],
-          timing: "Same-day delivery available"
+          description: t('servicesPage.pharmacy.delivery.description'),
+          features: t('servicesPage.pharmacy.delivery.features'),
+          timing: t('servicesPage.pharmacy.delivery.timing')
         }
       ]
     }
@@ -207,26 +210,26 @@ export default function ServicesPage() {
   const additionalServices = [
     {
       icon: Heart,
-      title: "Emergency Care",
-      description: "24/7 emergency medical services with rapid response",
+      title: t('servicesPage.additional.emergency.title'),
+      description: t('servicesPage.additional.emergency.description'),
       color: "from-red-500 to-pink-500"
     },
     {
       icon: Users,
-      title: "Health Checkups",
-      description: "Comprehensive health screening packages for all ages",
+      title: t('servicesPage.additional.checkups.title'),
+      description: t('servicesPage.additional.checkups.description'),
       color: "from-purple-500 to-indigo-500"
     },
     {
       icon: Shield,
-      title: "Preventive Care",
-      description: "Vaccination and preventive healthcare services",
+      title: t('servicesPage.additional.preventive.title'),
+      description: t('servicesPage.additional.preventive.description'),
       color: "from-orange-500 to-yellow-500"
     },
     {
       icon: FileText,
-      title: "Health Records",
-      description: "Digital health records and medical history management",
+      title: t('servicesPage.additional.records.title'),
+      description: t('servicesPage.additional.records.description'),
       color: "from-gray-500 to-slate-500"
     }
   ];
@@ -234,7 +237,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Page Header */}
-      <HeroSection title="Our Services" description="Comprehensive healthcare services designed to meet all your medical needs under one roof" />
+      <HeroSection title={t('servicesPage.pageTitle')} description={t('servicesPage.pageDescription')} />
 
       {/* Main Services with Sub-Cards */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -246,13 +249,13 @@ export default function ServicesPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Complete{" "}
+              {t('servicesPage.mainHeading.prefix')}{" "}
               <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                Healthcare Solutions
+                {t('servicesPage.mainHeading.highlighted')}
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From consultation to diagnosis, treatment to medication - we provide end-to-end healthcare services
+              {t('servicesPage.mainHeading.description')}
             </p>
           </motion.div>
 
@@ -304,7 +307,7 @@ export default function ServicesPage() {
                       {/* Features */}
                       <div className="mb-4">
                         <div className="space-y-2">
-                          {subCard.features.map((feature, featureIndex) => (
+                          {Array.isArray(subCard.features) && subCard.features.map((feature, featureIndex) => (
                             <div key={featureIndex} className="flex items-center text-xs text-gray-700">
                               <CheckCircle className="w-3 h-3 text-green-500 mr-2" />
                               <span>{feature}</span>
@@ -333,9 +336,9 @@ export default function ServicesPage() {
             className="text-center mb-12 mt-20"
           >
             <h3 className="text-3xl font-bold text-gray-900 mb-6">
-              Additional{" "}
+              {t('servicesPage.additionalHeading.prefix')}{" "}
               <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                Services
+                {t('servicesPage.additionalHeading.highlighted')}
               </span>
             </h3>
           </motion.div>
@@ -370,13 +373,13 @@ export default function ServicesPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Why Choose{" "}
+              {t('servicesPage.whyChoose.title.prefix')}{" "}
               <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                Our Services
+                {t('servicesPage.whyChoose.title.highlighted')}
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Experience healthcare excellence with our comprehensive range of services
+              {t('servicesPage.whyChoose.description')}
             </p>
           </motion.div>
 
@@ -384,23 +387,23 @@ export default function ServicesPage() {
             {[
               {
                 icon: Users,
-                title: "Expert Team",
-                description: "Experienced doctors and specialists in all departments with 5+ years of experience"
+                title: t('servicesPage.whyChoose.expertTeam.title'),
+                description: t('servicesPage.whyChoose.expertTeam.description')
               },
               {
                 icon: Award,
-                title: "Quality Assured",
-                description: "Highest standards of medical care and equipment with NABL accreditation"
+                title: t('servicesPage.whyChoose.qualityAssured.title'),
+                description: t('servicesPage.whyChoose.qualityAssured.description')
               },
               {
                 icon: Clock,
-                title: "Quick Service",
-                description: "Fast results and minimal waiting times with same-day reports available"
+                title: t('servicesPage.whyChoose.quickService.title'),
+                description: t('servicesPage.whyChoose.quickService.description')
               },
               {
                 icon: Shield,
-                title: "Comprehensive Care",
-                description: "Complete healthcare solutions under one roof from consultation to medication"
+                title: t('servicesPage.whyChoose.comprehensiveCare.title'),
+                description: t('servicesPage.whyChoose.comprehensiveCare.description')
               }
             ].map((feature, index) => (
               <motion.div
@@ -431,9 +434,9 @@ export default function ServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl font-bold mb-6">Ready to Get Started?</h2>
+            <h2 className="text-4xl font-bold mb-6">{t('servicesPage.cta.title')}</h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Book your appointment today and experience our comprehensive healthcare services
+              {t('servicesPage.cta.description')}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -443,7 +446,7 @@ export default function ServicesPage() {
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-md transition-all"
               >
                 <Calendar className="w-5 h-5 mr-2" />
-                Book Appointment
+                {t('servicesPage.cta.bookButton')}
               </Button>
               <Button
                 size="lg"
@@ -452,7 +455,7 @@ export default function ServicesPage() {
                 className="border-2 border-white text-primary hover:bg-white/10 px-8 py-4 text-lg font-semibold backdrop-blur-sm"
               >
                 <Phone className="w-5 h-5 mr-2" />
-                Call Now: +91 9901515300
+                {t('servicesPage.cta.callButton')} {t('contact.phone1')}
               </Button>
             </div>
 
@@ -460,15 +463,15 @@ export default function ServicesPage() {
               <div className="flex flex-col sm:flex-row justify-center items-center gap-6 text-sm">
                 <div className="flex items-center space-x-2">
                   <MapPin className="w-4 h-4" />
-                  <span>Arrah, Bihar</span>
+                  <span>{t('contact.address').split('\n')[1]}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Clock className="w-4 h-4" />
-                  <span>24/7 Emergency Care</span>
+                  <span>{t('servicesPage.cta.emergencyCare')}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Award className="w-4 h-4" />
-                  <span>Quality Assured</span>
+                  <span>{t('servicesPage.cta.qualityAssured')}</span>
                 </div>
               </div>
             </div>

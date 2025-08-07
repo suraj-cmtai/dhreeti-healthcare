@@ -15,99 +15,66 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/all/hero-section";
+import { useLanguage } from "@/lib/language-context";
 
 export default function PrivacyPolicyPage() {
+  const { t } = useLanguage();
+  
   const privacySections = [
     {
-      title: "Information We Collect",
+      title: t('privacy.sections.information.title'),
       icon: Eye,
-      content: [
-        "Personal information (name, contact details, medical history)",
-        "Health records and treatment information",
-        "Appointment and consultation details",
-        "Payment and billing information",
-        "Website usage data and cookies"
-      ]
+      content: t('privacy.sections.information.content')
     },
     {
-      title: "How We Use Your Information",
+      title: t('privacy.sections.usage.title'),
       icon: Users,
-      content: [
-        "Provide medical care and treatment services",
-        "Schedule appointments and manage patient records",
-        "Communicate about healthcare services",
-        "Process payments and billing",
-        "Improve our healthcare services"
-      ]
+      content: t('privacy.sections.usage.content')
     },
     {
-      title: "Information Sharing",
+      title: t('privacy.sections.sharing.title'),
       icon: Shield,
-      content: [
-        "We do not sell your personal information",
-        "Share only with your explicit consent",
-        "May share with healthcare providers for treatment",
-        "Comply with legal requirements when necessary",
-        "Protect patient safety and public health"
-      ]
+      content: t('privacy.sections.sharing.content')
     },
     {
-      title: "Data Security",
+      title: t('privacy.sections.security.title'),
       icon: Lock,
-      content: [
-        "Encrypted data transmission and storage",
-        "Secure access controls and authentication",
-        "Regular security audits and updates",
-        "Staff training on data protection",
-        "Compliance with healthcare privacy standards"
-      ]
+      content: t('privacy.sections.security.content')
     },
     {
-      title: "Your Rights",
+      title: t('privacy.sections.rights.title'),
       icon: CheckCircle,
-      content: [
-        "Access your personal health information",
-        "Request corrections to your records",
-        "Withdraw consent for data sharing",
-        "Request deletion of your data",
-        "File complaints about privacy practices"
-      ]
+      content: t('privacy.sections.rights.content')
     },
     {
-      title: "Data Retention",
+      title: t('privacy.sections.retention.title'),
       icon: Calendar,
-      content: [
-        "Medical records retained as per legal requirements",
-        "Personal data kept only as long as necessary",
-        "Secure disposal of outdated information",
-        "Regular review of data retention policies",
-        "Compliance with healthcare regulations"
-      ]
+      content: t('privacy.sections.retention.content')
     }
   ];
 
   const contactInfo = [
     {
       icon: Phone,
-      label: "Phone",
-      value: "+91 98765 43210"
+      label: t('privacy.contact.phone.label'),
+      value: t('privacy.contact.phone.value')
     },
     {
       icon: Mail,
-      label: "Email",
-      value: "privacy@dhreetihealthcare.com"
+      label: t('privacy.contact.email.label'),
+      value: t('privacy.contact.email.value')
     },
     {
       icon: MapPin,
-      label: "Address",
-      value: "Arrah, Bihar, India"
+      label: t('privacy.contact.address.label'),
+      value: t('privacy.contact.address.value')
     }
   ];
 
   return (
     <>
       {/* Banner Section */}
-      <HeroSection title="Privacy Policy" description="Your privacy and data security are our top priorities. Learn how we protect your personal and health information." />
+      <HeroSection title={t('privacy.pageTitle')} description={t('privacy.pageDescription')} />
 
       {/* Main Content */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -120,13 +87,13 @@ export default function PrivacyPolicyPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              Our Commitment to{" "}
+              {t('privacy.intro.title.prefix')}{" "}
               <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                Your Privacy
+                {t('privacy.intro.title.highlighted')}
               </span>
             </h2>
             <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              At Dhreeti Clinic and Research Private Limited, we are committed to protecting your privacy and ensuring the security of your personal and health information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our healthcare services.
+              {t('privacy.intro.description')}
             </p>
           </motion.div>
 
@@ -148,7 +115,7 @@ export default function PrivacyPolicyPage() {
                 </div>
                 
                 <div className="space-y-3">
-                  {section.content.map((item, itemIndex) => (
+                  {Array.isArray(section.content) && section.content.map((item, itemIndex) => (
                     <div key={itemIndex} className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
                       <span className="text-gray-700 leading-relaxed">{item}</span>
@@ -170,27 +137,27 @@ export default function PrivacyPolicyPage() {
               <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-teal-500 rounded-xl flex items-center justify-center mr-4">
                 <FileText className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900">Additional Information</h3>
+              <h3 className="text-2xl font-bold text-gray-900">{t('privacy.additional.title')}</h3>
             </div>
             
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Updates to This Policy</h4>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">{t('privacy.additional.updates.title')}</h4>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes by posting the new Privacy Policy on our website.
+                  {t('privacy.additional.updates.description1')}
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  Your continued use of our services after any changes indicates your acceptance of the updated Privacy Policy.
+                  {t('privacy.additional.updates.description2')}
                 </p>
               </div>
               
               <div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Compliance</h4>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">{t('privacy.additional.compliance.title')}</h4>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  We comply with all applicable healthcare privacy laws and regulations, including but not limited to the Information Technology Act, 2000, and other relevant Indian healthcare privacy standards.
+                  {t('privacy.additional.compliance.description1')}
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  Our privacy practices are regularly reviewed and updated to ensure compliance with current legal requirements.
+                  {t('privacy.additional.compliance.description2')}
                 </p>
               </div>
             </div>
@@ -204,9 +171,9 @@ export default function PrivacyPolicyPage() {
             className="bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-3xl p-8 shadow-lg"
           >
             <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold mb-4">Contact Us</h3>
+              <h3 className="text-3xl font-bold mb-4">{t('privacy.contact.title')}</h3>
               <p className="text-xl opacity-90">
-                If you have any questions about this Privacy Policy or our privacy practices, please contact us:
+                {t('privacy.contact.description')}
               </p>
             </div>
             
@@ -233,9 +200,9 @@ export default function PrivacyPolicyPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Have Questions About Privacy?</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">{t('privacy.cta.title')}</h2>
             <p className="text-xl mb-8 text-gray-600 max-w-2xl mx-auto">
-              We're here to help. Contact our privacy team for any concerns about your data protection.
+              {t('privacy.cta.description')}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -244,7 +211,7 @@ export default function PrivacyPolicyPage() {
                 className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white px-8 py-4 text-lg font-semibold shadow-md transition-all"
               >
                 <Mail className="w-5 h-5 mr-2" />
-                Contact Privacy Team
+                {t('privacy.cta.contactButton')}
               </Button>
               <Button
                 size="lg"
@@ -252,7 +219,7 @@ export default function PrivacyPolicyPage() {
                 className="border-2 border-blue-500 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
               >
                 <FileText className="w-5 h-5 mr-2" />
-                Download Policy
+                {t('privacy.cta.downloadButton')}
               </Button>
             </div>
           </motion.div>

@@ -5,8 +5,11 @@ import { Badge } from '@/components/ui/badge';
 import { Clock, Star, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/lib/language-context';
 
 export default function SchemeSection() {
+    const { t } = useLanguage();
+    
     return (
         <div>
       {/* Schemes & Offers Section */}
@@ -19,13 +22,13 @@ export default function SchemeSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Special{" "}
+              {t('schemes.special')}{" "}
               <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                Schemes & Offers
+                {t('schemes.title')}
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Take advantage of our special discounts and offers designed to make healthcare more affordable
+              {t('schemes.description')}
             </p>
           </motion.div>
 
@@ -42,32 +45,32 @@ export default function SchemeSection() {
                     <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                       <Clock className="w-6 h-6 text-blue-600" />
                     </div>
-                    <Badge className="bg-blue-100 text-blue-800">Consultation Hours</Badge>
+                    <Badge className="bg-blue-100 text-blue-800">{t('schemes.consultation.badge')}</Badge>
                   </div>
                   <CardTitle className="text-xl font-bold text-gray-900 mb-2">
-                    Patient Consultation Hours
+                    {t('schemes.consultation.title')}
                   </CardTitle>
                 </CardHeader>
                 
                 <CardContent className="space-y-4">
                   <div className="space-y-3">
                     <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
-                      <span className="font-medium text-gray-800">Monday to Friday</span>
-                      <span className="text-blue-600 font-semibold">8 AM - 6 PM</span>
+                      <span className="font-medium text-gray-800">{t('schemes.consultation.weekdays')}</span>
+                      <span className="text-blue-600 font-semibold">{t('schemes.consultation.weekdayHours')}</span>
                     </div>
                     <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
-                      <span className="font-medium text-gray-800">Saturday & Sunday</span>
-                      <span className="text-green-600 font-semibold">8 AM - 12 PM</span>
+                      <span className="font-medium text-gray-800">{t('schemes.consultation.weekends')}</span>
+                      <span className="text-green-600 font-semibold">{t('schemes.consultation.weekendHours')}</span>
                     </div>
                   </div>
                   
                   <div className="pt-4 border-t border-gray-100">
                     <p className="text-sm text-gray-600">
-                      <strong>Important:</strong> Please confirm your appointment and doctor's availability by phone before visiting.
+                      <strong>{t('schemes.consultation.important')}:</strong> {t('schemes.consultation.confirmMessage')}
                     </p>
                     <div className="mt-3 space-y-1">
-                      <p className="text-sm text-gray-600">📞 <strong>9901515300</strong></p>
-                      <p className="text-sm text-gray-600">📞 <strong>9279797955</strong></p>
+                      <p className="text-sm text-gray-600">📞 <strong>{t('contact.phone1')}</strong></p>
+                      <p className="text-sm text-gray-600">📞 <strong>{t('contact.phone2')}</strong></p>
                     </div>
                   </div>
                 </CardContent>
@@ -86,10 +89,10 @@ export default function SchemeSection() {
                     <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                       <Star className="w-6 h-6 text-green-600" />
                     </div>
-                    <Badge className="bg-green-100 text-green-800">Monthly Offers</Badge>
+                    <Badge className="bg-green-100 text-green-800">{t('schemes.monthly.badge')}</Badge>
                   </div>
                   <CardTitle className="text-xl font-bold text-gray-900 mb-2">
-                    Monthly Special Offers
+                    {t('schemes.monthly.title')}
                   </CardTitle>
                 </CardHeader>
                 
@@ -97,34 +100,34 @@ export default function SchemeSection() {
                   <div className="space-y-3">
                     <div className="p-3 bg-green-50 rounded-lg border-l-4 border-green-500">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-medium text-gray-800">9th of Every Month</span>
-                        <span className="text-green-600 font-bold">₹50</span>
+                        <span className="font-medium text-gray-800">{t('schemes.monthly.offer1.date')}</span>
+                        <span className="text-green-600 font-bold">{t('schemes.monthly.offer1.price')}</span>
                       </div>
-                      <p className="text-sm text-gray-600">Gynecology & Obstetrics - No consultation fee, only registration fee</p>
+                      <p className="text-sm text-gray-600">{t('schemes.monthly.offer1.description')}</p>
                     </div>
                     
                     <div className="p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-medium text-gray-800">3rd of Every Month</span>
-                        <span className="text-blue-600 font-bold">₹150</span>
+                        <span className="font-medium text-gray-800">{t('schemes.monthly.offer2.date')}</span>
+                        <span className="text-blue-600 font-bold">{t('schemes.monthly.offer2.price')}</span>
                       </div>
-                      <p className="text-sm text-gray-600">HbA1c (3-month sugar) test</p>
+                      <p className="text-sm text-gray-600">{t('schemes.monthly.offer2.description')}</p>
                     </div>
                     
                     <div className="p-3 bg-purple-50 rounded-lg border-l-4 border-purple-500">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-medium text-gray-800">9th of Every Month</span>
-                        <span className="text-purple-600 font-bold">₹150</span>
+                        <span className="font-medium text-gray-800">{t('schemes.monthly.offer3.date')}</span>
+                        <span className="text-purple-600 font-bold">{t('schemes.monthly.offer3.price')}</span>
                       </div>
-                      <p className="text-sm text-gray-600">Thyroid test</p>
+                      <p className="text-sm text-gray-600">{t('schemes.monthly.offer3.description')}</p>
                     </div>
                     
                     <div className="p-3 bg-orange-50 rounded-lg border-l-4 border-orange-500">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-medium text-gray-800">15th of Every Month</span>
-                        <span className="text-orange-600 font-bold">₹300</span>
+                        <span className="font-medium text-gray-800">{t('schemes.monthly.offer4.date')}</span>
+                        <span className="text-orange-600 font-bold">{t('schemes.monthly.offer4.price')}</span>
                       </div>
-                      <p className="text-sm text-gray-600">PFT (Pulmonary Function Test) for shortness of breath</p>
+                      <p className="text-sm text-gray-600">{t('schemes.monthly.offer4.description')}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -143,10 +146,10 @@ export default function SchemeSection() {
                     <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
                       <CheckCircle className="w-6 h-6 text-red-600" />
                     </div>
-                    <Badge className="bg-red-100 text-red-800">Reduced Fees</Badge>
+                    <Badge className="bg-red-100 text-red-800">{t('schemes.reduced.badge')}</Badge>
                   </div>
                   <CardTitle className="text-xl font-bold text-gray-900 mb-2">
-                    Reduced Test Fees
+                    {t('schemes.reduced.title')}
                   </CardTitle>
                 </CardHeader>
                 
@@ -154,25 +157,25 @@ export default function SchemeSection() {
                   <div className="space-y-3">
                     <div className="p-3 bg-red-50 rounded-lg">
                       <div className="flex items-center justify-between">
-                        <span className="font-medium text-gray-800">Ultrasound</span>
-                        <span className="text-red-600 font-bold">₹900</span>
+                        <span className="font-medium text-gray-800">{t('schemes.reduced.test1.name')}</span>
+                        <span className="text-red-600 font-bold">{t('schemes.reduced.test1.price')}</span>
                       </div>
-                      <p className="text-xs text-gray-500 mt-1">Reduced from previous price</p>
+                      <p className="text-xs text-gray-500 mt-1">{t('schemes.reduced.reducedText')}</p>
                     </div>
                     
                     <div className="p-3 bg-red-50 rounded-lg">
                       <div className="flex items-center justify-between">
-                        <span className="font-medium text-gray-800">ECG</span>
-                        <span className="text-red-600 font-bold">₹200</span>
+                        <span className="font-medium text-gray-800">{t('schemes.reduced.test2.name')}</span>
+                        <span className="text-red-600 font-bold">{t('schemes.reduced.test2.price')}</span>
                       </div>
-                      <p className="text-xs text-gray-500 mt-1">Reduced from previous price</p>
+                      <p className="text-xs text-gray-500 mt-1">{t('schemes.reduced.reducedText')}</p>
                     </div>
                   </div>
                   
                   <div className="pt-4 border-t border-gray-100">
                     <div className="bg-gradient-to-r from-red-50 to-orange-50 p-3 rounded-lg">
                       <p className="text-sm text-gray-700 font-medium">
-                        💡 <strong>Pro Tip:</strong> Book your appointments on special offer days to save money on tests and consultations.
+                        💡 <strong>{t('schemes.reduced.proTip.title')}:</strong> {t('schemes.reduced.proTip.text')}
                       </p>
                     </div>
                   </div>
@@ -190,17 +193,17 @@ export default function SchemeSection() {
           >
             <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100 max-w-2xl mx-auto">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Ready to Save on Healthcare?
+                {t('schemes.cta.title')}
               </h3>
               <p className="text-gray-600 mb-6">
-                Don't miss out on these special offers! Call us now to book your appointment and take advantage of our reduced fees and monthly specials.
+                {t('schemes.cta.description')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white"
                   onClick={() => window.location.href = '/book-appointment'}
                 >
-                  Book Appointment
+                  {t('schemes.cta.bookButton')}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
                 <Button 
@@ -208,7 +211,7 @@ export default function SchemeSection() {
                   className="border-blue-200 text-blue-600 hover:bg-blue-50"
                   onClick={() => window.location.href = '/contact'}
                 >
-                  Contact Us
+                  {t('schemes.cta.contactButton')}
                 </Button>
               </div>
             </div>
