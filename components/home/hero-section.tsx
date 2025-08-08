@@ -37,7 +37,7 @@ const fadeInScale: Variants = {
 export default function Hero() {
   const router = useRouter();
   const { t } = useLanguage();
-  
+
   return (
     <>
       <section className="relative min-h-[90vh] flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 via-white to-teal-50 overflow-hidden pt-4 sm:pt-0">
@@ -148,7 +148,7 @@ export default function Hero() {
               <Button
                 size="lg"
                 onClick={() => {router.push('/book-appointment')}}
-                className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white text-lg font-semibold shadow-md transition-all transform"
+                className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white text-lg font-semibold shadow-md transition-all transform cursor-pointer"
               >
                 {t('hero.bookAppointment')}
                 <ArrowRight className="w-4 h-4" />
