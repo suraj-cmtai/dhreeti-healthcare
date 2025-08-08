@@ -248,10 +248,9 @@ export default function ServicesPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              {t('servicesPage.mainHeading.prefix')}{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                {t('servicesPage.mainHeading.highlighted')}
+            <h2 className="text-4xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-blue-600 via-teal-500 to-blue-600 bg-clip-text text-transparent">
+                {t('servicesPage.mainHeading.prefix')} {t('servicesPage.mainHeading.highlighted')}
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -335,9 +334,9 @@ export default function ServicesPage() {
             transition={{ duration: 0.8, delay: 1.2 }}
             className="text-center mb-12 mt-20"
           >
-            <h3 className="text-3xl font-bold text-gray-900 mb-6">
-              {t('servicesPage.additionalHeading.prefix')}{" "}
+            <h3 className="text-3xl font-bold mb-6">
               <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
+                {t('servicesPage.additionalHeading.prefix')}{" "}
                 {t('servicesPage.additionalHeading.highlighted')}
               </span>
             </h3>
@@ -372,9 +371,9 @@ export default function ServicesPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              {t('servicesPage.whyChoose.title.prefix')}{" "}
+            <h2 className="text-4xl font-bold mb-6">
               <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
+                {t('servicesPage.whyChoose.title.prefix')}{" "}
                 {t('servicesPage.whyChoose.title.highlighted')}
               </span>
             </h2>

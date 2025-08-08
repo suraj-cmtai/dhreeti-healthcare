@@ -96,10 +96,9 @@ export default function TestimonialSection() {
           viewport={{ once: true, amount: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            {t('testimonials.title').split(' ')[0]}{" "}
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-              {t('testimonials.title').split(' ').slice(1).join(' ')}
+              {t('testimonials.title')}
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">

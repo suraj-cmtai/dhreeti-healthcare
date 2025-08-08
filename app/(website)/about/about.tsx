@@ -33,11 +33,9 @@ export default function AboutPage() {
                     <span className="text-sm font-semibold text-blue-800">{t('aboutPage.companyName')}</span>
                   </div>
 
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
                     {t('aboutPage.heading.prefix')}{" "}
-                    <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                      {t('aboutPage.heading.highlighted')}
-                    </span>
+                    {t('aboutPage.heading.highlighted')}
                   </h2>
 
                   <p className="text-lg text-gray-700 leading-relaxed">
@@ -140,9 +138,8 @@ export default function AboutPage() {
               className="text-center mb-16"
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                {t('aboutPage.coreValues.prefix')}{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                  {t('aboutPage.coreValues.highlighted')}
+                  {t('aboutPage.coreValues.prefix')} {t('aboutPage.coreValues.highlighted')}
                 </span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -204,10 +201,9 @@ export default function AboutPage() {
               transition={{ duration: 0.8 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                {t('aboutPage.facilities.prefix')}{" "}
+              <h2 className="text-4xl font-bold mb-6">
                 <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                  {t('aboutPage.facilities.highlighted')}
+                  {t('aboutPage.facilities.prefix')} {t('aboutPage.facilities.highlighted')}
                 </span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -271,11 +267,8 @@ export default function AboutPage() {
               transition={{ duration: 0.8 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                {t('aboutPage.achievements.prefix')}{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                  {t('aboutPage.achievements.highlighted')}
-                </span>
+              <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
+                {t('aboutPage.achievements.prefix')} {t('aboutPage.achievements.highlighted')}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 {t('aboutPage.achievements.description')}

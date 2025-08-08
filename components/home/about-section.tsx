@@ -91,10 +91,10 @@ export default function AboutUsSection() {
             <Plus className="w-24 h-24 text-blue-600" />
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 relative z-10">
-            {t('about.title')}
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <span className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 relative z-10">
+            <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">{t('about.title')}</span>
+          </span>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mt-1 leading-relaxed">
             {t('about.subtitle')}
           </p>
         </motion.div>

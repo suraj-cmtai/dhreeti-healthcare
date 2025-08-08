@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { 
   Calendar, 
@@ -12,7 +12,8 @@ import {
   Star,
   Phone,
   Mail,
-  AlertTriangle
+  AlertTriangle,
+  Loader2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -103,16 +104,13 @@ export default function Events() {
     });
   };
 
-  // Loading state
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-gray-500">{t('eventsPage.loading')}</div>
-        </div>
-      </div>
-    );
-  }
+  // Render loading component for events section
+  const renderLoadingEvents = () => (
+    <div className="flex flex-col items-center justify-center py-16">
+      <Loader2 className="w-12 h-12 text-blue-500 animate-spin mb-4" />
+      <div className="text-gray-500">{t('eventsPage.loading')}</div>
+    </div>
+  );
 
   return (
     <>
@@ -131,9 +129,9 @@ export default function Events() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              {t('eventsPage.upcomingEvents.title.prefix')}{" "}
+            <h2 className="text-4xl font-bold mb-6">
               <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                {t('eventsPage.upcomingEvents.title.prefix')}{" "}
                 {t('eventsPage.upcomingEvents.title.highlighted')}
               </span>
             </h2>
@@ -142,7 +140,9 @@ export default function Events() {
             </p>
           </motion.div>
 
-          {upcomingEvents.length > 0 ? (
+          {loading ? (
+            renderLoadingEvents()
+          ) : upcomingEvents.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {upcomingEvents.map((event, index) => (
                 <motion.div
@@ -259,9 +259,9 @@ export default function Events() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              {t('eventsPage.pastEvents.title.prefix')}{" "}
+            <h2 className="text-4xl font-bold mb-6">
               <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                {t('eventsPage.pastEvents.title.prefix')}{" "}
                 {t('eventsPage.pastEvents.title.highlighted')}
               </span>
             </h2>
@@ -270,7 +270,9 @@ export default function Events() {
             </p>
           </motion.div>
 
-          {pastEvents.length > 0 ? (
+          {loading ? (
+            renderLoadingEvents()
+          ) : pastEvents.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {pastEvents.map((event, index) => (
                 <motion.div

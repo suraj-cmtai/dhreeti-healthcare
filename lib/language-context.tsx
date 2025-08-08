@@ -31,6 +31,38 @@ const enTranslations = {
     address: "Near D.E.O Office\nArrah, Bihar",
     timing: "Mon-Sat: 8am-8pm"
   },
+  contactPage: {
+    pageTitle: "Contact Us",
+    pageDescription: "Get in touch with our team for any inquiries or to schedule an appointment. We're here to help you with all your healthcare needs.",
+    info: {
+      title: "Contact Information",
+      location: "Our Location",
+      phone: "Phone Numbers",
+      email: "Email Address"
+    },
+    emergency: {
+      title: "Emergency Contact",
+      description: "For medical emergencies, please call our 24/7 emergency helpline immediately."
+    },
+    form: {
+      title: "Send Us a Message",
+      name: "Full Name",
+      namePlaceholder: "Enter your full name",
+      email: "Email Address",
+      emailPlaceholder: "Enter your email address",
+      phone: "Phone Number",
+      phonePlaceholder: "Enter your phone number",
+      message: "Your Message",
+      messagePlaceholder: "How can we help you?",
+      submit: "Send Message",
+      sending: "Sending...",
+      response: "We'll get back to you as soon as possible.",
+      success: {
+        title: "Message Sent!",
+        message: "Thank you for contacting us. We'll respond to your inquiry shortly."
+      }
+    }
+  },
   services: {
     opdServices: {
       title: "O.P.D. Services",
@@ -1044,6 +1076,38 @@ const hiTranslations = {
     phone2: "9279797955",
     address: "डी.ई.ओ कार्यालय के पास\nआरा, बिहार",
     timing: "सोम-शनि: सुबह 8 बजे - शाम 8 बजे"
+  },
+  contactPage: {
+    pageTitle: "संपर्क करें",
+    pageDescription: "किसी भी जानकारी के लिए या अपॉइंटमेंट शेड्यूल करने के लिए हमारी टीम से संपर्क करें। हम आपकी सभी स्वास्थ्य देखभाल जरूरतों में आपकी मदद करने के लिए यहां हैं।",
+    info: {
+      title: "संपर्क जानकारी",
+      location: "हमारा स्थान",
+      phone: "फोन नंबर",
+      email: "ईमेल पता"
+    },
+    emergency: {
+      title: "आपातकालीन संपर्क",
+      description: "चिकित्सा आपात स्थिति के लिए, कृपया हमारी 24/7 आपातकालीन हेल्पलाइन पर तुरंत कॉल करें।"
+    },
+    form: {
+      title: "हमें संदेश भेजें",
+      name: "पूरा नाम",
+      namePlaceholder: "अपना पूरा नाम दर्ज करें",
+      email: "ईमेल पता",
+      emailPlaceholder: "अपना ईमेल पता दर्ज करें",
+      phone: "फोन नंबर",
+      phonePlaceholder: "अपना फोन नंबर दर्ज करें",
+      message: "आपका संदेश",
+      messagePlaceholder: "हम आपकी कैसे मदद कर सकते हैं?",
+      submit: "संदेश भेजें",
+      sending: "भेज रहा है...",
+      response: "हम जल्द से जल्द आपसे संपर्क करेंगे।",
+      success: {
+        title: "संदेश भेज दिया गया!",
+        message: "हमसे संपर्क करने के लिए धन्यवाद। हम जल्द ही आपकी पूछताछ का जवाब देंगे।"
+      }
+    }
   },
   services: {
     opdServices: {

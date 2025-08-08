@@ -99,10 +99,9 @@ export default function TermsPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              {t('terms.intro.title.prefix')}{" "}
+            <h2 className="text-3xl font-bold mb-6">
               <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                {t('terms.intro.title.highlighted')}
+                {t('terms.intro.title.prefix')} {t('terms.intro.title.highlighted')}
               </span>
             </h2>
             <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">

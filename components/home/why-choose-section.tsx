@@ -105,7 +105,9 @@ export default function WhyChooseSection() {
             {t('whyChoose.title')}
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            {t('whyChoose.subtitle').split(' ')[0]} <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">{t('whyChoose.subtitle').split(' ').slice(1).join(' ')}</span>
+            <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
+              {t('whyChoose.subtitle')}
+            </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             {t('whyChoose.description')}
