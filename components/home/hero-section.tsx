@@ -7,6 +7,7 @@ import { Plus, Heart, Stethoscope, Activity, Pill, Shield, ArrowRight } from "lu
 import { useRef, useState } from "react"
 import { Play, Pause } from "lucide-react"
 import { useLanguage } from "@/lib/language-context";
+import { useRouter } from "next/navigation";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -34,6 +35,7 @@ const fadeInScale: Variants = {
 }
 
 export default function Hero() {
+  const router = useRouter();
   const { t } = useLanguage();
   
   return (
@@ -145,6 +147,7 @@ export default function Hero() {
             >
               <Button
                 size="lg"
+                onClick={() => {router.push('/book-appointment')}}
                 className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white text-lg font-semibold shadow-md transition-all transform"
               >
                 {t('hero.bookAppointment')}
