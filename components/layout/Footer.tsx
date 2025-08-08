@@ -25,7 +25,7 @@ export default function Footer() {
           {/* Healthcare Info */}
           <div className="space-y-6">
             <div>
-              <Image src="/logo-horizontal1.png" alt="Dhreeti Clinic" width={120} height={120} className="h-16 w-auto mb-4" />
+              <Image src="/logo-horizontal1.png" alt="Dhreeti Clinic" width={300} height={120} className="h-14 mb-4" />
               <p className="text-gray-600 text-sm leading-relaxed">
                 {t('footer.tagline')}
               </p>
